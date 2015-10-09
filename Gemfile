@@ -35,6 +35,15 @@ gem 'tzinfo-data'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # cucumber and capybara gems for bdd
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  gem 'capybara'
+  gem 'launchy'
+  # gem to clean up development and test databases
+  gem 'database_cleaner'
+  # rspec gem for tdd
+  gem 'rspec-rails'
 end
 
 group :development do
