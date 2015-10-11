@@ -12,7 +12,7 @@ Feature: add a page to assign courses to faculty members
  | B |
  | C |
 
- And the following courses exist
+ And the following courses exist:
  | course_name |
  | course1 |
  | course2 |
