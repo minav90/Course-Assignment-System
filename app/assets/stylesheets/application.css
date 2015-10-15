@@ -10,8 +10,52 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require_tree .
+ *= require_self
+ */
 
- = require_tree .
- = require_self
-  */
+#wrapper
+{
+ width:100%;
+ height:100%;
+}
+#section
+{
  
+ float:left;
+ width:550px;
+ margin:auto;
+ height:100vh;
+ border:2px solid;
+ padding: 10px;
+
+}
+#class_building_name
+{
+ text-transform: uppercase;
+}
+
+#rightsection
+{
+   margin:auto;
+   width:550px;
+   float:right;
+   height:100vh;
+   border:2px solid;
+   padding: 10px;
+}
+#classtable {
+
+  border-collapse: collapse;
+  width: 100%;
+}
+#classtable th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+#classtable th, #classtable td {
+  padding: 4px;
+   border: 2px solid white;
+   text-align: left;
+}

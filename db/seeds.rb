@@ -41,18 +41,9 @@ courses = 	[{:course_name => 'Introduction to Artificial Intelligence'},
 			 {:course_name => 'Analysis of Algorithms Section 1'},
 			 {:course_name => 'Analysis of Algorithms Section 2'},
 			 {:course_name => 'Software Engineering'},
-			 {:course_name => 'Dr. Tracy Hammond'},
-			 {:course_name => 'Dr. Daniel Jiminez'},
 			 
 			]
 			
-8:00 am to 8:50 am
-9:10 am to 10:00 am
-10:20 am to 11:10 am
-11:30 am to 12:10 pm
-12:40 pm to 1:30 pm
-1:50 pm to 2:40 pm
-3:00 pm to 3:50 pm
 
 timeslots = 	[{:time_slot => '8:00 am to 8:50 am'},
 				 {:time_slot => '9:10 am to 10:00 am'},
