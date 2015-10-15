@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009053438) do
+ActiveRecord::Schema.define(version: 20151015001102) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "building_name"
@@ -22,39 +22,34 @@ ActiveRecord::Schema.define(version: 20151009053438) do
   create_table "classroom_timings", force: :cascade do |t|
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "rooms_id"
-    t.integer  "timeslots_id"
+    t.integer  "room_id"
+    t.integer  "time_slot_id"
   end
 
-  add_index "classroom_timings", ["rooms_id"], name: "index_classroom_timings_on_rooms_id"
-  add_index "classroom_timings", ["timeslots_id"], name: "index_classroom_timings_on_timeslots_id"
+  add_index "classroom_timings", ["room_id"], name: "index_classroom_timings_on_room_id"
+  add_index "classroom_timings", ["time_slot_id"], name: "index_classroom_timings_on_time_slot_id"
 
   create_table "course_assignments", force: :cascade do |t|
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "faculties_id"
-    t.integer  "courses_id"
-    t.integer  "rooms_id"
-    t.integer  "daycombinations_id"
-    t.integer  "timeslots_id"
+    t.integer  "faculty_id"
+    t.integer  "course_id"
+    t.integer  "room_id"
+    t.integer  "day_combination_id"
+    t.integer  "time_slot_id"
   end
 
-  add_index "course_assignments", ["courses_id"], name: "index_course_assignments_on_courses_id"
-  add_index "course_assignments", ["daycombinations_id"], name: "index_course_assignments_on_daycombinations_id"
-  add_index "course_assignments", ["faculties_id"], name: "index_course_assignments_on_faculties_id"
-  add_index "course_assignments", ["rooms_id"], name: "index_course_assignments_on_rooms_id"
-  add_index "course_assignments", ["timeslots_id"], name: "index_course_assignments_on_timeslots_id"
+  add_index "course_assignments", ["course_id"], name: "index_course_assignments_on_course_id"
+  add_index "course_assignments", ["day_combination_id"], name: "index_course_assignments_on_day_combination_id"
+  add_index "course_assignments", ["faculty_id"], name: "index_course_assignments_on_faculty_id"
+  add_index "course_assignments", ["room_id"], name: "index_course_assignments_on_room_id"
+  add_index "course_assignments", ["time_slot_id"], name: "index_course_assignments_on_time_slot_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "course_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "faculties_id"
-    t.integer  "courses_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "courses", ["courses_id"], name: "index_courses_on_courses_id"
-  add_index "courses", ["faculties_id"], name: "index_courses_on_faculties_id"
 
   create_table "day_combinations", force: :cascade do |t|
     t.string   "day_combination"
@@ -68,46 +63,51 @@ ActiveRecord::Schema.define(version: 20151009053438) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "faculty_courses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "faculty_id"
+    t.integer  "course_id"
+  end
+
+  add_index "faculty_courses", ["course_id"], name: "index_faculty_courses_on_course_id"
+  add_index "faculty_courses", ["faculty_id"], name: "index_faculty_courses_on_faculty_id"
+
   create_table "faculty_preferences", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "faculties_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "faculty_course_id"
     t.integer  "preference1_id"
     t.integer  "preference2_id"
     t.integer  "preference3_id"
   end
 
-  add_index "faculty_preferences", ["faculties_id"], name: "index_faculty_preferences_on_faculties_id"
+  add_index "faculty_preferences", ["faculty_course_id"], name: "index_faculty_preferences_on_faculty_course_id"
   add_index "faculty_preferences", ["preference1_id"], name: "index_faculty_preferences_on_preference1_id"
   add_index "faculty_preferences", ["preference2_id"], name: "index_faculty_preferences_on_preference2_id"
   add_index "faculty_preferences", ["preference3_id"], name: "index_faculty_preferences_on_preference3_id"
-
-  create_table "faculty_to_courses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "preferences", force: :cascade do |t|
     t.text     "note"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "buildings_id"
-    t.integer  "daycombinations_id"
-    t.integer  "timeslots_id"
+    t.integer  "building_id"
+    t.integer  "day_combination_id"
+    t.integer  "time_slot_id"
   end
 
-  add_index "preferences", ["buildings_id"], name: "index_preferences_on_buildings_id"
-  add_index "preferences", ["daycombinations_id"], name: "index_preferences_on_daycombinations_id"
-  add_index "preferences", ["timeslots_id"], name: "index_preferences_on_timeslots_id"
+  add_index "preferences", ["building_id"], name: "index_preferences_on_building_id"
+  add_index "preferences", ["day_combination_id"], name: "index_preferences_on_day_combination_id"
+  add_index "preferences", ["time_slot_id"], name: "index_preferences_on_time_slot_id"
 
   create_table "rooms", force: :cascade do |t|
     t.string   "room_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "Buildings_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "building_id"
   end
 
-  add_index "rooms", ["Buildings_id"], name: "index_rooms_on_Buildings_id"
+  add_index "rooms", ["building_id"], name: "index_rooms_on_building_id"
 
   create_table "time_slots", force: :cascade do |t|
     t.string   "time_slot"
