@@ -95,20 +95,5 @@ rooms.each do |room|
   Room.create!(room)
 end
 
-Building.all.each do |building|
-	puts building[:building_name]
-	puts building[:id]
-end
-
-Building.destroy(1)
-
-Building.all.each do |building|
-	puts building[:building_name]
-	puts building[:id]
-end
-
-Room.all.each do |room|
-	puts room[id] + room[:room_name]+ "\t"+ room[:building_id]
-end
 
 
