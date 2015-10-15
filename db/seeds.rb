@@ -103,10 +103,10 @@ facultycourses = [{:faculty_id => '1', :course_id => '2'},
 			 
 				 ]	
 				 
-facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference1_id => '2', :preference1_id => '3'},
-					  {:faculty_course_id => '2', :preference1_id => '3', :preference1_id => '4', :preference1_id => '5'},
-					  {:faculty_course_id => '3', :preference1_id => '5', :preference1_id => '7', :preference1_id => '6'},
-				      {:faculty_course_id => '4', :preference1_id => '7', :preference1_id => '11', :preference1_id => '10'},
+facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference2_id => '2', :preference3_id => '3'},
+					  {:faculty_course_id => '2', :preference1_id => '3', :preference2_id => '4', :preference3_id => '5'},
+					  {:faculty_course_id => '3', :preference1_id => '5', :preference2_id => '7', :preference3_id => '6'},
+				      {:faculty_course_id => '4', :preference1_id => '7', :preference2_id => '11', :preference3_id => '10'},
 			 
 					]
 
