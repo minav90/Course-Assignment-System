@@ -8,12 +8,14 @@ Feature: add a page to assign courses to faculty members
 
  Given the following faculties exist:
  | faculty_name |
+ ||
  | A |
  | B |
  | C |
 
  And the following courses exist:
  | course_name |
+ ||    
  | course1 |
  | course2 |
  | course3 |
@@ -21,14 +23,16 @@ Feature: add a page to assign courses to faculty members
  And I am on the Course and Faculty page
 
  Scenario: assign courses to faculty
-   When I select "Dr. John Keyser" from "Faculties"
-   And I select "course1" from "Course_1"
-   And I select "course2" from "Course_2
+   When I select "A" from "faculty_name"
+   And I select "course1" from "course_num1"
+   And I select "course2" from "course_num2"
    And I press "Submit"
-   Then select box "Course_1" is selected with "course1"
-   And select box "Course_2" is selected with "course2"
+   Then select box "course1_num1" is selected with "course1"
+   And select box "course_num2" is selected with "course2"
 
  Scenario: load already assigned courses for selected faculty
-   When I select "Dr. John Keyser" from "Faculties"
-   Then select box "Course_1" is selected with "course1"
-   And select box "Course_2" is selected with "course2"
+   Given faculty "B" is assigned following courses: course1,course2,course3
+   When I select "B" from "faculty_name"
+   Then select box "course_num1" is selected with "course1"
+   And select box "course_num2" is selected with "course2"
+   And select box "course_num3" is selected with "course3"
