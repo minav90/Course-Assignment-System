@@ -79,10 +79,10 @@ preferences = 	[{:building_id => '1', :day_combination_id => '2', :time_slot_id 
 			 
 				]	
 
-facultycourses = [{:faculty_id => '1', :course_id => '2'},
-				  {:faculty_id => '2', :course_id => '1'},
-				  {:faculty_id => '3', :course_id => '3'},
-				  {:faculty_id => '5', :course_id => '4'},
+facultycourses = [{:faculty_id => '1', :course1_id => '2'},
+				  {:faculty_id => '2', :course1_id => '1'},
+				  {:faculty_id => '3', :course1_id => '3'},
+				  {:faculty_id => '5', :course1_id => '4'},
 			 
 				 ]	
 				 
