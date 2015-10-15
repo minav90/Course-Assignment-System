@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015001102) do
+ActiveRecord::Schema.define(version: 20151015231308) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "building_name"
@@ -65,13 +64,14 @@ ActiveRecord::Schema.define(version: 20151015001102) do
   end
 
   create_table "faculty_courses", force: :cascade do |t|
+    t.integer  "course1_id"
+    t.integer  "course2_id"
+    t.integer  "course3_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "faculty_id"
-    t.integer  "course_id"
   end
 
-  add_index "faculty_courses", ["course_id"], name: "index_faculty_courses_on_course_id"
   add_index "faculty_courses", ["faculty_id"], name: "index_faculty_courses_on_faculty_id"
 
   create_table "faculty_preferences", force: :cascade do |t|
@@ -117,4 +117,3 @@ ActiveRecord::Schema.define(version: 20151015001102) do
   end
 
 end
-
