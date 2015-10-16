@@ -13,3 +13,13 @@ Given /the following courses exist:/ do |courses_table|
 	Course.create!(course)
     end
 end
+
+Given /the following faculty-course mappings exist:/ do |faculty_courses_table|
+    faculty_courses_table.hashes.each do |faculty_course|
+	FacultyCourse.create!(faculty_course)
+    end
+end
+
+Then /"(.*)" is selected with "(.*)"$/ do |select_box,value|
+	page.should have_select(select_box, selected: value)
+end
