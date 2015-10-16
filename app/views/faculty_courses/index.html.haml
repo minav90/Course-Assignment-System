@@ -1,0 +1,6 @@
+%h1 Faculty and Courses
+
+= form_tag :action => :select_faculty, :method => :post do
+  = label_tag :faculty_id, "Faculties"
+  = select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true
+  = submit_tag "Select"
