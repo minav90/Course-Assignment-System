@@ -29,6 +29,6 @@ class FacultyCoursesController < ApplicationController
     	faculty_course = FacultyCourse.find(params[:id])
 	faculty_course.update_attributes!(params[:courses].permit(:course1_id,:course2_id,:course3_id))
 	flash[:notice] = "Courses information updated successfully"
-	redirect_to faculty_course_path(faculty_course)
+	redirect_to faculty_courses_path
     end
 end	

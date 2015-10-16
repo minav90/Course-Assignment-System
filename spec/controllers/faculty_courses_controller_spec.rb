@@ -50,4 +50,13 @@ describe FacultyCoursesController do
 		assigns(:courses).should == courses
 	end
    end
+   describe 'updating the courses for faculty' do
+	it 'should call the model method to update the courses for the selected faculty' do
+		faculty_course = FacultyCourse.new
+		FacultyCourse.stub(:find).and_return(faculty_course)
+		params = {:id => 1,:courses => {:course1_id => "",:coure2_id => "",:course3_id => ""}}
+		faculty_course.should_receive(:update_attributes!)
+		post :edit, params
+	end
+   end
 end
