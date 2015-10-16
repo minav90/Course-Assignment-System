@@ -47,6 +47,7 @@ group :development, :test do
   gem 'database_cleaner'
   # rspec gem for tdd
   gem 'rspec-rails'
+  gem 'simplecov', :require => false
 end
 
 group :development do
