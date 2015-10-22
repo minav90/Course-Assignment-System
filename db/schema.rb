@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015231308) do
+ActiveRecord::Schema.define(version: 20151021024207) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "building_name"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20151015231308) do
   end
 
   create_table "classroom_timings", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "room_id"
     t.integer  "time_slot_id"
+    t.string   "day_combination_id"
   end
 
   add_index "classroom_timings", ["room_id"], name: "index_classroom_timings_on_room_id"
