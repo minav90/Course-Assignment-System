@@ -129,11 +129,11 @@ facultypreferences.each do |fpf|
   FacultyPreference.create!(fpf)
 end
 
-#Preference.destroy(1)
+Preference.destroy(3)
 
-#FacultyPreference.all.each do |fp|
-#	puts fp[:id]
-#end
+FacultyPreference.all.each do |fp|
+	puts fp[:id]
+end
 
 
 
