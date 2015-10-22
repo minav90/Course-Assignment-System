@@ -1,6 +1,6 @@
 class FacultyCoursesController < ApplicationController
     def index
-	@faculties = Faculty.all()
+	@faculties = Faculty.order(faculty_name: :desc)
     end
 
     def select_faculty
