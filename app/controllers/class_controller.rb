@@ -6,6 +6,7 @@ class ClassController < ApplicationController
   def index
     @building = Building.all
     @timeslot = TimeSlot.all
+    @day_combination = DayCombination.all
     @room = Room.where("building_id = ?",Building.first.id)
   end
   
@@ -17,7 +18,7 @@ class ClassController < ApplicationController
   end
 
   def create
-      ClassroomTiming.create(room_id: params[:class][:rooms_id], time_slot_id: params[:class][:timeslots_id])
+      ClassroomTiming.create(room_id: params[:class][:rooms_id], time_slot_id: params[:class][:timeslots_id], day_combination_id: params[:class][:day_combinations_id])
       redirect_to class_index_path;
   end
     

@@ -23,7 +23,7 @@
 {
  
  float:left;
- width:550px;
+ width:500px;
  margin:auto;
  height:100vh;
  border:2px solid;
@@ -38,7 +38,7 @@
 #rightsection
 {
    margin:auto;
-   width:550px;
+   width:600px;
    float:right;
    height:100vh;
    border:2px solid;
