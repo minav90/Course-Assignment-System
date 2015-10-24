@@ -94,6 +94,52 @@ facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :prefe
 				      {:faculty_course_id => '4', :preference1_id => '7', :preference3_id => '10'},
 			 
 					]
+semesters = [{:SemesterTitle => 'Fall 2015'}]
+					
+classroomtimings = [{:room_id => '1', :time_slot_id => '1', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '2', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '3', :day_combination_id => '3', :semester_id => '1'},
+				    {:room_id => '1', :time_slot_id => '4', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '5', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '6', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '7', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '8', :day_combination_id => '1', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '9', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '10', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '11', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '12', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '13', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '1', :time_slot_id => '14', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '1', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '2', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '3', :day_combination_id => '3', :semester_id => '1'},
+				    {:room_id => '2', :time_slot_id => '4', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '5', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '6', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '7', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '8', :day_combination_id => '1', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '9', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '10', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '11', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '12', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '13', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '2', :time_slot_id => '14', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '1', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '2', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '3', :day_combination_id => '3', :semester_id => '1'},
+				    {:room_id => '3', :time_slot_id => '4', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '5', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '6', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '7', :day_combination_id => '3', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '8', :day_combination_id => '1', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '9', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '10', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '11', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '12', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '13', :day_combination_id => '2', :semester_id => '1'},
+					{:room_id => '3', :time_slot_id => '14', :day_combination_id => '2', :semester_id => '1'},
+			 
+				]
 
 buildings.each do |building|
   Building.create!(building)
@@ -123,6 +169,10 @@ rooms.each do |room|
   Room.create!(room)
 end
 
+semesters.each do |s|
+  Semester.create!(s)
+end
+
 preferences.each do |pf|
   Preference.create!(pf)
 end
@@ -131,10 +181,14 @@ facultypreferences.each do |fpf|
   FacultyPreference.create!(fpf)
 end
 
-#Preference.destroy(1)
+classroomtimings.each do |cts|
+  ClassroomTiming.create!(cts)
+end
+
+#Preference.destroy(3)
 
 #FacultyPreference.all.each do |fp|
-#	puts fp[:id]
+	#puts fp[:id]
 #end
 
 
