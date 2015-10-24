@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   
 
+  get 'pref_summary/index'
+
   get "addclassroom" => 'home_page#addclassroom'
 
   root 'home_page#home'

@@ -41,7 +41,9 @@ courses = 	[{:course_name => 'Introduction to Artificial Intelligence'},
 			 {:course_name => 'Analysis of Algorithms Section 1'},
 			 {:course_name => 'Analysis of Algorithms Section 2'},
 			 {:course_name => 'Software Engineering'},
-			 
+			 {:course_name => 'Design Circuits'},
+			 {:course_name => 'Analog Design'},
+			 {:course_name => 'Machine Learning'},
 			]
 
 
@@ -81,15 +83,15 @@ preferences = 	[{:building_id => '1', :day_combination_id => '2', :time_slot_id 
 
 facultycourses = [{:faculty_id => '1', :course1_id => '2'},
 				  {:faculty_id => '2', :course1_id => '1'},
-				  {:faculty_id => '3', :course1_id => '3'},
-				  {:faculty_id => '5', :course1_id => '4'},
-			 
+				  {:faculty_id => '3', :course1_id => '3', :course2_id => '6'},
+				  {:faculty_id => '5', :course1_id => '4', :course2_id => '5'},
+				  			 
 				 ]	
 				 
-facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference2_id => '2', :preference3_id => '3'},
+facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference3_id => '3'},
 					  {:faculty_course_id => '2', :preference1_id => '3', :preference2_id => '4', :preference3_id => '5'},
 					  {:faculty_course_id => '3', :preference1_id => '5', :preference2_id => '7', :preference3_id => '6'},
-				      {:faculty_course_id => '4', :preference1_id => '7', :preference2_id => '11', :preference3_id => '10'},
+				      {:faculty_course_id => '4', :preference1_id => '7', :preference3_id => '10'},
 			 
 					]
 
@@ -129,11 +131,11 @@ facultypreferences.each do |fpf|
   FacultyPreference.create!(fpf)
 end
 
-Preference.destroy(3)
+#Preference.destroy(1)
 
-FacultyPreference.all.each do |fp|
-	puts fp[:id]
-end
+#FacultyPreference.all.each do |fp|
+#	puts fp[:id]
+#end
 
 
 
