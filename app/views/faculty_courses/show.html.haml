@@ -1,0 +1,15 @@
+%h1 Assign Courses
+
+= form_tag edit_faculty_course_path(@faculty_course), :method => :get do
+  = label_tag :faculty_name, @faculty.faculty_name
+  = content_tag(:br)
+  = label :courses, :course1_id, "Course 1"
+  = select_tag "courses[course1_id]", options_from_collection_for_select(@courses,"id","course_name",@faculty_course.course1_id), :include_blank => true
+  = label :courses,:course2_id, "Course 2"
+  = select_tag "courses[course2_id]", options_from_collection_for_select(@courses,"id","course_name",@faculty_course.course2_id), :include_blank => true
+  = label :courses,:course3_id, "Course 3"
+  = select_tag "courses[course3_id]", options_from_collection_for_select(@courses,"id","course_name",@faculty_course.course3_id), :include_blank => true
+  = submit_tag "Submit"
+%br
+%br
+= link_to :Back, faculty_courses_path 

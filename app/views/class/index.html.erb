@@ -1,0 +1,85 @@
+<html>
+<head>
+ <%= javascript_include_tag "application" %>
+ <%= stylesheet_link_tag 'application' %>
+ <%= yield(:head) %>
+</head>
+<body>
+  <h1 align = center >Course Assignment System</h1>
+  <div id ="wrapper">
+    <div id ="section">
+      <h2>Allocate Classrooms and TimeSlots</h2>
+
+      <%= form_for :class, url: class_index_path do |f| %>
+      
+      <p>
+        <%= f.label "Choose Building Name:" %>
+        <%= f.select :buildings_id , options_for_select(@building.collect { |building| [building.building_name, building.id] }, 1), {}, { id: 'building_select' } %>
+      </p>
+      <p>
+        <%= f.label "Choose Room Number:" %>
+         <%= f.select :rooms_id, options_for_select(@room.collect { |room| [room.room_name, room.id] }, 0), {}, { id: 'room_select' } %>
+      </p> 
+      <p>
+        <%= f.label "Choose Time Slot:" %>
+        <%= f.select :timeslots_id , options_for_select(@timeslot.collect { |timeslot| [timeslot.time_slot, timeslot.id] }, 1), {}, { id: 'timeslot_select' } %>
+      </p>
+      <p>
+        <%= f.label "Choose Day combo:" %>
+        <%= f.select :day_combinations_id , options_for_select(@day_combination.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, 1), {}, { id: 'day_combination_select' } %>
+      </p>
+      <p>
+        <%= f.submit "Submit" %>
+      </p> 
+      <% end %>
+
+      <h2> ____________________________</h2> 
+
+      <h2>Add New Classrooms</h2>
+
+      <%= form_for :class , method: :get, url: new_class_path do |f| %>
+      <p>
+        <%= f.label "Building Name:" %>
+        <%= f.text_field :building_name %>
+      </p>
+      <p>
+        <%= f.label "Room Number:" %>
+        <%= f.text_field :room_name %>
+      </p>
+      <%= f.submit "Add New Class" %>
+      <% end %>
+
+    </div>
+    <div id="rightsection">
+      <h2>List of Classroom and Slot Assigned</h2>
+      <table id="classtable">
+        <tr>
+          <th>Index</th>
+          <th>Building Name</th>
+          <th>Room Name</th>
+          <th>Slot</th>
+          <th>DayCombo</th>
+          <th>Delete</th>
+        </tr>
+        <% id = 0 %>
+        <% ClassroomTiming.all.each do |classes| %>
+        <% @room= Room.where(:id => classes.room_id)
+        @room_name = @room.pluck(:room_name)[0]
+        @building_id = @room.pluck(:building_id)[0]
+        @timeslot_id = TimeSlot.where(:id => classes.time_slot_id).pluck(:time_slot)[0]
+        @building_name = Building.where(:id => @building_id).pluck(:building_name)[0]
+        @day_combination = DayCombination.where(:id => classes.day_combination_id).pluck(:day_combination)[0]%>
+        <tr>
+          <td><%=id = id+1 %></td>
+          <td><%= @building_name %></td>
+          <td><%= @room_name %></td>
+          <td><%= @timeslot_id %></td>
+          <td><%= @day_combination %></td>
+          <td><%= button_to 'Delete', class_path(classes), :method => :delete, :confirm => 'Are you sure?' %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

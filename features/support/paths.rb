@@ -15,7 +15,12 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-
+    when /the Course and Faculty page$/
+      faculty_courses_path
+    when /the Assign Courses page for "(.*)"$/
+      faculty = Faculty.find_by_faculty_name($1)
+      faculty_courses = FacultyCourse.find_by_faculty_id(faculty.id.to_s)
+      faculty_course_path(faculty_courses)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
