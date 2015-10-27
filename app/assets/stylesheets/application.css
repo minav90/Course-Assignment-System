@@ -43,18 +43,23 @@
    height:100vh;
    border:2px solid;
    padding: 10px;
+   position:relative;
 }
 #classtable {
 
   border-collapse: collapse;
   width: 100%;
+  position:relative;
 }
 #classtable th {
   border: 2px solid white;
   font-weight: bold;
   background-color: wheat;
+  padding: 4px;
+  text-align: center;
+
 }
-#classtable th, #classtable td {
+#classtable td {
   padding: 4px;
    border: 2px solid white;
    text-align: left;
@@ -62,6 +67,8 @@
 
 #preftable {
   width: 100%;
+  position : relative;
+ 
 }
 #preftable th {
   font-weight: bold;
@@ -71,4 +78,11 @@
   padding: 4px;
    border: 2px solid black;
    text-align: left;
+}
+
+.scrollit {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height :600px;
+    position : absolute;
 }
