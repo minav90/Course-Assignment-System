@@ -59,3 +59,16 @@
    border: 2px solid white;
    text-align: left;
 }
+
+#preftable {
+  width: 100%;
+}
+#preftable th {
+  font-weight: bold;
+  background-color: wheat;
+}
+#preftable th, #preftable td {
+  padding: 4px;
+   border: 2px solid black;
+   text-align: left;
+}
