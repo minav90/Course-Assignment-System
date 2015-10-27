@@ -5,11 +5,11 @@ describe FacultyCoursesController do
 	it 'should call the model method to get the list of faculties' do
  		@fake_faculty = [double('1'), double('2')]
 		@fake_courses = [double('1'),double('2')]
-  		Faculty.should_receive(:all).with(no_args).and_return(@fake_faculty)
+  		Faculty.should_receive(:order).and_return(@fake_faculty)
 		post :index
 	end
         it 'make the faculties available to the index template for rendering' do
-		Faculty.stub(:all).and_return(@fake_faculty)
+		Faculty.stub(:order).and_return(@fake_faculty)
 		post :index
 		assigns(:faculties).should == @fake_faculty
 		response.should render_template :index

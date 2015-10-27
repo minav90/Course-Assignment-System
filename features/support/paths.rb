@@ -21,6 +21,8 @@ module NavigationHelpers
       faculty = Faculty.find_by_faculty_name($1)
       faculty_courses = FacultyCourse.find_by_faculty_id(faculty.id.to_s)
       faculty_course_path(faculty_courses)
+    when /the Assign Room and Timings page$/
+	faculty_course_room_timings_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -1,0 +1,10 @@
+-
+%h1 Assign Room and Timings for Faculty Courses
+
+=label_tag :faculty_id, "Faculties"
+=select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true
+%br
+%br
+=label_tag :faculty_name, "Faculty: "
+=content_tag(:label,nil,{:id => :faculty_name})
+=content_tag(:div,nil,{:id => :course_ctr})
