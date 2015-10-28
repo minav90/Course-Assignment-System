@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   
-
+  get 'conflict_checker/index'
   get 'pref_summary/index'
 
   get "addsemester" => 'home_page#addsemester'

@@ -1,0 +1,29 @@
+// Place all the styles related to the conflict_checker controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+table{
+   border-collapse: collapse;
+}
+ 
+table tr td{
+   padding: 10px;
+}
+ 
+thead {
+   text-align: left;
+   background: #00308F;
+   color: #FFF;
+}
+ 
+thead th {
+   padding: 10px;
+}
+ 
+.list_line_even {
+   background: #FAEBD7;
+}
+ 
+.list_line_odd {
+   background: #FEFEFA;
+}
+
