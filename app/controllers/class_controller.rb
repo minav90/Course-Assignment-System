@@ -17,6 +17,13 @@ class ClassController < ApplicationController
     end
   end
 
+   def update_capacity
+    @capacity = Room.find_by_id(params[:room_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
       ClassroomTiming.create(room_id: params[:class][:rooms_id], time_slot_id: params[:class][:timeslots_id], day_combination_id: params[:class][:day_combinations_id])
       redirect_to class_index_path;
@@ -29,8 +36,9 @@ class ClassController < ApplicationController
   end
 
   def new
+  
      @building = Building.find_or_create_by!(:building_name=>params[:class][:building_name])
-     @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id,:Capacity => @params[:class][:room_capacity])
+     @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id,:Capacity => params[:class][:room_capacity])
      redirect_to class_index_path
   end
 

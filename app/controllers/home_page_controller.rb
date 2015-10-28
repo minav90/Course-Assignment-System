@@ -7,7 +7,6 @@ class HomePageController < ApplicationController
   end
 
   def setsession
-
   	session[:semester_id] = params[:class][:semester_id]
   	redirect_to root_path;
   end

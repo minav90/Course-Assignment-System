@@ -18,6 +18,7 @@ Rails.application.routes.draw do
  
   resources :class, :except => [:show]
    get 'class/update_room', as: 'update_room'
+   get 'class/update_capacity', as: 'update_capacity'
    
     # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
