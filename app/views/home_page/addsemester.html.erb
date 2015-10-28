@@ -1,0 +1,14 @@
+<div class="center jumbotron">
+  <h2>Add New Semester</h2>
+  <br><br>
+ 
+
+  <%= form_for :class , method: :get, url: createsemester_path do |f| %>
+  <p><%= f.label "Semester Name" %>
+      <%= f.text_field :SemesterTitle %> 
+      <%= f.submit "Submit" %>
+  </p>
+ 
+  <%= link_to "Back", root_path , class: "btn btn-lg btn-primary" %>
+ <% end %>
+</div>

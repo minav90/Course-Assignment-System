@@ -50,7 +50,7 @@
 						@day_combo = DayCombination.where(:id => @day_combo_id).pluck(:day_combination)[0]
 						@timeslot = TimeSlot.where(:id => @timeslot_id).pluck(:time_slot)[0]
 						@building = Building.where(:id => @building_id).pluck(:building_name)[0]
-
+                        
 						%>
 						<p><%= "Day Combination : #{@day_combo}" %></p>
 						<p><%= "Time slot : #{@timeslot}" %></p>

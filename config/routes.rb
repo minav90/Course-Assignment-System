@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   get 'pref_summary/index'
 
-  get "addclassroom" => 'home_page#addclassroom'
+  get "addsemester" => 'home_page#addsemester'
+  get "createsemester" => 'home_page#createsemester'
+  get "setsession" => 'home_page#setsession'
 
   root 'home_page#home'
   
