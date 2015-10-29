@@ -1,0 +1,36 @@
+<html>
+
+  <head>
+    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= yield(:head) %>
+  </head>
+
+  <body>
+    <h1>Faculty and Courses</h1>
+      <%= form_tag :action => :select_faculty, :method => :post do %>
+      <%= label_tag :faculty_id, "Faculties" %>
+      <%= select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true %>
+      <%= submit_tag "Select" %>
+      <% end %>
+
+    <table id="preftable">
+      <tr>
+        <th>Faculty</th>
+        <th>Course 1</th>
+        <th>Course 2</th>
+        <th>Course 3</th>
+      </tr>
+        <% @all_faculty.each do |key,val| %>
+      <tr>
+        <td><%= val[:faculty_name] %></td>
+        <td><%= val[:course1] %></td>
+        <td><%= val[:course2] %></td>
+        <td><%= val[:course3] %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </body>
+
+</html>
