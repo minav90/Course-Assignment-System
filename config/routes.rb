@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   
 
+  get 'conflict_checker/index'
+
   get 'pref_summary/index'
 
   get "addclassroom" => 'home_page#addclassroom'
