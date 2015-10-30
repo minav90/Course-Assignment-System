@@ -8,11 +8,23 @@ describe FacultyCoursesController do
   		Faculty.should_receive(:order).and_return(@fake_faculty)
 		post :index
 	end
-        it 'make the faculties available to the index template for rendering' do
+        it 'should make the faculties available to the index template for rendering' do
 		Faculty.stub(:order).and_return(@fake_faculty)
 		post :index
 		assigns(:faculties).should == @fake_faculty
 		response.should render_template :index
+	end
+	it 'should display courses assigned to faculties' do
+		faculty_courses = [double(:faculty_id => '1',:course1_id => '1',:course2_id => '2',:course3_id => '3'),double(:faculty_id => '2',:course1_id => '4',:course2_id => '5',:course3_id => '6')]
+		FacultyCourse.should_receive(:all).and_return(faculty_courses)
+		course1 = Course.new
+		course1.course_name = 'course1'
+		course2 = Course.new
+		course2.course_name = 'course2'
+		courses = [course1,course2]
+		Course.stub(:where).and_return(courses)
+		Faculty.stub(:find).and_return(double(:id => '1',:faculty_name => 'test'))
+		post :index
 	end
    end
    describe 'showing the selected faculty and courses' do

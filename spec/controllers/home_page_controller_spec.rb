@@ -22,14 +22,14 @@ RSpec.describe HomePageController, type: :controller do
   end
 =end
 
-  # 2. Add Classrooms and Timings
+=begin  # 2. Add Classrooms and Timings
   describe "GET #addclassroom" do
     it "returns http success" do
       get :addclassroom
       expect(response).to have_http_status(:success)
     end
   end
-
+=end
 =begin
   # 3. Show Courses assigned
   describe "GET #courses_assigned" do

@@ -11,11 +11,11 @@ class CourseAssignmentsController < ApplicationController
 	attributes = {}
 	faculty_id = params[:faculty_id] 
 	course_id = params[:course_id]
-	course_assignment = CourseAssignment.where("faculty_id = ? and course_id = ?",faculty_id,course_id)
+	course_assignment = CourseAssignment.where("faculty_id = ? and course_id = ?",faculty_id,course_id)[0]
 	attributes[:room_id] = params["room_select_#{course_id}"]
 	attributes[:day_combination_id] = params["day_combination_select_#{course_id}"]
 	attributes[:time_slot_id] = params["time_slot_select_#{course_id}"]
-	course_assignment.update_all(attributes)
+	course_assignment.update_attributes!(attributes)
 	respond_to do |format|
 		format.js
 	end	

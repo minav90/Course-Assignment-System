@@ -1,7 +1,7 @@
 $("#course_ctr").empty().append("<%= escape_javascript(render(:partial => @course_assignments, 
 			:locals => {:buildings => @buildings,:courses => @courses, :assigned_buildings => @assigned_building_ids})) %>")
 
-$(".building_select").on 'change', (evt) ->
+$(document).on "change", ".building_select", (evt) ->
     course_id = ""
     for i in [1..$(".building_select").length]
       if $(".building_select")[i-1].id == this.id
