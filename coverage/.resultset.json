@@ -1,10 +1,109 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/kpurvesh/course-assignment-system/app/controllers/faculty_courses_controller.rb": [
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/helpers/conflict_checker_helper.rb": [
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/helpers/home_page_helper.rb": [
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/controllers/class_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
         1,
         1,
         2,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/controllers/conflict_checker_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/controllers/faculty_courses_controller.rb": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
         null,
         null,
         1,
@@ -30,49 +129,112 @@
         null,
         null,
         1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/controllers/home_page_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
         0,
         0,
+        null,
+        null,
+        1,
         0,
         0,
         null,
         null
       ],
-      "/home/kpurvesh/course-assignment-system/app/controllers/application_controller.rb": [
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/faculty_course.rb": [
         1,
-        null,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/home/kpurvesh/course-assignment-system/app/controllers/home_page_controller.rb": [
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/home/kpurvesh/course-assignment-system/app/models/faculty_course.rb": [
-        1,
-        1,
-        null
-      ],
-      "/home/kpurvesh/course-assignment-system/app/models/faculty.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/home/kpurvesh/course-assignment-system/app/models/course.rb": [
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/semester.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/classroom_timing.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/building.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/room.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/time_slot.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/day_combination.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/faculty_preference.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/faculty.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/minav-pc/thirdProject/Course-Assignment-System/app/models/course.rb": [
+        1,
         1,
         1,
         1,
         null
       ]
     },
-    "timestamp": 1444955633
+    "timestamp": 1446178365
   }
 }

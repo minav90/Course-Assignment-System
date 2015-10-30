@@ -6,10 +6,11 @@ class ClassController < ApplicationController
   def index
     @building = Building.all
     @timeslot = TimeSlot.all
+    @classroomTiming = ClassroomTiming.all
     @day_combination = DayCombination.all
     @room = Room.where("building_id = ?",Building.first.id)
     @showClassroomDetails = Hash.new
-    ClassroomTiming.all.each do |classes| 
+    @classroomTiming.each do |classes| 
      @tempRoom = Room.find_by_id(classes.room_id)
      @showClassroomDetails[classes.id] = {:room => @tempRoom ,
        :timeslot => TimeSlot.find_by_id(classes.time_slot_id),
@@ -44,7 +45,6 @@ class ClassController < ApplicationController
   end
 
   def new
-  
      @building = Building.find_or_create_by!(:building_name=>params[:class][:building_name])
      @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id,:Capacity => params[:class][:room_capacity])
      redirect_to class_index_path
