@@ -86,3 +86,9 @@
     height :600px;
     position : absolute;
 }
+
+.scrollPref {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position : absolute;
+}

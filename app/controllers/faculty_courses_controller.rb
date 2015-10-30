@@ -1,13 +1,13 @@
 class FacultyCoursesController < ApplicationController
     def index
         @faculties = Faculty.all
-	@all_faculty = Hash.new
-        @faculties.each do |faculty|
-		faculty_course = FacultyCourse.find_by_faculty_id(faculty.id)
+	    @all_faculty = Hash.new
+        FacultyCourse.all.each do |faculty_course|
+        @faculty = Faculty.find_by_id(faculty_course.faculty_id)
 		course1 = Course.where(:id => faculty_course.course1_id).pluck(:course_name)[0]
 		course2 = Course.where(:id => faculty_course.course2_id).pluck(:course_name)[0]
 		course3 = Course.where(:id => faculty_course.course3_id).pluck(:course_name)[0]
-		@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1, :course2 => course2, :course3 => course3}
+		@all_faculty[@faculty.id] = {:faculty_name => @faculty.faculty_name, :course1 => course1, :course2 => course2, :course3 => course3}
 	end
     end
 

@@ -9,9 +9,7 @@
   <div id ="wrapper">
     <div id ="section">
       <h2>Allocate Classrooms and TimeSlots</h2>
-
       <%= form_for :class, url: class_index_path do |f| %>
-      
       <p>
         <%= f.label "Choose Building Name:" %>
         <%= f.select :buildings_id , options_for_select(@building.collect { |building| [building.building_name, building.id] }, 1), {}, { id: 'building_select', class: "input-sm"} %>
@@ -19,6 +17,7 @@
       <p>
         <%= f.label "Choose Room Number:" %>
          <%= f.select :rooms_id, options_for_select(@room.collect { |room| [room.room_name, room.id] }, 0), {}, { id: 'room_select', class: "input-sm" } %>
+         <%= f.label "Room Capacity" %>
          <%= f.text_field :room_capacity , readonly: true , :size => 5%> 
       </p> 
       <p>
@@ -68,11 +67,11 @@
           <th>Delete</th>
         </tr>
         <% id = 0 %>
-        <% ClassroomTiming.all.each do |classes| %>
-        <% @room= Room.find_by_id(classes.room_id)
-           @timeslot = TimeSlot.find_by_id(classes.time_slot_id)
-           @building = Building.find_by_id(@room.building_id)
-           @day_combination = DayCombination.find_by_id(classes.day_combination_id)%>
+        <% @showClassroomDetails.each do |key,val| %>
+        <% @room= val[:room]
+           @timeslot = val[:timeslot]
+           @building = val[:building]
+           @day_combination = val[:day_combination] %>
         <tr>
           <td><%=id = id+1 %></td>
           <td><%= @building.building_name %></td>
@@ -80,7 +79,7 @@
           <td><%= @room.Capacity %></td>
           <td><%= @timeslot.time_slot %></td>
           <td><%= @day_combination.day_combination %></td>
-          <td><%= button_to 'Delete', class_path(classes), :method => :delete, class: "btn btn-primary",:confirm => 'Are you sure?' %></td>
+          <td><%= button_to 'Delete', class_path(key), :method => :delete, class: "btn btn-primary",:confirm => 'Are you sure?' %></td>
         </tr>
         <% end %>
       </table>
