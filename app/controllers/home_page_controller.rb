@@ -3,6 +3,16 @@ class HomePageController < ApplicationController
   	@semester = Semester.all
   end
 
+  def addfaculty
+  	Faculty.create(faculty_name: params[:FacultyName])
+     #redirect_to root_path;
+  end
+
+  def addcourse
+  	Course.create(:course_name => params[:CourseName], :CourseTitle => params[:CourseTitle])
+     #redirect_to root_path;
+  end
+
   def addsemester
   end
 
