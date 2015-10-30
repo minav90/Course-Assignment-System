@@ -137,4 +137,3 @@ ActiveRecord::Schema.define(version: 20151024210737) do
   end
 
 end
->>>>>>> db-modifications

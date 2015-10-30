@@ -8,10 +8,25 @@ class ClassController < ApplicationController
     @timeslot = TimeSlot.all
     @day_combination = DayCombination.all
     @room = Room.where("building_id = ?",Building.first.id)
-  end
-  
-  def update_room
+    @showClassroomDetails = Hash.new
+    ClassroomTiming.all.each do |classes| 
+     @tempRoom = Room.find_by_id(classes.room_id)
+     @showClassroomDetails[classes.id] = {:room => @tempRoom ,
+       :timeslot => TimeSlot.find_by_id(classes.time_slot_id),
+       :building => Building.find_by_id(@tempRoom.building_id),
+       :day_combination => DayCombination.find_by_id(classes.day_combination_id)}
+     end
+   end
+   
+   def update_room
     @rooms = Room.where("building_id = ?", params[:building_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+   def update_capacity
+    @capacity = Room.find_by_id(params[:room_id])
     respond_to do |format|
       format.js
     end
@@ -29,8 +44,9 @@ class ClassController < ApplicationController
   end
 
   def new
+  
      @building = Building.find_or_create_by!(:building_name=>params[:class][:building_name])
-     @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id)
+     @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id,:Capacity => params[:class][:room_capacity])
      redirect_to class_index_path
   end
 

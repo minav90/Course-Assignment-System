@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   
-
+  get 'conflict_checker/index'
   get 'pref_summary/index'
 
-  get "addclassroom" => 'home_page#addclassroom'
+  get "addsemester" => 'home_page#addsemester'
+  get "createsemester" => 'home_page#createsemester'
+  get "setsession" => 'home_page#setsession'
 
   root 'home_page#home'
   
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
  
   resources :class, :except => [:show]
    get 'class/update_room', as: 'update_room'
+   get 'class/update_capacity', as: 'update_capacity'
    
     # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,6 +1,14 @@
 class FacultyCoursesController < ApplicationController
     def index
-	@faculties = Faculty.order(faculty_name: :desc)
+        @faculties = Faculty.all
+	    @all_faculty = Hash.new
+        FacultyCourse.all.each do |faculty_course|
+        @faculty = Faculty.find_by_id(faculty_course.faculty_id)
+		course1 = Course.where(:id => faculty_course.course1_id).pluck(:course_name)[0]
+		course2 = Course.where(:id => faculty_course.course2_id).pluck(:course_name)[0]
+		course3 = Course.where(:id => faculty_course.course3_id).pluck(:course_name)[0]
+		@all_faculty[@faculty.id] = {:faculty_name => @faculty.faculty_name, :course1 => course1, :course2 => course2, :course3 => course3}
+	end
     end
 
     def select_faculty
@@ -31,4 +39,4 @@ class FacultyCoursesController < ApplicationController
 	flash[:notice] = "Courses information updated successfully"
 	redirect_to faculty_courses_path
     end
-end	
+end
