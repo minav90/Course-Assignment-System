@@ -13,7 +13,7 @@
   <%= f.select :semester_id , options_for_select(@semester.collect { |semester| [semester.SemesterTitle, semester.id] },session[:semester_id] ), {prompt: "Please Select", hide_label: :true }, { :onchange => "this.form.submit()", id: 'sessionId' , class: "input-sm"} %>
   <% end %>
   </p>
-  <%= link_to "Add Faculty", '#', class: "btn btn-lg btn-primary" %>
+  <%= link_to "Add Faculty", addfaculty_path, class: "btn btn-lg btn-primary" %>
   <%= link_to "Assign Courses", faculty_courses_path, class: "btn btn-lg btn-primary" %>
   <%= link_to "Add Classroom", class_index_path, class: "btn btn-lg btn-primary" %>
   <%= link_to "See Preferences", pref_summary_index_path, class: "btn btn-lg btn-primary" %>
