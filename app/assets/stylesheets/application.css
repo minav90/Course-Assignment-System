@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+#wrapper
+{
+ width:100%;
+ height:100%;
+}
+#section
+{
+ 
+ float:left;
+ width:500px;
+ margin:auto;
+ height:100vh;
+ border:2px solid;
+ padding: 10px;
+
+}
+#class_building_name
+{
+ text-transform: uppercase;
+}
+
+#rightsection
+{
+   margin:auto;
+   width:600px;
+   float:right;
+   height:100vh;
+   border:2px solid;
+   padding: 10px;
+   position:relative;
+}
+#classtable {
+
+  border-collapse: collapse;
+  width: 100%;
+  position:relative;
+}
+#classtable th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+  padding: 4px;
+  text-align: center;
+
+}
+#classtable td {
+  padding: 4px;
+   border: 2px solid white;
+   text-align: left;
+}
+
+#preftable {
+  width: 100%;
+  position : relative;
+ 
+}
+#preftable th {
+  font-weight: bold;
+  background-color: wheat;
+}
+#preftable th, #preftable td {
+  padding: 4px;
+   border: 2px solid black;
+   text-align: left;
+}
+
+.scrollit {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height :600px;
+    position : absolute;
+}

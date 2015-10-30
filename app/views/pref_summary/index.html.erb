@@ -1,0 +1,66 @@
+<html>
+<head>
+	<%= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= yield(:head) %>
+</head>
+<body>
+	<h2 align="center">Preference Summary</h2>
+	<div class="scrollit">
+	<table id="preftable">
+		<tr>
+			<th>Index</th>
+			<th>Faculty Name</th>
+			<th>Courses Assigned</th>
+			<th>Preference 1</th>
+			<th>Preference 2</th>
+			<th>Preference 3</th>
+		</tr>
+		<% id = 0 %>
+		<% @facultycourse.each do |facultycourse|
+			@faculty_name = Faculty.where(:id => facultycourse.faculty_id).pluck(:faculty_name)[0]
+			course = Array.new
+			course << Course.where(:id => facultycourse.course1_id).pluck(:course_name)[0]
+			course << Course.where(:id => facultycourse.course2_id).pluck(:course_name)[0]
+			course << Course.where(:id => facultycourse.course3_id).pluck(:course_name)[0]
+			prefids = Array.new
+			prefids <<FacultyPreference.where(:faculty_course_id=> facultycourse.id).pluck(:preference1_id)[0]
+			prefids <<FacultyPreference.where(:faculty_course_id => facultycourse.id).pluck(:preference2_id)[0]
+			prefids <<FacultyPreference.where(:faculty_course_id => facultycourse.id).pluck(:preference3_id)[0]
+
+			%>
+			<tr class="border_bottom">
+				<td><%= id = id + 1 %></td>
+				<td><%= @faculty_name %></td>
+				<td>
+					<% course.each do |coursename| 
+						unless coursename.nil? %>
+						<p><%= coursename %></p>
+						<% end 
+						end %>
+					</td>
+					<%  prefids.each do |prefid| %>
+					<td>
+						<% if prefid.nil? %>
+						<%= "no Preference" %>
+						<% else %>
+						<% @day_combo_id = Preference.where(:id => prefid).pluck(:day_combination_id)[0]
+						@timeslot_id = Preference.where(:id => prefid).pluck(:time_slot_id)[0]
+						@building_id = Preference.where(:id => prefid).pluck(:building_id)[0]
+						@day_combo = DayCombination.where(:id => @day_combo_id).pluck(:day_combination)[0]
+						@timeslot = TimeSlot.where(:id => @timeslot_id).pluck(:time_slot)[0]
+						@building = Building.where(:id => @building_id).pluck(:building_name)[0]
+                        
+						%>
+						<p><%= "Day Combination : #{@day_combo}" %></p>
+						<p><%= "Time slot : #{@timeslot}" %></p>
+						<p><%= "Location : #{@building}" %></p>
+						<% end %>
+					</td>
+					<% end %>
+				</tr>
+				<% end %>
+			</table>
+			</div>
+		</body>
+		</html>
