@@ -8,6 +8,11 @@ class HomePageController < ApplicationController
      #redirect_to root_path;
   end
 
+  def addcourse
+  	Course.create(:course_name => params[:CourseName], :CourseTitle => params[:CourseTitle])
+     #redirect_to root_path;
+  end
+
   def addsemester
   end
 
