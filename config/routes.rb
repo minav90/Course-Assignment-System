@@ -23,8 +23,12 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
   resources :faculty_courses
-  resources :faculty_course_room_timings, :except => [:show]
-  get 'faculty_course_room_timings/update_faculty_details', as: 'update_faculty_details'
+  resources :course_assignments, :except => [:show,:edit,:update]
+  get 'course_assignments/update_faculty_details', as: 'update_faculty_details'
+  get 'course_assignments/update_day_combination', as: 'update_day_combination'
+  get 'course_assignments/update_room', as: 'update_available_room'
+  get 'course_assignments/update_time_slot', as: 'update_time_slot'
+  put 'course_assignments/update_course_assignment', as: 'update_course_assignment'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   # Example resource route with options:
