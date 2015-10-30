@@ -58,12 +58,16 @@ class CourseAssignmentsController < ApplicationController
 	@room_options["data"] = {}
 	rooms = Room.where("building_id = ?",params[:building_id])
 	rooms.each {|room|
-		puts room.id
 		@room_options["data"][room.id.to_s] = room.room_name
 	}
-	building_select_id = params[:building_select_id]
-	course_id = building_select_id.split("building_select_")[1]
-	@room_options["select_id"] = "#room_select_" + course_id
+	@room_options["select_id"] = "#room_select_" + params[:course_id]
+	course_assignment = CourseAssignment.where("course_id = ?",params[:course_id])[0]
+	room_id = course_assignment.room_id.to_s
+	if room_id != nil
+		@room_options["selected_val"] = room_id
+	else
+		@room_options["selected_val"] = ""
+	end
 	respond_to do |format|
 		format.json {render json: @room_options}
 	end
@@ -77,9 +81,14 @@ class CourseAssignmentsController < ApplicationController
 		day_combination = DayCombination.find(classroom_timing.day_combination_id)
 		@day_combination_options["data"][day_combination.id.to_s] = day_combination.day_combination
 	}
-	room_select_id = params[:room_select_id]
-	course_id = room_select_id.split("room_select_")[1]
-	@day_combination_options["select_id"] = "#day_combination_select_" + course_id
+	@day_combination_options["select_id"] = "#day_combination_select_" + params[:course_id]
+	course_assignment = CourseAssignment.where("course_id = ?",params[:course_id])[0]
+	day_combination_id = course_assignment.day_combination_id.to_s
+	if day_combination_id != nil
+		@day_combination_options["selected_val"] = day_combination_id
+	else
+		@day_combination_options["selected_val"] = ""
+	end
 	respond_to do |format|
 		format.json {render json: @day_combination_options}
 	end
@@ -93,9 +102,14 @@ class CourseAssignmentsController < ApplicationController
                 time_slot = TimeSlot.find(classroom_timing.time_slot_id)
                 @time_slot_options["data"][time_slot.id.to_s] = time_slot.time_slot
         }
-        day_combination_select_id = params[:day_combination_select_id]
-        course_id = day_combination_select_id.split("day_combination_select_")[1]
-	@time_slot_options["select_id"] = "#time_slot_select_" + course_id
+	@time_slot_options["select_id"] = "#time_slot_select_" + params[:course_id]
+	course_assignment = CourseAssignment.where("course_id = ?",params[:course_id])[0]
+	time_slot_id = course_assignment.time_slot_id.to_s
+	if time_slot_id != nil
+		@time_slot_options["selected_val"] = time_slot_id
+	else
+		@time_slot_options["selected_val"] = ""
+	end
 	respond_to do |format|
 		format.json {render json: @time_slot_options}
 	end	

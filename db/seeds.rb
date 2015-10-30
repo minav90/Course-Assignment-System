@@ -29,11 +29,11 @@ daycombinations = [{:day_combination => 'MW'},
 				   {:day_combination => 'MWF'},
 				]
 
-faculties = [{:faculty_name => 'Dr. Andrew Jiang'},
-			 {:faculty_name => 'Dr. Thomas Ioerger'},
-			 {:faculty_name => 'Dr. Jianer Chen'},
-			 {:faculty_name => 'Dr. Jeff Huang'},
-			 {:faculty_name => 'Dr. Duncan Walker'},
+faculties = [{:faculty_name => 'Jiang Andrew'},
+			 {:faculty_name => 'Ioerger Thomas'},
+			 {:faculty_name => 'Chen Jianer'},
+			 {:faculty_name => 'Huang Jeff'},
+			 {:faculty_name => 'Walker Duncan'},
 			 
 			]
 

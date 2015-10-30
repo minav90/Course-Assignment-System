@@ -1,5 +1,5 @@
 $ ->
-   $("#faculty_id").on 'change', (evt) ->
+   $(document).on 'change', "#faculty_id", (evt) ->
     $.ajax 'course_assignments/update_faculty_details',
       type: 'GET'
       dataType: 'script'

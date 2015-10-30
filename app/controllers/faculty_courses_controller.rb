@@ -1,6 +1,6 @@
 class FacultyCoursesController < ApplicationController
     def index
-        @faculties = Faculty.all
+        @faculties = Faculty.order(faculty_name: :desc)
 	    @all_faculty = Hash.new
         FacultyCourse.all.each do |faculty_course|
         @faculty = Faculty.find_by_id(faculty_course.faculty_id)
