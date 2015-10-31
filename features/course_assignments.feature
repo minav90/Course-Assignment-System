@@ -45,10 +45,3 @@ Feature: Add a page to assign classroom and time for each of the faculty courses
  | 5:30 pm to 6:45 pm |
 
  And I am on the Assign Room and Timings page
-
- Scenario: showing assigned courses for selected faculty
-   When I select "B" from "faculty_id"
-   And I press "Select"
-   Then I should see "course1"
-   And I should see "course2"
-   And I should see "course3"

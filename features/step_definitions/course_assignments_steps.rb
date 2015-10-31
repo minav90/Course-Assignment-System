@@ -21,4 +21,8 @@ Given /the following time-slots exist:$/ do |time_slots_table|
 	TimeSlot.create!(time_slot)
     end
 end	
- 
+
+When /I chose faculty "(.*)" from "(.*)"$/ do |faculty,field|
+    select(faculty, :from => field)
+    page.execute_script("$(#'#{field}').trigger()'change');")    
+end 
