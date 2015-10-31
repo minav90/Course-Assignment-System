@@ -58,7 +58,6 @@ group :development do
 end
 
 group :production do
-  # Commented gem 'pg' temporarily as it created problems while using bundle install because Postgres isn't installed locally
-  # gem 'pg'
+  gem 'pg'
   gem 'rails_12factor'
 end
