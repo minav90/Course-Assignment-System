@@ -1,6 +1,11 @@
 <h1>Conflict Checker</h1>
 <p>The following list shows groups of courses that had the same preference # 1 combination chosen by multiple faculty:</p>
 
+  <%= form_for :class,  method: :get , url: setsession_path do |f| %>
+  <h3><%= f.label "Choose Semester" %></h3>
+  <%= f.select :semester_id , options_for_select(@semester.collect { |semester| [semester.SemesterTitle, semester.id] },session[:semester_id] ), {prompt: "Please Select", hide_label: :true }, { :onchange => "this.form.submit()", id: 'sessionId' , class: "input-sm"} %>
+  <% end %>
+
 <table>
   <thead>
     <tr>
