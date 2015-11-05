@@ -2,7 +2,20 @@
 %h1 Assign Room and Timings for Faculty Courses
 
 =label_tag :faculty_id, "Faculties"
-=select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true
+=select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name",""), :include_blank => true
 %br
 %br
 =content_tag(:div,nil,{:id => :course_ctr})
+
+%table#course_assignments
+  %thead
+    %tr
+      %th Faculty Name
+      %th Courses
+      %th Assignment
+  %tbody
+    - @assignments.each do |assignment|
+      %tr
+        %td= assignment["faculty_name"]
+        %td= assignment["course_name"]
+        %td= assignment["assign"]
