@@ -56,11 +56,11 @@ module ConflictCheckerHelper
 	def isAssigned(buildingId, dayComboId, timeslotId)
 		CaTable = CourseAssignment.all
 		CaTable.each do |CArow|
-			if CArow[:day_combination_id] == dayComboId & CArow[:time_slot_id] == timeslotId & (CArow[:building_id] == null | CArow[:building_id] == buildingId)
-				True
+			if CArow[:day_combination_id] == dayComboId & CArow[:time_slot_id] == timeslotId
+				end
+				timeslotrow
 			end
 		end
-		False
 	end
 		
 end
