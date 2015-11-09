@@ -26,7 +26,7 @@ class ConflictCheckerController < ApplicationController
        @faculty_preferences.each do |faculty_preference|
 
          @pref1_id = faculty_preference.preference1_id
-         @pref_1 = Preference.find_by preference1_id: @pref1_id
+         @pref_1 = Preference.find_by preference_id: @pref1_id
          @pref2_id = faculty_preference.preference2_id
          pref_2 = Preference.find_by preference_id: @pref2_id
          @pref3_id = faculty_preference.preference3_id
