@@ -1,0 +1,57 @@
+<html>
+<head>
+	<%= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= yield(:head) %>
+</head>
+<body>
+	<h2 align="center">Preference Summary</h2>
+	<div class="scrollPref">
+		<table id="preftable">
+			<tr>
+				<th>Index</th>
+				<th>Faculty Name</th>
+				<th>Courses Assigned</th>
+				<th>Preference 1</th>
+				<th>Preference 2</th>
+				<th>Preference 3</th>
+			</tr>
+			<% id = 0 %>
+			<% @showPrefSummary.each do |key,prefSummary|
+				@faculty = prefSummary[:faculty]
+				course = prefSummary[:course]
+				prefids = prefSummary[:prefids]
+				%>
+				<tr class="border_bottom">
+					<td><%= id = id + 1 %></td>
+					<td><%= @faculty.faculty_name %></td>
+					<td>
+						<% course.each do |course| 
+							unless course.nil? %>
+							<p><%= course.course_name %></p>
+							<% end 
+							end %>
+						</td>
+						<%  prefids.each do |prefid| %>
+						<td>
+							<% if prefid.nil? %>
+							<%= "no Preference" %>
+							<% else %>
+							<% 
+							@pref = Preference.find_by_id(prefid)
+							@day_combo = DayCombination.find_by_id(@pref.day_combination_id)
+							@timeslot = TimeSlot.find_by_id(@pref.time_slot_id)
+							@building = Building.find_by_id(@pref.building_id)
+							%>
+							<p><%= "Day Combination : #{@day_combo.day_combination}" %></p>
+							<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
+							<p><%= "Location : #{@building.building_name}" %></p>
+							<% end %>
+						</td>
+						<% end %>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</body>
+		</html>

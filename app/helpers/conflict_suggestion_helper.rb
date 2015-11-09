@@ -1,0 +1,2 @@
+module ConflictSuggestionHelper
+end
