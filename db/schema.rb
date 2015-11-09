@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20151024210737) do
     t.string   "course_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "CourseTitle"
+    t.string   "course_title"
   end
 
   create_table "day_combinations", force: :cascade do |t|

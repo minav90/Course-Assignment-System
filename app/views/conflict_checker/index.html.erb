@@ -4,8 +4,13 @@
 <table>
   <thead>
     <tr>
-      <th>Faculty Course</th>
-      <th>Preference # 1</th>
+      <th>Faculty Name</th>
+      <th>Course Name</th>
+      <th>Course Title</th>
+      <th>Time Slot</th>
+      <th>Note</th>
+      <th>Preference Number</th>
+      <th>Already Assigned</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,13 +18,18 @@
   <tbody>
     <% @conflicts.each do |conflict| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= conflict.faculty_course_id %></td>
-        <td><%= conflict.preference1_id %></td>
+        <td><%= conflict[0] %></td>
+        <td><%= conflict[1] %></td>
+        <td><%= conflict[2] %></td>
+        <td><%= conflict[3] %></td>
+        <td><%= conflict[4] %></td>
+        <td><%= conflict[5] %></td>
+        <td><%= conflict[6] %></td>
+        <td><%= conflict[7] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
  
 <br>
-
 
