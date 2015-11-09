@@ -2,8 +2,8 @@ module ConflictCheckerHelper
 	def courseDetails(courseId)
 		courseTable = Course.all
 		courseTable.each do |courseRow|
-			if courseRow[:id] == courseId
-				courseRow
+			if courseRow.id == courseId
+				return courseRow
 			end
 		end
 	end
@@ -11,8 +11,8 @@ module ConflictCheckerHelper
 	def findFacultyforCourse(courseId)
 		facultycourseTable = FacultyCourse.all
 		facultycourseTable.each do |facultycourserow|
-			if facultycourserow[:course_id] == courseId
-				@facultyid = facultycourserow[:faculty_id]
+			if facultycourserow.id == courseId
+				return facultycourserow.id # @facultyid = 
 			end
 		end
 	end
@@ -20,35 +20,35 @@ module ConflictCheckerHelper
 	def findFacultyName(facultyId)
 		facultyTable = Faculty.all
 		facultyTable.each do |facultyrow|
-			if facultyrow[:id] == facultyId
-				@facultyName = facultyrow[:faculty_name]
+			if facultyrow.id == facultyId
+				return facultyrow.faculty_name # @facultyName = 
 			end
 		end
 	end
 	
-	def findBuildingDataFromId(buildingName)
+	def findBuildingDataFromId(buildingId)
 		buildingTable = Building.all
 		buildingTable.each do |buildingrow|
-			if buildingrow[:building_name] == buildingName
-				buildingrow
+			if buildingrow.id == buildingId
+				return buildingrow
 			end
 		end
 	end
 	
-	def findDayCombinationDataFromId(dayCombo)
+	def findDayCombinationDataFromId(dayComboId)
 		daycomboTable = DayCombination.all
 		daycomboTable.each do |dcrow|
-			if dcrow[:building_name] == dayCombo
-				dcrow
+			if dcrow.id == dayComboId
+				return dcrow
 			end
 		end
 	end
 	
-	def findTimeSlotDataFromId(timeslot)
+	def findTimeSlotDataFromId(timeSlotId)
 		timeslotTable = TimeSlot.all
 		timeslotTable.each do |timeslotrow|
-			if timeslotrow[:time_slot] == timeslot
-				timeslotrow
+			if timeslotrow.id == timeSlotId
+				return timeslotrow
 			end
 		end
 	end
@@ -57,12 +57,12 @@ module ConflictCheckerHelper
 		if CourseAssignment.count > 0
 			@CaTable = CourseAssignment.all
 			@CaTable.each do |caRow|
-				if caRow[:day_combination_id] == dayComboId && caRow[:time_slot_id] == timeslotId && (caRow[:building_id] == null || caRow[:building_id] == buildingId)
-					return True
+				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (caRow.building_id == null || caRow.building_id == buildingId)
+					return "Yes"
 				end
 			end
 		end
-		return False
+		return "No"
 	end
 		
 end
