@@ -30,10 +30,14 @@ include ConflictCheckerHelper
   def create
   	@dayCombos = DayCombination.all
     @day_combo_row = findDayCombinationDataFromId(params["conflict_checker"]["day_combinations_id"])
+    puts @day_combo_row.id
     @timeSlots = TimeSlot.all
     @time_slot_row = findTimeSlotDataFromId(params["conflict_checker"]["timeslots_id"])
+    puts @time_slot_row.id
     @building_row = findBuildingDataFromId(params["conflict_checker"]["buildings_id"])
     @buildings = Building.all
+    puts @building_row.id
+ 
     # ToDo: Get the semester_id from the session
     @semester_id = 1
 
@@ -142,6 +146,10 @@ include ConflictCheckerHelper
 				i += 1
 			 end
 				 # Check Pref 3
+				 puts @pref_3.day_combination_id
+				 puts @day_combo_row.id
+				 puts @pref_3.time_slot_id
+				 puts @building_row.id
 			 if ( (@pref_3) && (@day_combo_row) && (@time_slot_row) && (@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_3.building_id == @building_row.id) )
 				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_3, 3])
 				i += 1

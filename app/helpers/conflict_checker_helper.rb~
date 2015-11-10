@@ -43,6 +43,7 @@ module ConflictCheckerHelper
 		daycomboTable = DayCombination.all
 		dayComboId = dayComboId.to_i
 		daycomboTable.each do |dcrow|
+			puts dcrow.id
 			if dcrow.id == dayComboId
 				return dcrow
 			end

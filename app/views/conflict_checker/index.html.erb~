@@ -1,7 +1,7 @@
 <h1>Conflict Checker</h1>
 <p>The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-slot and/or Building:</p>
 
-<%= form_for :conflict_checker, url: conflict_checker_index_path do |f| %>
+<%= form_for :conflict_checker, method: get, url: conflict_checker_index_path do |f| %>
 
 <%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, 1), {}, { id: 'day_combination_select' , class: "input-sm"} %>
 
