@@ -60,32 +60,17 @@ module ConflictCheckerHelper
 	end
 	
 	def isAssigned(buildingId, dayComboId, timeslotId)
-		puts "count is ...."
-		puts CourseAssignment.count
 		if CourseAssignment.count > 0
 			@CaTable = CourseAssignment.all
 			timeSlotId = timeSlotId.to_i
-			puts dayComboId
 			dayComboId = dayComboId.to_i
 			buildingId = buildingId.to_i
 			
 			@CaTable.each do |caRow|
-				timeSlotId = timeSlotId.to_i
-				#puts dayComboId
-				dayComboId = dayComboId.to_i
-				buildingId = buildingId.to_i
-				puts caRow.id
-				puts caRow.day_combination_id
-				puts dayComboId
-				puts caRow.day_combination_id == dayComboId
-				puts caRow.time_slot_id == timeslotId
 				@room_id = caRow.room_id
-				puts "room id is "
-				puts @room_id
-				@building_id = getBuildingIdfromRoom(@room_id)				
-				puts @building_id
+				@building_id = getBuildingIdfromRoom(@room_id)	
+				
 				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (@building_id == nil || @building_id == buildingId)
-					puts "YES"
 					return "Yes"
 				end
 			end
@@ -96,11 +81,9 @@ module ConflictCheckerHelper
 	def getBuildingIdfromRoom(roomId)
 	
 		@roomTable = Room.all
-		
+		roomId = roomId.to_i
 		@roomTable.each do |r|
-			roomId = roomId.to_i
-			puts r.id, roomId
-			puts r.id == roomId
+			
 			if r.id == roomId
 				return r.building_id
 			end
