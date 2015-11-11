@@ -1,0 +1,28 @@
+<html>
+<head>
+ <%= javascript_include_tag "application" %>
+ <%= stylesheet_link_tag 'application' %>
+ <%= yield(:head) %>
+</head>
+<body>
+<div class="center jumbotron">
+  <h1>Course Assignment System</h1>
+   <p>
+  <%= form_for :class,  method: :get , url: setsession_path do |f| %>
+  <h3><%= f.label "Choose Semester" %></h3>
+  <%= f.select :semester_id , options_for_select(@semester.collect { |semester| [semester.SemesterTitle, semester.id] },session[:semester_id] ), {prompt: "Please Select", hide_label: :true }, { :onchange => "this.form.submit()", id: 'sessionId' , class: "input-sm"} %>
+  <% end %>
+  </p>
+  <%= link_to "Add Faculty", addfaculty_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Add Course", addcourse_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Assignment Summary", faculty_courses_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Add Classroom", class_index_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "See Preferences", pref_summary_index_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Add Semester", addsemester_path, class: "btn btn-lg btn-primary" %>
+  <!-- link_to "Conflict Checker", conflict_checker_index_path, class: "btn btn-lg btn-primary" -->
+  <%= link_to "Course Assignments", course_assignments_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Conflict Suggestion", conflict_suggestion_index_path, class: "btn btn-lg btn-primary" %>
+
+</div>
+</body>
+</html>

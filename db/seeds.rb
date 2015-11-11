@@ -64,34 +64,34 @@ timeslots = 	[{:time_slot => '8:00 am to 8:50 am'},
 			 
 				]	
 
-preferences = 	[{:building_id => '1', :day_combination_id => '2', :time_slot_id => '14'},
-				 {:building_id => '1', :day_combination_id => '2', :time_slot_id => '13'},
-				 {:building_id => '1', :day_combination_id => '2', :time_slot_id => '12'},
-				 {:building_id => '1', :day_combination_id => '2', :time_slot_id => '11'},
-				 {:building_id => '1', :day_combination_id => '2', :time_slot_id => '10'},
-				 {:building_id => '2', :day_combination_id => '2', :time_slot_id => '9'},
-				 {:building_id => '2', :day_combination_id => '1', :time_slot_id => '8'},
-				 {:building_id => '2', :day_combination_id => '3', :time_slot_id => '7'},
-				 {:building_id => '2', :day_combination_id => '3', :time_slot_id => '6'},
-				 {:building_id => '2', :day_combination_id => '3', :time_slot_id => '5'},
-				 {:building_id => '3', :day_combination_id => '3', :time_slot_id => '4'},
-				 {:building_id => '3', :day_combination_id => '3', :time_slot_id => '3'},
-				 {:building_id => '3', :day_combination_id => '3', :time_slot_id => '2'},
-				 {:building_id => '3', :day_combination_id => '3', :time_slot_id => '1'},
+preferences = 	[{:semester_id => '1',:building_id => '1', :day_combination_id => '2', :time_slot_id => '14'},
+				 {:semester_id => '1',:building_id => '1', :day_combination_id => '2', :time_slot_id => '13'},
+				 {:semester_id => '1',:building_id => '1', :day_combination_id => '2', :time_slot_id => '12'},
+				 {:semester_id => '1',:building_id => '1', :day_combination_id => '2', :time_slot_id => '11'},
+				 {:semester_id => '1',:building_id => '1', :day_combination_id => '2', :time_slot_id => '10'},
+				 {:semester_id => '1',:building_id => '2', :day_combination_id => '2', :time_slot_id => '9'},
+				 {:semester_id => '1',:building_id => '2', :day_combination_id => '1', :time_slot_id => '8'},
+				 {:semester_id => '1',:building_id => '2', :day_combination_id => '3', :time_slot_id => '7'},
+				 {:semester_id => '1',:building_id => '2', :day_combination_id => '3', :time_slot_id => '6'},
+				 {:semester_id => '1',:building_id => '2', :day_combination_id => '3', :time_slot_id => '5'},
+				 {:semester_id => '1',:building_id => '3', :day_combination_id => '3', :time_slot_id => '4'},
+				 {:semester_id => '1',:building_id => '3', :day_combination_id => '3', :time_slot_id => '3'},
+				 {:semester_id => '1',:building_id => '3', :day_combination_id => '3', :time_slot_id => '2'},
+				 {:semester_id => '1',:building_id => '3', :day_combination_id => '3', :time_slot_id => '1'},
 			 
 				]	
 
-facultycourses = [{:faculty_id => '1', :course1_id => '2'},
-				  {:faculty_id => '2', :course1_id => '1'},
-				  {:faculty_id => '3', :course1_id => '3', :course2_id => '6'},
-				  {:faculty_id => '5', :course1_id => '4', :course2_id => '5'},
+facultycourses = [{:semester_id => '1',:faculty_id => '1', :course1_id => '2'},
+				  {:semester_id => '1',:faculty_id => '2', :course1_id => '1'},
+				  {:semester_id => '1',:faculty_id => '3', :course1_id => '3', :course2_id => '6'},
+				  {:semester_id => '1',:faculty_id => '5', :course1_id => '4', :course2_id => '5'},
 				  			 
 				 ]	
 				 
-facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference3_id => '3'},
-					  {:faculty_course_id => '2', :preference1_id => '3', :preference2_id => '4', :preference3_id => '5'},
-					  {:faculty_course_id => '3', :preference1_id => '5', :preference2_id => '7', :preference3_id => '6'},
-				      {:faculty_course_id => '4', :preference1_id => '7', :preference3_id => '10'},
+facultypreferences = [{:semester_id => '1',:faculty_course_id => '1', :preference1_id => '1', :preference3_id => '3'},
+					  {:semester_id => '1',:faculty_course_id => '2', :preference1_id => '3', :preference2_id => '4', :preference3_id => '5'},
+					  {:semester_id => '1',:faculty_course_id => '3', :preference1_id => '5', :preference2_id => '7', :preference3_id => '6'},
+				      {:semester_id => '1',:faculty_course_id => '4', :preference1_id => '7', :preference3_id => '10'},
 			 
 					]
 semesters = [{:SemesterTitle => 'Fall 2015'}]

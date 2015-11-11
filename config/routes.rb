@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   get 'conflict_checker/index'
   get 'pref_summary/index'
-
+  get 'conflict_suggestion/index'
   get "addfaculty" => 'home_page#addfaculty'
   get "addcourse" => 'home_page#addcourse'
   get "addsemester" => 'home_page#addsemester'
