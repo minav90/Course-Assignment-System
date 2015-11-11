@@ -36,19 +36,33 @@ class CourseAssignmentsController < ApplicationController
 
   def update_course_assignment
 	attributes = {}
-	faculty_id = params[:faculty_id] 
+	faculty_id = params[:faculty_id]
+	faculty = Faculty.find(faculty_id)
 	course_id = params[:course_id]
+	course = Course.find(course_id)
 	course_assignments = CourseAssignment.where("semester_id = ? and course_id = ?",session[:semester_id],course_id)
 	course_assignment = nil
 	if course_assignments.length > 0
 		course_assignment = course_assignments[0]
-	else
-		course_assignment = CourseAssignment.create!(semester_id: session[:semester_id],faculty_id: faculty_id, course_id: course_id)
 	end
-	attributes[:room_id] = params["room_select_#{course_id}"]
-	attributes[:day_combination_id] = params["day_combination_select_#{course_id}"]
-	attributes[:time_slot_id] = params["time_slot_select_#{course_id}"]
-	course_assignment.update_attributes!(attributes)
+	puts "building id: " + params["building_select_#{course_id}"]
+	if params["building_select_#{course_id}"] == ""
+		if course_assignment == nil
+			flash[:error] = "Cannot create empty assignment"
+		else
+			CourseAssignment.destroy(course_assignment.id)
+			flash[:success] = "Deleted course assignment for " + faculty.faculty_name + ", " + course.course_name
+		end
+	else
+		if course_assignment == nil
+			course_assignment = CourseAssignment.create!(semester_id: session[:semester_id],faculty_id: faculty_id, course_id: course_id)
+		end
+		attributes[:room_id] = params["room_select_#{course_id}"]
+        	attributes[:day_combination_id] = params["day_combination_select_#{course_id}"]
+        	attributes[:time_slot_id] = params["time_slot_select_#{course_id}"]
+        	course_assignment.update_attributes!(attributes)
+		flash[:success] = "Update course assignment for " + faculty.faculty_name + ", " + course.course_name	
+	end
 	respond_to do |format|
 		format.js {render inline: "location.reload();" }
 	end
@@ -107,9 +121,13 @@ class CourseAssignmentsController < ApplicationController
 	@room_options = {}
 	@room_options["data"] = {}
 	rooms = Room.where("building_id = ?",params[:building_id])
-	rooms.each {|room|
-		@room_options["data"][room.id.to_s] = room.room_name
-	}
+	if rooms.length == 0
+		@room_options["data"][""] = ""
+	else
+		rooms.each {|room|
+			@room_options["data"][room.id.to_s] = room.room_name
+		}
+	end
 	@room_options["select_id"] = "#room_select_" + params[:course_id]
 	course_assignment = get_course_assignment(params[:course_id])
 	room_id = course_assignment.room_id.to_s
@@ -127,10 +145,14 @@ class CourseAssignmentsController < ApplicationController
 	@day_combination_options = {}
 	@day_combination_options["data"] = {}
 	classroom_timings = ClassroomTiming.where("room_id = ?",params[:room_id])
-	classroom_timings.each {|classroom_timing|
-		day_combination = DayCombination.find(classroom_timing.day_combination_id)
-		@day_combination_options["data"][day_combination.id.to_s] = day_combination.day_combination
-	}
+	if classroom_timings.length == 0
+		@day_combination_options["data"][""] = ""
+	else
+		classroom_timings.each {|classroom_timing|
+			day_combination = DayCombination.find(classroom_timing.day_combination_id)
+			@day_combination_options["data"][day_combination.id.to_s] = day_combination.day_combination
+		}
+	end
 	@day_combination_options["select_id"] = "#day_combination_select_" + params[:course_id]
 	course_assignment = get_course_assignment(params[:course_id])
 	day_combination_id = course_assignment.day_combination_id.to_s
@@ -148,10 +170,14 @@ class CourseAssignmentsController < ApplicationController
 	@time_slot_options = {}
 	@time_slot_options["data"] = {}
 	classroom_timings = ClassroomTiming.where("day_combination_id = ?",params[:day_combination_id])
-	classroom_timings.each {|classroom_timing|
-                time_slot = TimeSlot.find(classroom_timing.time_slot_id)
-                @time_slot_options["data"][time_slot.id.to_s] = time_slot.time_slot
-        }
+	if classroom_timings.length == 0
+                @time_slot_options["data"][""] = ""
+	else
+		classroom_timings.each {|classroom_timing|
+                	time_slot = TimeSlot.find(classroom_timing.time_slot_id)
+                	@time_slot_options["data"][time_slot.id.to_s] = time_slot.time_slot
+        	}
+	end
 	@time_slot_options["select_id"] = "#time_slot_select_" + params[:course_id]
 	course_assignment = get_course_assignment(params[:course_id])
 	time_slot_id = course_assignment.time_slot_id.to_s

@@ -1,19 +1,18 @@
 -
-%h1 Assign Room and Timings for Faculty Courses
-
-=label_tag :faculty_id, "Faculties"
-=select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name",""), :include_blank => true
+%h1{:align => 'center'} Assign Room and Timings for Faculty Courses
+.faculty_drop_down
+  =label_tag :faculty_id, "Faculties"
+  =select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name",""), :include_blank => true
 %br
 %br
-=content_tag(:div,nil,{:id => :course_ctr})
+#course_ctr
 
-%table#course_assignments
-  %thead
+.course_assignment_scroll_pref
+  %table{:id => 'course_assignments', :align => 'center'}
     %tr
       %th Faculty Name
       %th Courses
       %th Assignment
-  %tbody
     - @assignments.each do |assignment|
       %tr
         %td= assignment["faculty_name"]
