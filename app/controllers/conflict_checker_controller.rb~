@@ -14,30 +14,52 @@ include ConflictCheckerHelper
     
     @timeSlots = TimeSlot.all
     
-    @buildings = Building.all
+    @buildings_table_values = Building.all
     
+    @buildings = Array.new
+    
+    @buildings.insert(0, "")
+    
+    i = 1
+    @buildings_table_values.each do |b|
+    	@buildings.insert(i, [b.id, b.building_name])
+    	i+=1
+    end 
     if (!session[:computed] || session[:computed] == nil)
     
     	@conflicts = []
     	session[:computed] = false
+    	session[:conflicts] = @conflicts
+    	@day_row_id = 1
+    	@time_slot_row_id = 1
+    	@building_row_id = 1
     else
     	@conflicts = session[:conflicts]
+    	@day_row_id = session[:dayComboId]
+    	@time_slot_row_id = session[:timeSlotId]
+    	@building_row_id = session[:buildingId]
+    	session[:conflicts] = []
+    	session[:dayComboId] = 1
+		session[:timeSlotId] = 1
+		session[:buildingId] = 0
     end
 
-    # @conflicts = FacultyPreference.find_by_sql("SELECT *, COUNT(*) FROM faculty_preferences GROUP BY preference1_id HAVING COUNT(*) > 1")
   end
   
   def create
   	@dayCombos = DayCombination.all
     @day_combo_row = findDayCombinationDataFromId(params["conflict_checker"]["day_combinations_id"])
-    puts @day_combo_row.id
     @timeSlots = TimeSlot.all
     @time_slot_row = findTimeSlotDataFromId(params["conflict_checker"]["timeslots_id"])
-    puts @time_slot_row.id
     @building_row = findBuildingDataFromId(params["conflict_checker"]["buildings_id"])
+    @building = params["conflict_checker"]["buildings_id"]
     @buildings = Building.all
-    puts @building_row.id
- 
+    
+    session[:dayComboId] = params["conflict_checker"]["day_combinations_id"]
+    session[:timeSlotId] = params["conflict_checker"]["timeslots_id"]
+    session[:buildingId] = params["conflict_checker"]["buildings_id"]
+    	
+    	
     # ToDo: Get the semester_id from the session
     @semester_id = 1
 
@@ -46,8 +68,7 @@ include ConflictCheckerHelper
     # j = 0
     @conflicts = Array.new # Faculty Name, Course Name, Course Title, Building name, Note, Preference #, Assigned?
 
-    case @building
-    when "Please select ..."
+    if @building == ""
        # Case 1: When building is not chosen (=> only Day-Combo and time-slot were chosen):
        # @faculty_preferences = FacultyPreference.find_by semester_id: @semester_id
        @faculty_preferences = FacultyPreference.all
@@ -72,17 +93,17 @@ include ConflictCheckerHelper
 		 @faculty_name = findFacultyName(@faculty_id)
 
          # Check Pref 1
-		 if ( (@pref_1) &&(@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot == @time_slot_row.time_slot)))
+		 if ( (@pref_1) && (@day_combo_row) && (@time_slot_row) &&(@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot == @time_slot_row.time_slot)))
 			@relevant_preferences.insert(i, [@course_name, @course_title, @faculty_name, @pref_1, 1])
 			i += 1
 		 end
 		     # Check Pref 2
-		 if ( (@pref_2) && (@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)))
+		 if ( (@pref_2) && (@day_combo_row) && (@time_slot_row) && (@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)))
 			@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_2, 2])
 			i += 1
 		 end
 		     # Check Pref 3
-		 if ( (@pref_3) && (@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)))
+		 if ( (@pref_3) && (@day_combo_row) && (@time_slot_row) && (@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)))
 			@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_3, 3])
 			i += 1
 		 end  
@@ -136,21 +157,17 @@ include ConflictCheckerHelper
 
          # Check Pref 1
          # @pref_1 = Preference.find_by preference_id: @pref1_id
-			 if ( (@pref_1) && (@day_combo_row) && (@time_slot_row) && (@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_1.building_id == @building_row.id) )
+			 if ( (@pref_1) && (@day_combo_row) && (@time_slot_row) && (@building_row) && (@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_1.building_id == @building_row.id) )
 				@relevant_preferences.insert(i, [@course_name, @course_title, @faculty_name, @pref_1, 1])
 				i += 1
 			 end
 				 # Check Pref 2
-			 if ( (@pref_2) && (@day_combo_row) && (@time_slot_row) && (@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_2.building_id == @building_row.id) )
+			 if ( (@pref_2) && (@day_combo_row) && (@time_slot_row) && (@building_row) && (@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_2.building_id == @building_row.id) )
 				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_2, 2])
 				i += 1
 			 end
 				 # Check Pref 3
-				 puts @pref_3.day_combination_id
-				 puts @day_combo_row.id
-				 puts @pref_3.time_slot_id
-				 puts @building_row.id
-			 if ( (@pref_3) && (@day_combo_row) && (@time_slot_row) && (@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_3.building_id == @building_row.id) )
+			 if ( (@pref_3) && (@day_combo_row) && (@time_slot_row) && (@building_row) && (@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && (@pref_3.building_id == @building_row.id) )
 				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_3, 3])
 				i += 1
 			 end  
@@ -171,7 +188,7 @@ include ConflictCheckerHelper
 		@pref_no = relevant_preference[4]
 		# Already Assigned
 		# @already_asgn = true
-		@already_asgn = isAssigned((relevant_preference[3])[4], (relevant_preference[3])[5], (relevant_preference[3])[6]) # building_id, day_combination_id, time_slot_id
+		@already_asgn = isAssigned((relevant_preference[3]).building_id, (relevant_preference[3]).day_combination_id, (relevant_preference[3]).time_slot_id) # building_id, day_combination_id, time_slot_id
 
         @conflicts.insert(j, Array[@fac_name, @cour_name, @cour_title, @building_name, @note, @pref_no, @already_asgn])
 	j += 1

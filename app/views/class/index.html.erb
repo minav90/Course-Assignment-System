@@ -9,7 +9,7 @@
   <div id ="wrapper">
     <div id ="section">
       <h2>Allocate Classrooms and TimeSlots</h2>
-      <%= form_for :class, method: get,  url: class_index_path do |f| %>
+      <%= form_for :class, url: class_index_path do |f| %>
       <p>
         <%= f.label "Choose Building Name:" %>
         <%= f.select :buildings_id , options_for_select(@building.collect { |building| [building.building_name, building.id] }, 1), {}, { id: 'building_select', class: "input-sm"} %>

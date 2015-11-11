@@ -1,13 +1,13 @@
 <h1>Conflict Checker</h1>
 <p>The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-slot and/or Building:</p>
 
-<%= form_for :conflict_checker, method: get, url: conflict_checker_index_path do |f| %>
+<%= form_for :conflict_checker, url: conflict_checker_index_path do |f| %>
 
-<%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, 1), {}, { id: 'day_combination_select' , class: "input-sm"} %>
+<%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, @day_row_id), {}, { id: 'day_combination_select' , class: "input-sm"} %>
 
 <%= f.label "Choose Time Slot:" %> <%= f.select :timeslots_id , options_for_select(@timeSlots.collect { |timeslot| [timeslot.time_slot, timeslot.id] }, 1), {}, { id: 'timeslot_select' , class: "input-sm"} %>
 
-<%= f.label "Choose Building Name:" %> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building.building_name, building.id] }, 1), {}, { id: 'building_select', class: "input-sm"} %>
+<%= f.label "Choose Building Name:" %> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building[1], building[0]] }, @building_row_id), {}, { id: 'building_select', class: "input-sm"} %>
 
 
 <%= f.submit "Submit" ,class: "btn btn-primary"%>
