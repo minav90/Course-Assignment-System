@@ -66,11 +66,10 @@ class CourseAssignmentsController < ApplicationController
 	respond_to do |format|
 		format.js {render inline: "location.reload();" }
 	end
-#	redirect_to :action => 'update_faculty_details', :faculty_id => ""
   end
 
   def update_faculty_details
-	# add semester if to query
+	# add semester id to query
 	faculty_courses_arr = FacultyCourse.where("faculty_id = ?",params[:faculty_id])
 	if faculty_courses_arr.length == 0
 		@course_assignments = []	
