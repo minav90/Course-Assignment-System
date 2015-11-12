@@ -17,10 +17,11 @@
 
 function select_time()
 {
-	var e = document.getElementById("post_select_time");
+    var e = document.getElementById("post_select_time");
     var strUser = e.options[e.selectedIndex].text;
     document.getElementById("class_slot_name").value = strUser;
 }
+
 function check() 
 {
      document.getElementById("class_name").value="";
