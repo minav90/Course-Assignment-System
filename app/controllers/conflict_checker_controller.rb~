@@ -86,8 +86,8 @@ include ConflictCheckerHelper
 		 
 		 # Check Pref 1
 		 if ( (@pref_1) && (@day_combo_row) && (@time_slot_row) &&
-		 	(@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot ==	 @time_slot_row.time_slot)) && 
-		 	checkBuildingOnInput(@building, @pref_1, @building_row))
+		 (@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot ==	 @time_slot_row.time_slot)) && 
+		 checkBuildingOnInput(@building, @pref_1, @building_row))
 		 
 				@relevant_preferences.insert(i, [@course_name, @course_title, @faculty_name, @pref_1, 1])
 				i += 1
@@ -96,8 +96,8 @@ include ConflictCheckerHelper
 		 
 		     # Check Pref 2
 		 if ( (@pref_2) && (@day_combo_row) && (@time_slot_row) && 
-		 	(@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)) && 
-		 	checkBuildingOnInput(@building, @pref_2, @building_row))	
+		 (@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)) && 
+		 checkBuildingOnInput(@building, @pref_2, @building_row))
 		 
 				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_2, 2])
 				i += 1
@@ -106,8 +106,8 @@ include ConflictCheckerHelper
 		 
 		     # Check Pref 3
 		 if ( (@pref_3) && (@day_combo_row) && (@time_slot_row) && 
-		 	(@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && 
-		 	checkBuildingOnInput(@building, @pref_3, @building_row))
+		 (@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && 
+		 checkBuildingOnInput(@building, @pref_3, @building_row))
 		 
 				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_3, 3])
 				i += 1

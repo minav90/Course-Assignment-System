@@ -72,9 +72,7 @@ module ConflictCheckerHelper
 				@room_id = caRow.room_id
 				@building_id = getBuildingIdfromRoom(@room_id)	
 				
-				
 				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (@building_id == nil || @building_id == buildingId) && 
-					courseName == (courseDetails(caRow.course_id)).course_name && facultyName == findFacultyName(caRow.faculty_id)
 					return "Yes"
 				end
 			end
