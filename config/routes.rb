@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   get 'conflict_checker/index'
+  post 'conflict_checker/index' => 'conflict_checker#create'
   get 'pref_summary/index'
   get 'conflict_suggestion/index'
   get "addfaculty" => 'home_page#addfaculty'
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
- 
+  resources :conflict_checker
   resources :class, :except => [:show]
    get 'class/update_room', as: 'update_room'
    get 'class/update_capacity', as: 'update_capacity'

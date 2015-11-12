@@ -37,13 +37,13 @@ faculties = [{:faculty_name => 'Jiang Andrew'},
 			 
 			]
 
-courses = 	[{:course_name => 'Introduction to Artificial Intelligence'},
-			 {:course_name => 'Analysis of Algorithms Section 1'},
-			 {:course_name => 'Analysis of Algorithms Section 2'},
-			 {:course_name => 'Software Engineering'},
+courses = 	[{:course_name => 'Introduction to Artificial Intelligence', :CourseTitle => 'CSCE 625'},
+			 {:course_name => 'Analysis of Algorithms Section 1', :CourseTitle => 'CSCE 629'},
+			 {:course_name => 'Analysis of Algorithms Section 2', :CourseTitle => 'CSCE 629'},
+			 {:course_name => 'Software Engineering', :CourseTitle => 'CSCE 606'},
 			 {:course_name => 'Design Circuits'},
 			 {:course_name => 'Analog Design'},
-			 {:course_name => 'Machine Learning'},
+			 {:course_name => 'Machine Learning', :CourseTitle => 'CSCE 633'},
 			]
 
 
