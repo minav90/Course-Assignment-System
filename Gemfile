@@ -47,6 +47,7 @@ group :development, :test do
   # rspec gem for tdd
   gem 'rspec-rails'
   gem 'simplecov', :require => false
+  gem 'sprockets_better_errors'
 end
 
 group :development do
