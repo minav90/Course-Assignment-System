@@ -4,6 +4,7 @@
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
+   
 
   </head>
 
@@ -18,20 +19,31 @@
 
 
     <table id="preftable">
+    <div class="table_fac">
+    <table class="table table-hover table-bordered">
+    <br
+      <thead>
       <tr>
         <th>Faculty</th>
         <th>Course 1</th>
         <th>Course 2</th>
         <th>Course 3</th>
       </tr>
-        <% @all_faculty.each do |key,val| %>
+      </thead>
+      
+      <% @all_faculty.each do |key,val| %>
+      <tbody>
       <tr>
         <td><%= val[:faculty_name] %></td>
         <td><%= val[:course1] %></td>
         <td><%= val[:course2] %></td>
         <td><%= val[:course3] %></td>
       </tr>
+      </tbody>
       <% end %>
+    
+    </table>
+    </div>
     </table>
    
   </body>
