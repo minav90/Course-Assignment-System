@@ -45,7 +45,6 @@ class CourseAssignmentsController < ApplicationController
 	if course_assignments.length > 0
 		course_assignment = course_assignments[0]
 	end
-	puts "building id: " + params["building_select_#{course_id}"]
 	if params["building_select_#{course_id}"] == ""
 		if course_assignment == nil
 			flash[:error] = "Cannot create empty assignment"
