@@ -60,15 +60,10 @@ module ConflictCheckerHelper
 	end
 	
 	def isAssigned(buildingId, dayComboId, timeslotId, courseName, facultyName)
-		puts "Count is ....."
-		puts CourseAssignment.count
 		if CourseAssignment.count > 0
 			@semester_id = session[:semester_id]
 			@semester_id = @semester_id.to_i
-			puts "sem id"
-			puts @semester_id
-			@CaTable = CourseAssignment.all
-			puts @CaTable.count
+			@CaTable = CourseAssignment.all.where("semester_id = ?", @semester_id)
 			timeSlotId = timeSlotId.to_i
 			dayComboId = dayComboId.to_i
 			buildingId = buildingId.to_i
