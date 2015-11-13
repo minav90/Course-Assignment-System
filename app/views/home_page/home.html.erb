@@ -11,7 +11,7 @@
 
   <title>Landing Page - Start Bootstrap Theme</title>
 
-   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag 'application' %>
   <%= yield(:head) %>
   <!-- Bootstrap Core CSS -->
@@ -79,7 +79,7 @@
                   <p>
                     <%= form_for :class,  method: :get , url: setsession_path do |f| %>
                     <h3><%= f.label "Choose Semester" %></h3>
-                    <%= f.select :semester_id , options_for_select(@semester.collect { |semester| [semester.SemesterTitle, semester.id] },session[:semester_id] ), { prompt: "Please Select", hide_label: :true }, {:onchange => "this.form.submit()", id: 'sessionId' , class: "btn btn-default dropdown-toggle"} %>
+                    <%= f.select :semester_id , options_for_select(@semester.collect { |semester| [semester.SemesterTitle, semester.id] },session[:semester_id] ), {prompt: "Please Select", hide_label: :true }, { :onchange => "this.form.submit()", id: 'sessionId' , class: "btn btn-default dropdown-toggle"} %>
                     <% end %>
                   </p>
                   <hr class="intro-divider">
@@ -131,7 +131,7 @@
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
         <h2 class="section-heading">Classroom Assignment</h2>
-        <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+        <p class="lead"></p>
       </div>
       <div class="col-lg-5 col-lg-offset-2 col-sm-6">
         <img class="img-responsive" src="../../assets/class.png" alt="">
@@ -153,7 +153,6 @@
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
         <h2 class="section-heading">Assigning Courses to Faculties</h2>
-        <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
       </div>
       <div class="col-lg-5 col-sm-pull-6  col-sm-6">
         <img class="img-responsive" src="../../assets/courses.png" alt="">
@@ -175,7 +174,6 @@
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
         <h2 class="section-heading">Managing Time and Location Preferences of Faculties</h2>
-        <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
       </div>
       <div class="col-lg-5 col-lg-offset-2 col-sm-6">
         <img class="img-responsive" src="../../assets/time.png" alt="">
@@ -194,6 +192,8 @@
   <div class="container">
 
     <div class="row">
+      <div class="col-lg-6">
+        <ul class="list-inline banner-social-buttons">
       <div class="col-lg-6">
         <ul class="list-inline banner-social-buttons">
           <li>
