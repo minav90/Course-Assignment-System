@@ -1,10 +1,10 @@
 class PrefSummaryController < ApplicationController
 	def index
-		@facultycourse = FacultyCourse.all
+		@facultycourse = FacultyCourse.where(:semester_id => session[:semester_id]).all
 
 		@showPrefSummary = Hash.new
 
-		FacultyCourse.all.each do |facultycourse|
+		@facultycourse.each do |facultycourse|
 			course = Array.new
 			course << Course.find_by_id(facultycourse.course1_id)
 			course << Course.find_by_id(facultycourse.course2_id)

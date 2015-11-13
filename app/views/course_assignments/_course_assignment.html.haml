@@ -1,6 +1,6 @@
 = form_tag update_course_assignment_path, :method => :put, :remote => true do
   = hidden_field_tag :faculty_id, course_assignment.faculty_id
-  = hidden_field_tag :course_id, course_assignment.course_id
+  = hidden_field_tag :course_id, course_assignment.course_id, :class => "course"
   = label_tag "course_#{course_assignment.course_id}", "Course: "
   = content_tag(:label,courses[course_assignment.course_id],{:id => "course_#{course_assignment.course_id}"})
   %br

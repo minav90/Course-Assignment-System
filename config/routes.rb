@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'conflict_checker/index'
   post 'conflict_checker/index' => 'conflict_checker#create'
   get 'pref_summary/index'
-
+  get 'conflict_suggestion/index'
   get "addfaculty" => 'home_page#addfaculty'
   get "addcourse" => 'home_page#addcourse'
   get "addsemester" => 'home_page#addsemester'

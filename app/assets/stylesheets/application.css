@@ -92,3 +92,41 @@
     overflow-x: hidden;
     position : absolute;
 }
+
+.course_assignment_scroll_pref {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    margin-left: 15%;
+}
+
+#course_assignments th {
+  font-weight: bold;
+  background-color: wheat;
+}
+#course_assignments th, #course_assignments td {
+  padding: 4px;
+   border: 2px solid black;
+   text-align: left;
+}
+
+.faculty_drop_down {
+  margin-top: 3%;
+  margin-left: 35%;
+  width: 30%;
+  padding: 3px;
+}
+
+.alert.alert-success {
+  background-color: #bfefbf;
+  font-weight: bold;
+  text-align: left;
+  font-color: black;
+}
+
+.alert.alert-error {
+  color: #e60000;
+  font-weight: bold;
+  background-color: #ffad99;
+  text-align: left;
+}

@@ -5,7 +5,7 @@ $(document).on "change", ".building_select", (evt) ->
     course_id = ""
     for i in [1..$(".building_select").length]
       if $(".building_select")[i-1].id == this.id
-        course_id = $("#course_id")[i-1].value
+        course_id = $(".course")[i-1].value
     $.ajax 'course_assignments/update_room',
       type: 'GET'
       dataType: 'json'
@@ -28,7 +28,7 @@ $(".room_select").on 'change', (evt) ->
     course_id = ""
     for i in [1..$(".room_select").length]
       if $(".room_select")[i-1].id == this.id
-        course_id = $("#course_id")[i-1].value
+        course_id = $(".course")[i-1].value
     $.ajax 'course_assignments/update_day_combination',
       type: 'GET'
       dataType: 'json'
@@ -51,7 +51,7 @@ $(".day_combination_select").on 'change', (evt) ->
     course_id = ""
     for i in [1..$(".day_combination_select").length]
       if $(".day_combination_select")[i-1].id == this.id
-        course_id = $("#course_id")[i-1].value
+        course_id = $(".course")[i-1].value
     $.ajax 'course_assignments/update_time_slot',
       type: 'GET'
       dataType: 'json'
