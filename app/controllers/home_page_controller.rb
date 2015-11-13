@@ -4,12 +4,16 @@ class HomePageController < ApplicationController
   end
 
   def addfaculty
-  	Faculty.create(faculty_name: params[:FacultyName])
+	if params[:class] != nil && params[:class][:FacultyName] != ""
+  		Faculty.create!(faculty_name: params[:class][:FacultyName])
+	end
      #redirect_to root_path;
   end
 
   def addcourse
-  	Course.create(:course_name => params[:CourseName], :CourseTitle => params[:CourseTitle])
+	if params[:class] != nil && params[:class][:CourseName] != ""
+  		Course.create!(:course_name => params[:class][:CourseName], :CourseTitle => params[:class][:CourseTitle])
+	end
      #redirect_to root_path;
   end
 

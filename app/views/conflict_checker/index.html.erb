@@ -1,11 +1,28 @@
 <h1>Conflict Checker</h1>
-<p>The following list shows groups of courses that had the same preference # 1 combination chosen by multiple faculty:</p>
+<p>The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-slot and/or Building:</p>
+
+<%= form_for :conflict_checker, url: conflict_checker_index_path do |f| %>
+
+<%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, @day_row_id), {}, { id: 'day_combination_select' , class: "input-sm"} %>
+
+<%= f.label "Choose Time Slot:" %> <%= f.select :timeslots_id , options_for_select(@timeSlots.collect { |timeslot| [timeslot.time_slot, timeslot.id] }, @time_slot_row_id), {}, { id: 'timeslot_select' , class: "input-sm"} %>
+
+<%= f.label "Choose Building Name:" %> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building[1], building[0]] }, @building_row_id), {}, { id: 'building_select', class: "input-sm"} %>
+
+
+<%= f.submit "Submit" ,class: "btn btn-primary"%>
+<% end %> 
 
 <table>
   <thead>
     <tr>
-      <th>Faculty Course</th>
-      <th>Preference # 1</th>
+      <th>Faculty Name</th>
+      <th>Course Name</th>
+      <th>Course Title</th>
+      <th>Building</th>
+      <th>Note</th>
+      <th>Preference #</th>
+      <th>Assigned?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,13 +30,17 @@
   <tbody>
     <% @conflicts.each do |conflict| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= conflict.faculty_course_id %></td>
-        <td><%= conflict.preference1_id %></td>
+        <td><%= conflict[0] %></td>
+        <td><%= conflict[1] %></td>
+        <td><%= conflict[2] %></td>
+        <td><%= conflict[3] %></td>
+        <td><%= conflict[4] %></td>
+        <td><%= conflict[5] %></td>
+        <td><%= conflict[6] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
  
 <br>
-
 
