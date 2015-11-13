@@ -63,7 +63,12 @@ module ConflictCheckerHelper
 		puts "Count is ....."
 		puts CourseAssignment.count
 		if CourseAssignment.count > 0
+			@semester_id = session[:semester_id]
+			@semester_id = @semester_id.to_i
+			puts "sem id"
+			puts @semester_id
 			@CaTable = CourseAssignment.all
+			puts @CaTable.count
 			timeSlotId = timeSlotId.to_i
 			dayComboId = dayComboId.to_i
 			buildingId = buildingId.to_i
@@ -71,6 +76,7 @@ module ConflictCheckerHelper
 			@CaTable.each do |caRow|
 				@room_id = caRow.room_id
 				@building_id = getBuildingIdfromRoom(@room_id)	
+				puts caRow.day_combination_id == dayComboId
 				
 				
 				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (@building_id == nil || @building_id == buildingId) && 
