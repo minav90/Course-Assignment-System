@@ -17,6 +17,8 @@ module NavigationHelpers
       '/'
     when /the Course and Faculty page$/
       faculty_courses_path
+    when /the Conflict Checker page$/
+      conflict_checker_index_path
     when /the Assign Courses page for "(.*)"$/
       faculty = Faculty.find_by_faculty_name($1)
       faculty_courses = FacultyCourse.find_by_faculty_id(faculty.id.to_s)
