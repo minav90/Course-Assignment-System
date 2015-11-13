@@ -4,6 +4,7 @@
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
+
   </head>
 
   <body>
@@ -14,6 +15,7 @@
         <%= select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true %>
         <%= submit_tag "Select" %>
       <% end %>
+
 
     <table id="preftable">
       <tr>
@@ -31,7 +33,7 @@
       </tr>
       <% end %>
     </table>
-
+   
   </body>
 
 </html>
