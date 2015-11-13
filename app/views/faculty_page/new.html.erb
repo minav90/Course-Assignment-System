@@ -1,0 +1,22 @@
+<%= form_for @preference, url: {action: "create"} do |f| %>
+	
+	<%= f.fields_for :faculty_preference do |ff| %>
+        <%= select_tag(:day_combination_id, options_for_select(@day_options)) %>
+		<%= select_tag(:building_id, options_for_select(@building_options)) %>
+		<%= select_tag(:time_slot_id, options_for_select(@time_slot_options)) %>
+	<% end %>
+	<br>
+	<%= f.fields_for :faculty_preference do |ff| %>
+        <%= select_tag(:day_combination_id, options_for_select(@day_options)) %>
+		<%= select_tag(:building_id, options_for_select(@building_options)) %>
+		<%= select_tag(:time_slot_id, options_for_select(@time_slot_options)) %>
+	<% end %>
+	<br>    
+	<%= f.fields_for :faculty_preference do |ff| %>
+        <%= select_tag(:day_combination_id, options_for_select(@day_options)) %>
+		<%= select_tag(:building_id, options_for_select(@building_options)) %>
+		<%= select_tag(:time_slot_id, options_for_select(@time_slot_options)) %>
+	<% end %>
+	<br>
+<%= f.submit "Submit" %>
+<%end%>
