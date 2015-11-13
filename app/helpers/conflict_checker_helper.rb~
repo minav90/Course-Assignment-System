@@ -67,7 +67,7 @@ module ConflictCheckerHelper
 			@semester_id = @semester_id.to_i
 			puts "sem id"
 			puts @semester_id
-			@CaTable = CourseAssignment.all
+			@CaTable = CourseAssignment.all.where("semester_id = ?", @semester_id)
 			puts @CaTable.count
 			timeSlotId = timeSlotId.to_i
 			dayComboId = dayComboId.to_i

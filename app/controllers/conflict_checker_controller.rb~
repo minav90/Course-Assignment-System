@@ -64,7 +64,7 @@ include ConflictCheckerHelper
     
     @conflicts = Array.new # Array to store conflict data Faculty Name, Course Name, Course Title, Building name, Note, Preference #, Assigned?
     
-    @faculty_preferences = FacultyPreference.all.where("semester_id = ?",@semester_id)
+    @faculty_preferences = FacultyPreference.all#.where("semester_id = ?",@semester_id)
     
     @faculty_preferences.each do |faculty_preference|
 

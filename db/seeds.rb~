@@ -88,10 +88,10 @@ facultycourses = [{:faculty_id => '1', :course1_id => '2'},
 				  			 
 				 ]	
 				 
-facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference3_id => '3', :semester_id => '1'},
-					  {:faculty_course_id => '2', :preference1_id => '3', :preference2_id => '4', :preference3_id => '5', :semester_id => '1'},
-					  {:faculty_course_id => '3', :preference1_id => '5', :preference2_id => '7', :preference3_id => '6', :semester_id => '1'},
-				      {:faculty_course_id => '4', :preference1_id => '7', :preference3_id => '10', :semester_id => '1'},
+facultypreferences = [{:faculty_course_id => '1', :preference1_id => '1', :preference3_id => '3'},
+					  {:faculty_course_id => '2', :preference1_id => '3', :preference2_id => '4', :preference3_id => '5'},
+					  {:faculty_course_id => '3', :preference1_id => '5', :preference2_id => '7', :preference3_id => '6'},
+				      {:faculty_course_id => '4', :preference1_id => '7', :preference3_id => '10'},
 			 
 					]
 semesters = [{:SemesterTitle => 'Fall 2015'}]
