@@ -1,0 +1,2 @@
+class ConflictSuggestionController < ApplicationController
+end

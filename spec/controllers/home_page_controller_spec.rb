@@ -12,15 +12,15 @@ RSpec.describe HomePageController, type: :controller do
 
   describe "add new faculty" do
     it "should call the model method to create new faculty" do
-	Faculty.should_receive(:create).with({:faculty_name => "Faculty1"})
-	post :addfaculty, {:FacultyName => "Faculty1"}
+	Faculty.should_receive(:create!).with({:faculty_name => "Faculty1"})
+	post :addfaculty, {:class => {:FacultyName => "Faculty1"}}
     end
   end
 
   describe "add new course" do
     it "should call the model method to create new course" do
-	Course.should_receive(:create).with({:course_name => "name",:CourseTitle => "title"})
-	post :addcourse, {:CourseName => "name",:CourseTitle => "title"}
+	Course.should_receive(:create!).with({:course_name => "name",:CourseTitle => "title"})
+	post :addcourse, {:class => {:CourseName => "name",:CourseTitle => "title"}}
     end
   end
 

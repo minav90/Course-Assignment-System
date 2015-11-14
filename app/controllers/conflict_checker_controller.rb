@@ -56,7 +56,7 @@ include ConflictCheckerHelper
     	
     	
     # ToDo: Get the semester_id from the session
-    @semester_id = 1
+    @semester_id = session[:semester_id]
 
     @relevant_preferences = Array.new # Course Name, Course Title, Faculty name, preference, preference #
     i = j = 0
@@ -64,7 +64,7 @@ include ConflictCheckerHelper
     
     @conflicts = Array.new # Array to store conflict data Faculty Name, Course Name, Course Title, Building name, Note, Preference #, Assigned?
     
-    @faculty_preferences = FacultyPreference.all
+    @faculty_preferences = FacultyPreference.all.where("semester_id = ?",@semester_id)
     
     @faculty_preferences.each do |faculty_preference|
 
