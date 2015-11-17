@@ -144,4 +144,17 @@
      -webkit-border-radius: 6px;
      border-radius: 6px;
      padding: 14px 20px;
+     width:1000px;
+     float:left;
+     height:100px;
+}
+
+.note-image
+{
+  height:120px;
+}
+
+.img-responsive
+{
+  float:right;
 }
