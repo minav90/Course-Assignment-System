@@ -26,8 +26,8 @@
  width:500px;
  margin:auto;
  height:100vh;
- border:2px solid;
  padding: 10px;
+ font-size: 1.2em;
 
 }
 #class_building_name
@@ -41,10 +41,10 @@
    width:600px;
    float:right;
    height:100vh;
-   border:2px solid;
    padding: 10px;
    position:relative;
 }
+
 #classtable {
 
   border-collapse: collapse;
@@ -87,7 +87,7 @@
 .scrollit {
     overflow-y: auto;
     overflow-x: hidden;
-    height :600px;
+    height :550px;
     position : absolute;
 }
 
@@ -158,3 +158,5 @@
 {
   float:right;
 }
+
+

@@ -34,19 +34,26 @@ class ClassController < ApplicationController
   end
 
   def create
-      ClassroomTiming.create(semester_id: session[:semester_id], room_id: params[:class][:rooms_id], time_slot_id: params[:class][:timeslots_id], day_combination_id: params[:class][:day_combinations_id])
+     if ClassroomTiming.exists?(:semester_id => session[:semester_id], :room_id => params[:class][:rooms_id], :time_slot_id => params[:class][:timeslots_id], :day_combination_id => params[:class][:day_combinations_id])
+        flash[:error] = "Class Already Assigned"
+      else
+        ClassroomTiming.create(semester_id: session[:semester_id], room_id: params[:class][:rooms_id], time_slot_id: params[:class][:timeslots_id], day_combination_id: params[:class][:day_combinations_id])
+        flash[:success] = "Successfully Assigned Class"
+      end   
       redirect_to class_index_path;
   end
     
   def destroy
     @classes = ClassroomTiming.find(params[:id])
     @classes.destroy
+    flash[:success] = "Deleted class Successfully" 
     redirect_to class_index_path
   end
 
   def new
      @building = Building.find_or_create_by!(:building_name=>params[:class][:building_name])
      @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id,:Capacity => params[:class][:room_capacity])
+           flash[:success] = "Successfully Created New Class"
      redirect_to class_index_path
   end
 
