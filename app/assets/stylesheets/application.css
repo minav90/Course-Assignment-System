@@ -80,6 +80,10 @@
    text-align: left;
 }
 
+#preftable th.hilite {
+  background-color: yellow;
+}
+
 .scrollit {
     overflow-y: auto;
     overflow-x: hidden;
@@ -130,3 +134,4 @@
   background-color: #ffad99;
   text-align: left;
 }
+
