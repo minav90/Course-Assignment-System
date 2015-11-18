@@ -1,51 +1,50 @@
 <html>
 
-  <head>
-    <%= javascript_include_tag "application" %>
-    <%= stylesheet_link_tag 'application' %>
-    <%= yield(:head) %>
-   
-
-  </head>
-
-  <body>
-
-    <h1>Faculty and Courses</h1>
-      <%= form_tag :action => :select_faculty, :method => :post do %>
-        <%= label_tag :faculty_id, "Faculties" %>
-        <%= select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true %>
-        <%= submit_tag "Select" %>
-      <% end %>
+  <link href="../../assets/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 
-    <table id="preftable">
-    <div class="table_fac">
-    <table class="table table-hover table-bordered">
-    <br
-      <thead>
+<head>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= yield(:head) %>
+
+
+</head>
+
+<body>
+  <h1 align="center">Faculty and Courses</h1>
+  <div style="background:#40E0D0 !important" class="jumbotron">
+    <%= form_tag :action => :select_faculty, :method => :post do %>
+    <%= label_tag :faculty_id, "Faculties" %>
+    <%= select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true ,class: "btn btn-default dropdown-toggle"%>
+    <%= submit_tag "Select" ,class: "btn btn-primary"%>
+    <% end %>
+  </div>
+
+
+  <table class="table table-bordered">
+    <thead>
       <tr>
         <th>Faculty</th>
         <th>Course 1</th>
         <th>Course 2</th>
         <th>Course 3</th>
       </tr>
-      </thead>
-      
-      <% @all_faculty.each do |key,val| %>
-      <tbody>
+    </thead>
+
+    <% @all_faculty.each do |key,val| %>
+    <tbody>
       <tr>
         <td><%= val[:faculty_name] %></td>
         <td><%= val[:course1] %></td>
         <td><%= val[:course2] %></td>
         <td><%= val[:course3] %></td>
       </tr>
-      </tbody>
-      <% end %>
-    
-    </table>
-    </div>
-    </table>
-   
-  </body>
+    </tbody>
+    <% end %>
+  </table>
+
+</body>
 
 </html>
