@@ -1,0 +1,42 @@
+<html>
+
+  <link href="../../assets/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+<head>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= yield(:head) %>
+
+
+</head>
+
+<body>
+<h1 align="center"> Assign Courses </h1>
+
+ <div style="background:#40E0D0 !important" class="jumbotron">
+<%= form_tag edit_faculty_course_path(@faculty_course), :method => :get do %>
+  <%= label_tag :faculty_name,"Faculty Name : " +  @faculty.faculty_name%>
+  <%= content_tag(:br) %>
+  <p>
+  <%= label :courses, :course1_id, "Course 1" %>
+  <%= select_tag "courses[course1_id]",options_from_collection_for_select(@courses,"id","course_name",@faculty_course.course1_id), :include_blank => true ,class: "btn btn-default dropdown-toggle"%>
+  </p>
+  <p>
+  <%= label :courses,:course2_id, "Course 2" %>
+  <%= select_tag "courses[course2_id]", options_from_collection_for_select(@courses,"id","course_name",@faculty_course.course2_id), :include_blank => true ,class: "btn btn-default dropdown-toggle" %>
+  </p>
+  <p>
+  <%= label :courses,:course3_id, "Course 3" %>
+  <%= select_tag "courses[course3_id]", options_from_collection_for_select(@courses,"id","course_name",@faculty_course.course3_id), :include_blank => true ,class: "btn btn-default dropdown-toggle" %>
+  </p>
+  <%= submit_tag "Submit",class: "btn btn-primary" %>
+  <% end %>
+  </div>
+</br>
+</br>
+
+<%= link_to :Back, faculty_courses_path %> 
+</body>
+</html>
