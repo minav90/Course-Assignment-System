@@ -1,6 +1,9 @@
-<h1>Conflict Checker</h1>
-<p>The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-slot and/or Building:</p>
-
+<h1 align="center">Conflict Checker</h1>
+<div class="note-image">
+<p id="note">Note : The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-slot and/or Building:</p>
+<img class="img-responsive" src=<%= asset_path('conflict-at-work.jpg') %> alt="" height="120" width="120">
+</div>
+<div style="background:#40E0D0 !important" class="jumbotron">
 <%= form_for :conflict_checker, url: conflict_checker_index_path do |f| %>
 
 <%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, @day_row_id), {}, { id: 'day_combination_select' , class: "input-sm"} %>
@@ -9,13 +12,13 @@
 
 <%= f.label "Choose Building Name:" %> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building[1], building[0]] }, @building_row_id), {}, { id: 'building_select', class: "input-sm"} %>
 
-
 <%= f.submit "Submit" ,class: "btn btn-primary"%>
 <% end %> 
+</div>
 
 
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Faculty Name</th>
@@ -25,7 +28,6 @@
       <th>Note</th>
       <th>Preference #</th>
       <th>Assigned?</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
  

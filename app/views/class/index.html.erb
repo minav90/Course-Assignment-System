@@ -53,13 +53,13 @@
       <% end %>
 
     </div>
-    <div id="rightsection">
+    <div id="rightsection" class="jumbotron">
       <h2 align="center">List of Classroom and Slot Assigned</h2>
       <% if @showClassroomDetails.empty? %>
          <h3 align="center"> No Classroom Assigned </h2>
        <% else %>
        <div class="scrollit">
-      <table id="classtable">
+      <table id="classtable" class="table table-bordered">
         <tr>
           <th>Index</th>
           <th>Building Name</th>

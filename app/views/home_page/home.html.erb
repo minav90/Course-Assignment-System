@@ -82,33 +82,35 @@
                   <hr class="intro-divider">
                   <ul class="list-inline intro-social-buttons">
                     <li>
-                     <%= link_to "Add Faculty", addfaculty_path, class: "btn btn-default btn-lg" %>
+                     <%= link_to "Add New Faculty", addfaculty_path, class: "btn btn-default btn-lg" %>
                    </li>
                    <li>
-                     <%= link_to "Add Course", addcourse_path, class: "btn btn-default btn-lg" %>
+                     <%= link_to "Add New Course", addcourse_path, class: "btn btn-default btn-lg" %>
                    </li>
-                   <li>
-                    <%= link_to "Assignment Summary", faculty_courses_path, class: "btn btn-default btn-lg" %>
+                   
+                  <li>
+                    <%= link_to "Assign Classroom", class_index_path, class: "btn btn-default btn-lg" %>
                   </li>
                   <li>
-                    <%= link_to "Add Classroom", class_index_path, class: "btn btn-default btn-lg" %>
-                  </li>
-                  <li>
-                   <%= link_to "See Preferences", pref_summary_index_path, class: "btn btn-default btn-lg" %>
-                 </li>
-                 <li>
-                  <%= link_to "Add Semester", addsemester_path, class: "btn btn-default btn-lg" %>
+                  <%= link_to "Add New Semester", addsemester_path, class: "btn btn-default btn-lg" %>
                 </li>
-              </p>
+                </p>
+                <br>
+                  <li>
+                   <%= link_to "Preference Summary", pref_summary_index_path, class: "btn btn-default btn-lg" %>
+                 </li>
+                        
               <li>
                 <%= link_to "Course Assignments", course_assignments_path, class: "btn btn-default btn-lg" %>
               </li>
-              <li>
-               <%= link_to "Conflict Suggestion", conflict_suggestion_index_path, class: "btn btn-default btn-lg" %>
-             </li>
+              
+            <li>
+                    <%= link_to "Assign Faculty & Courses", faculty_courses_path, class: "btn btn-default btn-lg" %>
+                  </li>
              <li>
                <%= link_to "Conflict Checker", conflict_checker_index_path, class: "btn btn-default btn-lg" %>
              </li>
+             
            </ul>
          </div>
        </div>

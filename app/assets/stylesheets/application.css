@@ -26,8 +26,8 @@
  width:500px;
  margin:auto;
  height:100vh;
- border:2px solid;
  padding: 10px;
+ font-size: 1.2em;
 
 }
 #class_building_name
@@ -41,10 +41,10 @@
    width:600px;
    float:right;
    height:100vh;
-   border:2px solid;
    padding: 10px;
    position:relative;
 }
+
 #classtable {
 
   border-collapse: collapse;
@@ -80,10 +80,14 @@
    text-align: left;
 }
 
+#preftable th.hilite {
+  background-color: yellow;
+}
+
 .scrollit {
     overflow-y: auto;
     overflow-x: hidden;
-    height :600px;
+    height :550px;
     position : absolute;
 }
 
@@ -130,3 +134,29 @@
   background-color: #ffad99;
   text-align: left;
 }
+
+#note
+{
+     color: #616E14;
+     border: solid 1px #BFD62F;
+     background-color: #DAE691;
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     border-radius: 6px;
+     padding: 14px 20px;
+     width:1000px;
+     float:left;
+     height:100px;
+}
+
+.note-image
+{
+  height:120px;
+}
+
+.img-responsive
+{
+  float:right;
+}
+
+

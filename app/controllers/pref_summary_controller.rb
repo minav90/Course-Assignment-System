@@ -1,6 +1,7 @@
 class PrefSummaryController < ApplicationController
 	def index
-		@facultycourse = FacultyCourse.where(:semester_id => session[:semester_id]).all
+
+        @facultycourse = FacultyCourse.joins("LEFT JOIN faculties ON faculties.id = faculty_id").where(:semester_id => session[:semester_id]).all.order("faculty_name")
 
 		@showPrefSummary = Hash.new
 
