@@ -1,25 +1,26 @@
 class FacultyCoursesController < ApplicationController
     def index
         @faculties = Faculty.order(faculty_name: :desc)
-	    @all_faculty = Hash.new
-        FacultyCourse.all.each do |faculty_course|
-        @faculty = Faculty.find(faculty_course.faculty_id)
-		course1 = Course.where(:id => faculty_course.course1_id)[0]
-		course2 = Course.where(:id => faculty_course.course2_id)[0]
-		course3 = Course.where(:id => faculty_course.course3_id)[0]
+	@all_faculty = {}
+	faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3) 
+        faculty_courses.each do |faculty_course|
+        	faculty = faculty_course.faculty
+		course1 = faculty_course.course1
+		course2 = faculty_course.course2
+		course3 = faculty_course.course3
 		course1_name = ""
 		course2_name = ""
 		course3_name = ""
 		if course1 != nil
-			course1_name = course1.course_name
+			course1_name = course1.course_name + " " + course1.CourseTitle
 		end
 		if course2 != nil
-			course2_name = course2.course_name
+			course2_name = course2.course_name + " " + course2.CourseTitle
 		end
 		if course3 != nil
-			course3_name = course3.course_name
+			course3_name = course3.course_name + " " + course3.CourseTitle
 		end
-		@all_faculty[@faculty.id] = {:faculty_name => @faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
+		@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
 	end
     end
 
@@ -40,8 +41,8 @@ class FacultyCoursesController < ApplicationController
     end
 
     def show
-	@faculty_course = FacultyCourse.find(params[:id])
-	@faculty = Faculty.find(@faculty_course.faculty_id)
+	@faculty_course = FacultyCourse.includes(:faculty).find(params[:id])
+	@faculty = @faculty_course.faculty
 	@courses = Course.all()
     end
 
