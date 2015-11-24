@@ -1,0 +1,51 @@
+<html>
+
+<link href="../../assets/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+<head>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= yield(:head) %>
+
+
+</head>
+
+<body>
+  <h1 align="center">Assign Room and Timings for Faculty Courses</h1>
+  <div style="background:#40E0D0 !important" class="jumbotron">
+      <%= label_tag :faculty_id, "Faculties" %>
+      <%= select_tag :faculty_id, options_from_collection_for_select(@faculties,"id","faculty_name"), :include_blank => true ,class: "btn btn-default dropdown-toggle"%>
+       </br>
+       </br>
+       <div id = "course_ctr">
+       </div>
+  </div>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Faculty Name</th>
+      <th>Courses</th>
+      <th>Assignment</th>
+    </tr>
+  </thead>
+
+  <% @assignments.each do |assignment| %>
+  <tbody>
+    <tr>
+      <td><%= assignment["faculty_name"] %></td>
+      <td><%= assignment["course_name"] %></td>
+      <td><%= assignment["assign"] %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+</body>
+
+
+
+</html>
