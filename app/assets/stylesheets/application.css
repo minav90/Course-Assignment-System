@@ -93,7 +93,7 @@
 
 .scrollPref {
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
     position : absolute;
 }
 
