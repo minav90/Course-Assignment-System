@@ -1,26 +1,31 @@
 class FacultyCoursesController < ApplicationController
     def index
-        @faculties = Faculty.order(faculty_name: :desc)
-	@all_faculty = {}
-	faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3) 
-        faculty_courses.each do |faculty_course|
-        	faculty = faculty_course.faculty
-		course1 = faculty_course.course1
-		course2 = faculty_course.course2
-		course3 = faculty_course.course3
-		course1_name = ""
-		course2_name = ""
-		course3_name = ""
-		if course1 != nil
-			course1_name = course1.course_name + " " + course1.CourseTitle
+	if session[:semester_id] != nil && session[:semester_id] != ""
+        	@faculties = Faculty.order(faculty_name: :desc)
+		@all_faculty = {}
+		faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3) 
+        	faculty_courses.each do |faculty_course|
+        		faculty = faculty_course.faculty
+			course1 = faculty_course.course1
+			course2 = faculty_course.course2
+			course3 = faculty_course.course3
+			course1_name = ""
+			course2_name = ""
+			course3_name = ""
+			if course1 != nil
+				course1_name = course1.course_name + " " + course1.CourseTitle
+			end
+			if course2 != nil
+				course2_name = course2.course_name + " " + course2.CourseTitle
+			end
+			if course3 != nil
+				course3_name = course3.course_name + " " + course3.CourseTitle
+			end
+			@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
 		end
-		if course2 != nil
-			course2_name = course2.course_name + " " + course2.CourseTitle
-		end
-		if course3 != nil
-			course3_name = course3.course_name + " " + course3.CourseTitle
-		end
-		@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
+	else 
+		flash[:error] = "Please choose semester"
+		redirect_to root_path
 	end
     end
 

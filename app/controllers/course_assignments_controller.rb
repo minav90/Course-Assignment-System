@@ -4,32 +4,37 @@ class CourseAssignmentsController < ApplicationController
   end
 
   def index
-	@faculties = Faculty.order(faculty_name: :desc)
-	@assignments = []
-	@faculties.each {|faculty|
-	    course_assignments = CourseAssignment.where("semester_id = ? and faculty_id = ?",session[:semester_id],faculty.id).includes(:course,:room,:day_combination,:time_slot)
-	    course_assignments.each {|course_assignment|	
-		course1_name = ""
-		course2_name = ""
-		course3_name = ""
-		course_name = course_assignment.course.course_name + " " + course_assignment.course.CourseTitle
-		assign_str = ""
-		if course_assignment.room_id != nil
-			room = course_assignment.room
-			building = Building.find(room.building_id)
-			assign_str += building.building_name
-			assign_str += " " + room.room_name
-		end
-		if course_assignment.day_combination_id != nil
-			assign_str += " " + course_assignment.day_combination.day_combination
-		end
-		if course_assignment.time_slot_id != nil
-			assign_str += " " + course_assignment.time_slot.time_slot
-		end
+	if session[:semester_id] != nil && session[:semester_id] != ""
+		@faculties = Faculty.order(faculty_name: :desc)
+		@assignments = []
+		@faculties.each {|faculty|
+	    		course_assignments = CourseAssignment.where("semester_id = ? and faculty_id = ?",session[:semester_id],faculty.id).includes(:course,:room,:day_combination,:time_slot)
+	    		course_assignments.each {|course_assignment|	
+			course1_name = ""
+			course2_name = ""
+			course3_name = ""
+			course_name = course_assignment.course.course_name + " " + course_assignment.course.CourseTitle
+			assign_str = ""
+			if course_assignment.room_id != nil
+				room = course_assignment.room
+				building = Building.find(room.building_id)
+				assign_str += building.building_name
+				assign_str += " " + room.room_name
+			end
+			if course_assignment.day_combination_id != nil
+				assign_str += " " + course_assignment.day_combination.day_combination
+			end
+			if course_assignment.time_slot_id != nil
+				assign_str += " " + course_assignment.time_slot.time_slot
+			end
 			
-	    	@assignments << {"faculty_name" => faculty.faculty_name, "course_name" => course_name, "assign" => assign_str}
-	    }
-	}
+	    		@assignments << {"faculty_name" => faculty.faculty_name, "course_name" => course_name, "assign" => assign_str}
+	    		}
+		}
+	else
+		flash[:error] = "Please choose semester"
+		redirect_to root_path
+	end
   end
 
   def update_course_assignment
