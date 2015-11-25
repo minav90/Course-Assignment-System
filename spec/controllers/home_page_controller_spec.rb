@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe HomePageController, type: :controller do
-
   # 0. HOME link at the top
   describe "GET #home" do
     it "returns http success" do

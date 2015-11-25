@@ -20,6 +20,17 @@ Given /the following faculty-course mappings exist:/ do |faculty_courses_table|
     end
 end
 
+Given /the following semesters exist:/ do |semester_table|
+    semester_table.hashes.each do |semester|
+	Semester.create!(semester)
+    end
+end
+
 Then /"(.*)" is selected with "(.*)"$/ do |select_box,value|
 	page.should have_select(select_box, selected: value)
 end
+
+When /I choose semester "(.*)"$/ do |semester|
+	step "I select \"Fall 2015\" from \"sessionId\""
+	page.execute_script("$('#sessionId').trigger('onchange')")
+end 

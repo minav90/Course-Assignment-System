@@ -22,15 +22,27 @@ Feature: add a page to assign courses to faculty members
  | faculty_id | course1_id | course2_id | course3_id |
  | 2          | 1          | 2          | 3          |
 
- And I am on the Course and Faculty page
+ And the following semesters exist:
+ | SemesterTitle |
+ | Fall 2015 |
 
+ And I am on the home page
+
+ @javascript
  Scenario: selecting faculty
+   When I choose semester "Fall 2015"
+   And I follow "Assign Faculty & Courses"
+   Then I am on the Course and Faculty page
+   And I should see "Faculty and Courses"
    When I select "A" from "faculty_id"
    And I press "Select"
    Then I should be on the Assign Courses page for "A"
    And I should see "A" 
  
  Scenario: showing courses for selected faculty
+   When I select "1" from "sessionId"
+   And I follow "Assign Faculty & Courses"
+   Then I am on the Course and Faculty page
    When I select "B" from "faculty_id"
    And I press "Select"
    Then I should be on the Assign Courses page for "B"

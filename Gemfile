@@ -41,12 +41,15 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'launchy'
   # gem to clean up development and test databases
   gem 'database_cleaner'
   # rspec gem for tdd
   gem 'rspec-rails'
   gem 'simplecov', :require => false
+  gem 'jasmine'
+  gem 'jasmine-jquery-rails'
 end
 
 group :development do
