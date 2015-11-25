@@ -28,14 +28,14 @@
 	position : absolute;
 	left: 0;
 	top: 0;
-	background: url(../../assets/delete.png);
+	background: url('<%= asset_path("delete.png" %>'));
 	text-indent: -99999px;
 	width:14px;
 	height:14px;
 }
 .addANoteLink
 {
-    background-image: url(../../assets/sticky_note.jpg);
+    background-image: url('<%= asset_path("sticky_note.jpg" %>'));
     display:block;
     height:50px;
     width:50px;
