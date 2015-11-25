@@ -24,6 +24,21 @@ RSpec.describe HomePageController, type: :controller do
     end
   end
 
+  describe 'setting semester id in session' do
+	it 'should set the semester id in session and redirect to home page' do
+		post :setsession, {:class => {:semester_id => '1'}}
+		session[:semester_id].should == '1'
+		response.should redirect_to root_path
+	end
+  end
+
+  describe 'creating new semester' do
+	it 'should call model method to create new semester' do
+		Semester.should_receive(:create).with({:SemesterTitle => '1'})
+		post :createsemester, {:class => {:SemesterTitle => '1'}}
+	end
+  end
+
   # Links to various pages:
 
 =begin

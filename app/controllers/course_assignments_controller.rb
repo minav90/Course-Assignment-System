@@ -8,7 +8,7 @@ class CourseAssignmentsController < ApplicationController
 		@faculties = Faculty.order(faculty_name: :desc)
 		@assignments = []
 		@faculties.each {|faculty|
-	    		course_assignments = CourseAssignment.where("semester_id = ? and faculty_id = ?",session[:semester_id],faculty.id).includes(:course,:room,:day_combination,:time_slot)
+	    		course_assignments = CourseAssignment.includes(:course,:room,:day_combination,:time_slot).where("semester_id = ? and faculty_id = ?",session[:semester_id],faculty.id)
 	    		course_assignments.each {|course_assignment|	
 			course1_name = ""
 			course2_name = ""
@@ -41,7 +41,7 @@ class CourseAssignmentsController < ApplicationController
 	attributes = {}
 	faculty_id = params[:faculty_id]
         course_id = params[:course_id]
-	course_assignments = CourseAssignment.where("semester_id = ? and course_id = ?",session[:semester_id],course_id).includes(:course,:faculty)
+	course_assignments = CourseAssignment.includes(:course,:faculty).where("semester_id = ? and course_id = ?",session[:semester_id],course_id)
 	course_assignment = nil
 	has_updated = false
 	if course_assignments.length > 0
@@ -86,13 +86,13 @@ class CourseAssignmentsController < ApplicationController
 
   def update_faculty_details
 	# add semester id to query
-	faculty_courses_arr = FacultyCourse.where("faculty_id = ?",params[:faculty_id]).includes(:course1,:course2,:course3)
+	faculty_courses_arr = FacultyCourse.includes(:course1,:course2,:course3).where("faculty_id = ?",params[:faculty_id])
 	if faculty_courses_arr.length == 0
 		@course_assignments = []	
 	else
 		faculty_courses = faculty_courses_arr[0]
 		@courses = build_courses_object([faculty_courses.course1,faculty_courses.course2,faculty_courses.course3])
-		@course_assignments = CourseAssignment.where("semester_id = ? and faculty_id = ?",session[:semester_id],params[:faculty_id]).includes(:room)
+		@course_assignments = CourseAssignment.includes(:room).where("semester_id = ? and faculty_id = ?",session[:semester_id],params[:faculty_id])
 		@buildings = Building.all
 		@assigned_building_ids = {}
 		@courses.each_key {|key|
@@ -158,7 +158,7 @@ class CourseAssignmentsController < ApplicationController
   def update_day_combination
 	@day_combination_options = {}
 	@day_combination_options["data"] = {}
-	classroom_timings = ClassroomTiming.where("room_id = ?",params[:room_id]).includes(:day_combination)
+	classroom_timings = ClassroomTiming.includes(:day_combination).where("room_id = ?",params[:room_id])
 	if classroom_timings.length == 0
 		@day_combination_options["data"][""] = ""
 	else
@@ -183,7 +183,7 @@ class CourseAssignmentsController < ApplicationController
   def update_time_slot
 	@time_slot_options = {}
 	@time_slot_options["data"] = {}
-	classroom_timings = ClassroomTiming.where("day_combination_id = ?",params[:day_combination_id]).includes(:time_slot)
+	classroom_timings = ClassroomTiming.includes(:time_slot).where("day_combination_id = ?",params[:day_combination_id])
 	if classroom_timings.length == 0
                 @time_slot_options["data"][""] = ""
 	else
