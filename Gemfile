@@ -38,10 +38,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # cucumber and capybara gems for bdd
-  gem 'cucumber-rails', :require => false
-  gem 'cucumber-rails-training-wheels'
-  gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'launchy'
   # gem to clean up development and test databases
   gem 'database_cleaner'
@@ -58,6 +54,14 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test, :cucumber do
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  gem 'capybara'
+  gem "capybara-webkit"
+  gem 'selenium-webdriver'
 end
 
 group :production do

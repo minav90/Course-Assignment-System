@@ -14,9 +14,9 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      'localhost:3000/'
+      'http://localhost:3000/'
     when /the Course and Faculty page$/
-      'localhost:3000/' + faculty_courses_path
+      'http://localhost:3000/' + faculty_courses_path
     when /the Conflict Checker page$/
       conflict_checker_index_path
     when /the Assign Courses page for "(.*)"$/

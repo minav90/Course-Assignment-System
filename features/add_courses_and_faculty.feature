@@ -1,3 +1,4 @@
+@javascript
 Feature: add a page to assign courses to faculty members
 
  As admin of the Course Assignment System
@@ -8,19 +9,20 @@ Feature: add a page to assign courses to faculty members
 
  Given the following faculties exist:
  | faculty_name |
- | A |
- | B |
- | C |
+ | Walker Duncan |
+ | Chen Jianer |
 
  And the following courses exist:
  | course_name |
- | course1 |
- | course2 |
- | course3 |
+ | CSCE 606 |
+ | CSCE/ECEN 680 |
+ | CSCE 629 |
+ | CSCE 608 |
 
  And the following faculty-course mappings exist:
- | faculty_id | course1_id | course2_id | course3_id |
- | 2          | 1          | 2          | 3          |
+ | faculty_id | course1_id | course2_id | course3_id | semester_id |
+ | 2          | 3          | 4          |            | 1 	   |
+ | 1 	      | 1	   | 2	        |	     | 1 	   |
 
  And the following semesters exist:
  | SemesterTitle |
@@ -28,24 +30,21 @@ Feature: add a page to assign courses to faculty members
 
  And I am on the home page
 
- @javascript
+ When I choose semester "Fall 2015"
+ And I follow "Assign Faculty & Courses"
+ Then I am on the Course and Faculty page
+ And I should see "Faculty and Courses"
+
  Scenario: selecting faculty
-   When I choose semester "Fall 2015"
-   And I follow "Assign Faculty & Courses"
-   Then I am on the Course and Faculty page
-   And I should see "Faculty and Courses"
-   When I select "A" from "faculty_id"
+   When I select "Walker Duncan" from "faculty_id"
    And I press "Select"
-   Then I should be on the Assign Courses page for "A"
-   And I should see "A" 
+   Then I should see "Assign Courses"
+   Then I should see "Walker Duncan" 
  
  Scenario: showing courses for selected faculty
-   When I select "1" from "sessionId"
-   And I follow "Assign Faculty & Courses"
-   Then I am on the Course and Faculty page
-   When I select "B" from "faculty_id"
+   When I select "Chen Jianer" from "faculty_id"
    And I press "Select"
-   Then I should be on the Assign Courses page for "B"
-   And "courses_course1_id" is selected with "course1"
-   And "courses_course2_id" is selected with "course2"
-   And "courses_course3_id" is selected with "course3"
+   Then I should see "Chen Jianer"
+   And "courses_course1_id" is selected with "CSCE 629"
+   And "courses_course2_id" is selected with "CSCE 608"
+   And "courses_course3_id" is selected with ""
