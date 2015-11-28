@@ -29,4 +29,9 @@ class HomePageController < ApplicationController
   	 Semester.create(SemesterTitle: params[:class][:SemesterTitle])
      redirect_to root_path;
   end
+
+  def POST
+      render :nothing => true  
+  end
+
 end
