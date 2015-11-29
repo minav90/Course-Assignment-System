@@ -22,6 +22,6 @@ class PrefSummaryController < ApplicationController
 			
 			@showPrefSummary[facultycourse.id] = {:faculty =>Faculty.find_by_id(facultycourse.faculty_id),
 				:course => course , :prefids => prefids , :note => @note} 
-			end
 		end
 	end
+end 

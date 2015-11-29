@@ -23,20 +23,17 @@ class FacultyPreferencesController < ApplicationController
       render :new  
     end
   end
-
-  def show
+  
+  def show 
     @faculty_preference = FacultyPreference.find(params[:id])
   end 
 
   private
-  def faculty_preference_params
-    params.require(:faculty_preference).permit(:faculty_course_id, :semester_id, preference1: preference_params, preference2: preference_params, preference3: preference_params)
+  def faculty_preference_params 
+    params.require(:faculty_preference).permit(:faculty_course_id, :semester_id, preference1_attributes: preference_params, preference2_attributes: preference_params, preference3_attributes: preference_params)
   end
-
- 
 
   def preference_params
     [:day_combination_id, :building_id, :time_slot_id]
   end
 end
-
