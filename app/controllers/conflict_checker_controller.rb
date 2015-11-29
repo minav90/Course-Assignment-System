@@ -68,12 +68,12 @@ include ConflictCheckerHelper
     
     @conflicts = Array.new # Array to store conflict data Faculty Name, Course Name, Course Title, Building name, Note, Preference #, Assigned?
     
-    @faculty_preferences = FacultyPreference.all.where("semester_id = ?",@semester_id)
+    @faculty_preferences = FacultyPreference.where("semester_id = ?",@semester_id)
     
     @faculty_preferences.each do |faculty_preference|
 
-         @pref1_id = faculty_preference.preference1_id
-         @pref_1 = Preference.find_by id: @pref1_id
+
+         @pref1 = faculty_preference.preference1
          @pref2_id = faculty_preference.preference2_id
          @pref_2 = Preference.find_by id: @pref2_id
          @pref3_id = faculty_preference.preference3_id

@@ -44,7 +44,7 @@
 							<%= "no Preference" %>
 							<% else %>
 							<% 
-							@pref = Preference.find_by_id(prefid)
+							@pref = Preference.find_by_id(prefid) 
 							@day_combo = DayCombination.find_by_id(@pref.day_combination_id)
 							@timeslot = TimeSlot.find_by_id(@pref.time_slot_id)
 							@building = Building.find_by_id(@pref.building_id)

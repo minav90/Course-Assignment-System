@@ -7,3 +7,4 @@ class Preference < ActiveRecord::Base
 	has_one :other_faculty_preference, :foreign_key => 'preference2_id', :dependent => :destroy, :class_name => "FacultyPreference"
 	has_one :other_faculty_preference, :foreign_key => 'preference3_id', :dependent => :destroy, :class_name => "FacultyPreference"
 end
+

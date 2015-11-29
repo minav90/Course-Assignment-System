@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "pref_summary/POST" => 'pref_summary#POST'
 
   root 'home_page#home'
+  resources :faculty_preferences
   
 
   # The priority is based upon order of creation: first created -> highest priority.
