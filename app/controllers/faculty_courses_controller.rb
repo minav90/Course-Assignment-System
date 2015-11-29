@@ -21,7 +21,11 @@ class FacultyCoursesController < ApplicationController
 			if course3 != nil
 				course3_name = course3.course_name + " " + course3.CourseTitle
 			end
-			@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
+			if course1 == nil && course2 == nil && course3 == nil
+				FacultyCourse.destroy(faculty_course.id)
+			else
+				@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
+			end
 		end
 	else 
 		flash[:error] = "Please choose semester"
@@ -40,7 +44,7 @@ class FacultyCoursesController < ApplicationController
 		end
     		redirect_to faculty_course_path(faculty_course)
 	else
-		flash[:notice] = "No faculty selected"
+		flash[:error] = "No faculty selected"
 		redirect_to faculty_courses_path
 	end
     end
@@ -54,7 +58,7 @@ class FacultyCoursesController < ApplicationController
     def edit
     	faculty_course = FacultyCourse.find(params[:id])
 	faculty_course.update_attributes!(params[:courses].permit(:course1_id,:course2_id,:course3_id))
-	flash[:notice] = "Courses information updated successfully"
+	flash[:success] = "Courses information updated successfully"
 	redirect_to faculty_courses_path
     end
 end
