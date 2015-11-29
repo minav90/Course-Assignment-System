@@ -10,7 +10,8 @@
   <%= yield(:head) %>
 </head>
 
-
+ <div class="row">
+         <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 <%= form_for @faculty_preference, url: {action: "create"} do |f| %>
 	
 	<%= f.collection_select(:faculty_course_id, @faculty_courses, :id, :faculty_id, class: "input-sm") %>
@@ -52,7 +53,7 @@
 <%= f.submit "Submit",class: "btn btn-primary" %>
 <%end%>
 
-
+</div></div>
 <%# <%= f.hidden_field(:faculty_course_id) %> 
 <%# Use this in line 18 insteaf of collection select when sending mails to faculties. %>
 <%# Send URL as .../faculty_preferences/new/?faculty_course_id=x %>
