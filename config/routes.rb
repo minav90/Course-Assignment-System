@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get "addsemester" => 'home_page#addsemester'
   get "createsemester" => 'home_page#createsemester'
   get "setsession" => 'home_page#setsession'
+  post "POST" => 'home_page#POST'
+  post "conflict_checker/POST" => 'conflict_checker#POST'
+  post "pref_summary/POST" => 'pref_summary#POST'
 
   root 'home_page#home'
   
