@@ -14,9 +14,9 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      'http://localhost:3000/'
+      '/'
     when /the Course and Faculty page$/
-      'http://localhost:3000/' + faculty_courses_path
+      faculty_courses_path
     when /the Conflict Checker page$/
       conflict_checker_index_path
     when /the Assign Courses page for "(.*)"$/
@@ -24,7 +24,7 @@ module NavigationHelpers
       faculty_courses = FacultyCourse.find_by_faculty_id(faculty.id.to_s)
       faculty_course_path(faculty_courses)
     when /the Course Assignments page$/
-	'http://localhost:3000/' + course_assignments_path
+      course_assignments_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

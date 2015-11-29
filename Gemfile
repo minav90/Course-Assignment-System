@@ -39,8 +39,6 @@ group :development, :test do
   gem 'byebug'
   # cucumber and capybara gems for bdd
   gem 'launchy'
-  # gem to clean up development and test databases
-  gem 'database_cleaner'
   # rspec gem for tdd
   gem 'rspec-rails'
   gem 'simplecov', :require => false
@@ -62,6 +60,7 @@ group :test, :cucumber do
   gem 'capybara'
   gem "capybara-webkit"
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :production do

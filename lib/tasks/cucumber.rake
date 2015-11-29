@@ -14,19 +14,19 @@ begin
   require 'cucumber/rake/task'
 
   namespace :cucumber do
-    Cucumber::Rake::Task.new({:ok => 'test:clone'}, 'Run features that should pass') do |t|
+    Cucumber::Rake::Task.new({:ok => 'test:prepare'}, 'Run features that should pass') do |t|
       t.binary = vendored_cucumber_bin # If nil, the gem's binary is used.
       t.fork = true # You may get faster startup if you set this to false
       t.profile = 'default'
     end
 
-    Cucumber::Rake::Task.new({:wip => 'test:clone'}, 'Run features that are being worked on') do |t|
+    Cucumber::Rake::Task.new({:wip => 'test:prepare'}, 'Run features that are being worked on') do |t|
       t.binary = vendored_cucumber_bin
       t.fork = true # You may get faster startup if you set this to false
       t.profile = 'wip'
     end
 
-    Cucumber::Rake::Task.new({:rerun => 'test:clone'}, 'Record failing features and run only them if any exist') do |t|
+    Cucumber::Rake::Task.new({:rerun => 'test:prepare'}, 'Record failing features and run only them if any exist') do |t|
       t.binary = vendored_cucumber_bin
       t.fork = true # You may get faster startup if you set this to false
       t.profile = 'rerun'
@@ -51,7 +51,7 @@ begin
   end
 
   # In case we don't have the generic Rails test:prepare hook, append a no-op task that we can depend upon.
-  task 'test:clone' do
+  task 'test:prepare' do
   end
 
   task :stats => 'cucumber:statsetup'
