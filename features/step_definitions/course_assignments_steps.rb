@@ -24,5 +24,22 @@ end
 
 When /I chose faculty "(.*)" from "(.*)"$/ do |faculty,field|
     select(faculty, :from => field)
-    page.execute_script("$(#'#{field}').trigger()'change');")    
-end 
+    page.execute_script("$(#'#{field}').trigger('change');")    
+end
+
+When /I assign course "(.*)" with: (.*)$/ do |course_id,list|
+    list_arr = list.split(",")
+    if list_arr == []
+	page.execute_script("$(#building_select_#{course_id}).prop('selectedIndex',0);")
+	list_arr[0] = ""
+	list_arr[1] = ""
+	list_arr[2] = ""
+	list_arr[3] = ""
+    else
+    	step "I select \"" + list_arr[0] + "\" from \"building_select_" + course_id + "\""
+    	step "I select \"" + list_arr[1] + "\" from \"room_select_" + course_id + "\""
+    	step "I select \"" + list_arr[2] + "\" from \"day_combination_select_" + course_id + "\""
+    	step "I select \"" + list_arr[3] + "\" from \"time_slot_select_" + course_id + "\""
+    	step "I press \"submit_" + course_id + "\""
+    end
+end

@@ -11,6 +11,7 @@ Feature: add a page to assign courses to faculty members
  | faculty_name |
  | Walker Duncan |
  | Chen Jianer |
+ | Ioerger Thomas |
 
  And the following courses exist:
  | course_name |
@@ -18,6 +19,7 @@ Feature: add a page to assign courses to faculty members
  | CSCE/ECEN 680 |
  | CSCE 629 |
  | CSCE 608 |
+ | CSCE 625 |
 
  And the following faculty-course mappings exist:
  | faculty_id | course1_id | course2_id | course3_id | semester_id |
@@ -48,3 +50,13 @@ Feature: add a page to assign courses to faculty members
    And "courses_course1_id" is selected with "CSCE 629"
    And "courses_course2_id" is selected with "CSCE 608"
    And "courses_course3_id" is selected with ""
+
+ Scenario: assigning courses to faculty
+   When I select "Ioerger Thomas" from "faculty_id"
+   And I press "Select"
+   Then I should see "Ioerger Thomas"
+   When I select "CSCE 625" from "courses_course1_id"
+   And I press "Submit"
+   Then I am on the Course and Faculty page
+   And I should see "CSCE 625"
+
