@@ -1,0 +1,48 @@
+<html>
+
+<link href="../../assets/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+<head>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= yield(:head) %>
+
+
+</head>
+
+
+<%= form_for @faculty_preference, url: {action: "create"} do |f| %>
+	
+	<%= f.collection_select(:faculty_course_id, @faculty_courses, :id, :faculty_id, class: "input-sm") %>
+
+	<br>
+	<%= f.fields_for :preference1 do |ff| %>
+        <%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination,  class: "input-sm") %> 
+		<%= ff.collection_select(:building_id, @building_options, :id, :building_name,  class: "input-sm") %>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  class: "input-sm") %>
+	<% end %>
+	<br>    
+	<%= f.fields_for :preference2 do |ff| %>
+        <%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination) %> 
+		<%= ff.collection_select(:building_id, @building_options, :id, :building_name) %>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot) %>
+	<% end %>
+	<br>
+	<%= f.fields_for :preference3 do |ff| %>
+    	<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination) %> 
+		<%= ff.collection_select(:building_id, @building_options, :id, :building_name) %>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot) %>
+	<% end %>
+	<br>
+<%= f.submit "Submit",class: "btn btn-primary" %>
+<%end%>
+
+
+<%# <%= f.hidden_field(:faculty_course_id) %> 
+<%# Use this in line 18 insteaf of collection select when sending mails to faculties. %>
+<%# Send URL as .../faculty_preferences/new/?faculty_course_id=x %>
+<%# Where x is the assigned faculty course id %>
+
+</html>
