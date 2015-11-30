@@ -153,6 +153,25 @@ courses = 	[{:CourseTitle => 'Introduction to Artificial Intelligence', :course_
 			 #{:CourseTitle => 'Special Topics in..', :course_name => 'CSCE 689'},
 			]
 
+timeranges = 	[{:t_range => 'Early morning', :t_slots => '', :day_combination_id => '1'},
+				 {:t_range => 'Morning', :t_slots => '', :day_combination_id => '1'},
+				 {:t_range => 'Mid-Day / Lunch', :t_slots => '', :day_combination_id => '1'},
+				 {:t_range => 'Post-Lunch', :t_slots => '', :day_combination_id => '1'},
+				 {:t_range => 'Evening', :t_slots => '8', :day_combination_id => '1'},
+
+				 {:t_range => 'Early morning', :t_slots => '9', :day_combination_id => '2'},
+				 {:t_range => 'Morning', :t_slots => '10,11', :day_combination_id => '2'},
+				 {:t_range => 'Mid-Day / Lunch', :t_slots => '12', :day_combination_id => '2'},
+				 {:t_range => 'Post-Lunch', :t_slots => '13', :day_combination_id => '2'},
+				 {:t_range => 'Evening', :t_slots => '14', :day_combination_id => '2'},
+
+				 {:t_range => 'Early morning', :t_slots => '1', :day_combination_id => '3'},
+				 {:t_range => 'Morning', :t_slots => '2,3,4', :day_combination_id => '3'},
+				 {:t_range => 'Mid-Day / Lunch', :t_slots => '5,6', :day_combination_id => '3'},
+				 {:t_range => 'Post-Lunch', :t_slots => '7', :day_combination_id => '3'},
+				 {:t_range => 'Evening', :t_slots => '', :day_combination_id => '3'},
+			 
+				]
 
 timeslots = 	[{:time_slot => '8:00 am to 8:50 am', :day_combination_id => '3'},
 				 {:time_slot => '9:10 am to 10:00 am', :day_combination_id => '3'},
@@ -267,6 +286,10 @@ end
 
 courses.each do |crs|
   Course.create!(crs)
+end
+
+timeranges.each do |tr|
+  TimeRange.create!(tr)
 end
 
 timeslots.each do |ts|
