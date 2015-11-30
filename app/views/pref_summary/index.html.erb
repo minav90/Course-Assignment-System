@@ -49,7 +49,8 @@
 							@timeslot = TimeSlot.find_by_id(@pref.time_slot_id)
 							@building = Building.find_by_id(@pref.building_id)
 							%>
-							<p><%= "Day Combination : #{@day_combo.day_combination}" %></p>
+							
+							<p><%= "Day Combination : #{@day_combo.day_combination}" %></p> 
 							<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
 							<p><%= "Location : #{@building.building_name}" %></p>
 							<% end %>
