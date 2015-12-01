@@ -1,25 +1,35 @@
 class FacultyCoursesController < ApplicationController
     def index
-        @faculties = Faculty.order(faculty_name: :desc)
-	    @all_faculty = Hash.new
-        FacultyCourse.all.each do |faculty_course|
-        @faculty = Faculty.find(faculty_course.faculty_id)
-		course1 = Course.where(:id => faculty_course.course1_id)[0]
-		course2 = Course.where(:id => faculty_course.course2_id)[0]
-		course3 = Course.where(:id => faculty_course.course3_id)[0]
-		course1_name = ""
-		course2_name = ""
-		course3_name = ""
-		if course1 != nil
-			course1_name = course1.course_name
+	if session[:semester_id] != nil && session[:semester_id] != ""
+        	@faculties = Faculty.order(faculty_name: :desc)
+		@all_faculty = {}
+		faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3) 
+        	faculty_courses.each do |faculty_course|
+        		faculty = faculty_course.faculty
+			course1 = faculty_course.course1
+			course2 = faculty_course.course2
+			course3 = faculty_course.course3
+			course1_name = ""
+			course2_name = ""
+			course3_name = ""
+			if course1 != nil
+				course1_name = course1.course_name + " " + course1.CourseTitle
+			end
+			if course2 != nil
+				course2_name = course2.course_name + " " + course2.CourseTitle
+			end
+			if course3 != nil
+				course3_name = course3.course_name + " " + course3.CourseTitle
+			end
+			if course1 == nil && course2 == nil && course3 == nil
+				FacultyCourse.destroy(faculty_course.id)
+			else
+				@all_faculty[faculty.id] = {:faculty_name => faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
+			end
 		end
-		if course2 != nil
-			course2_name = course2.course_name
-		end
-		if course3 != nil
-			course3_name = course3.course_name
-		end
-		@all_faculty[@faculty.id] = {:faculty_name => @faculty.faculty_name, :course1 => course1_name, :course2 => course2_name, :course3 => course3_name}
+	else 
+		flash[:error] = "Please choose semester"
+		redirect_to root_path
 	end
     end
 
@@ -34,21 +44,21 @@ class FacultyCoursesController < ApplicationController
 		end
     		redirect_to faculty_course_path(faculty_course)
 	else
-		flash[:notice] = "No faculty selected"
+		flash[:error] = "No faculty selected"
 		redirect_to faculty_courses_path
 	end
     end
 
     def show
-	@faculty_course = FacultyCourse.find(params[:id])
-	@faculty = Faculty.find(@faculty_course.faculty_id)
+	@faculty_course = FacultyCourse.includes(:faculty).find(params[:id])
+	@faculty = @faculty_course.faculty
 	@courses = Course.all()
     end
 
     def edit
     	faculty_course = FacultyCourse.find(params[:id])
 	faculty_course.update_attributes!(params[:courses].permit(:course1_id,:course2_id,:course3_id))
-	flash[:notice] = "Courses information updated successfully"
+	flash[:success] = "Courses information updated successfully"
 	redirect_to faculty_courses_path
     end
 end

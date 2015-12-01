@@ -1,9 +1,15 @@
 class FacultyPreferencesController < ApplicationController
   def index
+    @faculty_courses = FacultyCourse.order(:id)
+    respond_to do |format|
+      format.html
+      format.csv {render text: @faculty_courses.to_csv}
+    end
   end
 
   def new
     #@faculty_course = FacultyCourse.find(params[:faculty_course_id])
+
     @faculty_preference = FacultyPreference.new(faculty_course: @faculty_course) 
     @faculty_preference.build_preference1
     @faculty_preference.build_preference2
@@ -26,6 +32,8 @@ class FacultyPreferencesController < ApplicationController
   
   def show 
     @faculty_preference = FacultyPreference.find(params[:id])
+    @faculty_course = FacultyCourse.find(@faculty_preference.faculty_course_id)
+    @faculty = Faculty.find(@faculty_course.faculty_id)
   end 
 
   

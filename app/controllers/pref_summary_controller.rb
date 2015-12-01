@@ -23,11 +23,8 @@ def index
 			
 			@showPrefSummary[facultycourse.id] = {:faculty =>Faculty.find_by_id(facultycourse.faculty_id),
 				:course => course , :prefids => prefids , :note => @note} 
-<<<<<<< HEAD
-		end
-	end
-end 
-=======
+
+			
 			end
 		else
 			flash[:error] = "Please choose semester"
@@ -35,4 +32,3 @@ end
 		end
 	end
 end
->>>>>>> e393511844f9eea4726195035dd9cc3c070051f6
