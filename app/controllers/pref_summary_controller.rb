@@ -1,7 +1,7 @@
 class PrefSummaryController < ApplicationController
 	
 	def index
-
+       if session[:semester_id] != nil && session[:semester_id] != ""
         @facultycourse = FacultyCourse.joins("LEFT JOIN faculties ON faculties.id = faculty_id").where(:semester_id => session[:semester_id]).all.order("faculty_name")
 
 		@showPrefSummary = Hash.new
@@ -20,5 +20,9 @@ class PrefSummaryController < ApplicationController
 			@showPrefSummary[facultycourse.id] = {:faculty =>Faculty.find_by_id(facultycourse.faculty_id),
 				:course => course , :prefids => prefids , :note => @note} 
 			end
+        else
+		flash[:error] = "Please choose semester"
+		redirect_to root_path
+	    end
 		end
 	end

@@ -4,6 +4,7 @@ class ClassController < ApplicationController
   end
 
   def index
+    if session[:semester_id] != nil && session[:semester_id] != ""
     @building = Building.all
     @timeslot = TimeSlot.all
     @classroomTiming = ClassroomTiming.where(:semester_id => session[:semester_id]).all
@@ -16,6 +17,10 @@ class ClassController < ApplicationController
        :timeslot => TimeSlot.find_by_id(classes.time_slot_id),
        :building => Building.find_by_id(@tempRoom.building_id),
        :day_combination => DayCombination.find_by_id(classes.day_combination_id)}
+     end
+     else
+      flash[:error] = "Please choose semester"
+      redirect_to root_path
      end
    end
    
