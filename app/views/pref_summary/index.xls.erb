@@ -1,0 +1,13 @@
+<table border = "1">
+	<tr>
+		<th>Faculty ID</th>
+		<th>Link to send to faculty</th>
+	</tr>
+
+	<% @faccourses.each do |key, value| %>
+	<tr>
+		<td><%= "#{value}" %></td>
+		<td>http://course-assignment-system.herokuapp.com/faculty_preferences/new/?faculty_course_id=<%=key%></td>
+	</tr>
+	<% end %>
+</table>
