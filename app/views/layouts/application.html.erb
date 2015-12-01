@@ -17,14 +17,6 @@
         <%= link_to "Home", '/', id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-          <li>
-           <div id="sticky_notes"></div>
-            <script>
-            $(function() {
-              $("#sticky_notes").addStickyNotes({colors: ['#FDFB8C', '#FF99CC'], top: '120', left: '120', width: '200', height: '200'})
-                   })
-            </script>
-            </li>
             <li><%= link_to "Howdy",   'https://howdy.tamu.edu/' %></li>
             <li><%= link_to "Preference Summary",   pref_summary_index_path %></li>
             <li><%= link_to "Assignment Summary",   faculty_courses_path %></li>
