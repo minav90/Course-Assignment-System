@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h2 align="center">Preference Summary</h2>
-	<h3 align="center">Download : <%= link_to "Excel", faculty_preferences_path(format: "xls")%></h3>
+	<h6 align="center"> <%= link_to "Click here to download links to send to faculties", faculty_preferences_path(format: "xls")%></h6>
 
 	<% if @showPrefSummary.empty? %>
 			   <h2 align="center"> No Preference summary to display </h2>
