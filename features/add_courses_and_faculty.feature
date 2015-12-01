@@ -7,41 +7,36 @@ Feature: add a page to assign courses to faculty members
 
  Background: faculties and courses have been added to the database
 
- Given the following faculties exist:
- | faculty_name |
- | Walker Duncan |
- | Chen Jianer |
- | Ioerger Thomas |
+   Given the following semesters exist:
+   | SemesterTitle |
+   | Fall 2015 |
 
- And the following courses exist:
- | course_name |
- | CSCE 606 |
- | CSCE/ECEN 680 |
- | CSCE 629 |
- | CSCE 608 |
- | CSCE 625 |
+   And the following faculties exist:
+   | faculty_name |
+   | faculty_1 |
+   | Chen Jianer |
+   | Ioerger Thomas |
 
- And the following faculty-course mappings exist:
- | faculty_id | course1_id | course2_id | course3_id | semester_id |
- | 2          | 3          | 4          |            | 1 	   |
- | 1 	      | 1	   | 2	        |	     | 1 	   |
+   And the following courses exist:
+   | course_name | CourseTitle |
+   | CSCE 606 | test1 |
+   | CSCE/ECEN 680 | test2 |
+   | CSCE 629 | test3 |
+   | CSCE 608 | test4 |
+   | CSCE 625 | test5 |
 
- And the following semesters exist:
- | SemesterTitle |
- | Fall 2015 |
-
- And I am on the home page
-
- When I choose semester "Fall 2015"
- And I follow "Assign Faculty & Courses"
- Then I am on the Course and Faculty page
- And I should see "Faculty and Courses"
+   And the following faculty-course mappings exist:
+   | faculty_id | course1_id | course2_id | course3_id | semester_id |
+   | 2          | 3          | 4          |            | 1 	   |
+   | 1 	      | 1	   | 2	        |	     | 1 	   |
 
  Scenario: selecting faculty
-   When I select "Walker Duncan" from "faculty_id"
-   And I press "Select"
+   Given I am on the home page
+   When I choose semester "Fall 2015" and follow "Assign Faculty & Courses"
+   Then I am on the Course and Faculty page
+   When I choose faculty "faculty_1" from "faculty_id"
    Then I should see "Assign Courses"
-   Then I should see "Walker Duncan" 
+   And I should see "faculty_1" 
  
  Scenario: showing courses for selected faculty
    When I select "Chen Jianer" from "faculty_id"

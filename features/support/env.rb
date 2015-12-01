@@ -54,11 +54,10 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-Cucumber::Rails::Database.javascript_strategy = :truncation
+#Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.run_server = false
-Capybara.app_host = "http://localhost:4000"
+Capybara.app_host = "http://localhost:3000"
 Capybara.javascript_driver = :webkit
 Capybara::Webkit.configure do |config|
     config.allow_url("fonts.googleapis.com")
-DatabaseCleaner.clean
 end

@@ -22,7 +22,7 @@ end
 
 Given /the following semesters exist:/ do |semester_table|
     semester_table.hashes.each do |semester|
-	Semester.create!(semester)
+	Semester.create(semester)
     end
 end
 
@@ -30,7 +30,13 @@ Then /"(.*)" is selected with "(.*)"$/ do |select_box,value|
 	page.should have_select(select_box, selected: value)
 end
 
-When /I choose semester "(.*)"$/ do |semester|
-	step "I select \"Fall 2015\" from \"sessionId\""
+When /I choose semester "(.*)" and follow "(.*)"$/ do |semester,link|
+	step "I select \"#{semester}\" from \"sessionId\""
 	page.execute_script("$('#sessionId').trigger('onchange')")
-end 
+	step "I follow \"#{link}\""
+end
+
+When /I choose faculty "(.*)" from "(.*)"$/ do |name,field|
+	step "I select \"#{name}\" from \"#{field}\""
+	step "I press \"Select\""	
+end
