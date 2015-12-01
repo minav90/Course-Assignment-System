@@ -10,8 +10,8 @@ class FacultyCourse < ActiveRecord::Base
 		faculty.faculty_name
 	end 
 
-	def self.to_csv
-		CSV.generate do |csv|
+	def self.to_csv(options = {})
+		CSV.generate(options) do |csv|
 			csv << column_names
 			all.each do |faccourse|
 				csv << faccourse.attributes.values_at(*column_names)

@@ -1,9 +1,15 @@
 class FacultyPreferencesController < ApplicationController
   def index
+    @facultycourse = FacultyCourse.joins("LEFT JOIN faculties ON faculties.id = faculty_id").where(:semester_id => session[:semester_id]).all.order("faculty_name")
+    @faccourses  = Hash.new
+    @facultycourse.each do |faccourse|
+      @faccourses[faccourse.id] = {:faculty_name => Faculty.find(faccourse.faculty_id).faculty_name}
+    end
     @faculty_courses = FacultyCourse.order(:id)
     respond_to do |format|
       format.html
-      format.csv {render text: @faculty_courses.to_csv}
+      format.csv {send_data text: @faculty_courses.to_csv}
+      format.xls #{send_data text: @faculty_courses.to_csv(col_sep: "\t")}
     end
   end
 
