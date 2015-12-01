@@ -1,10 +1,6 @@
 class ConflictCheckerController < ApplicationController
 include ConflictCheckerHelper
 
-  
-  def POST
-      render :nothing => true  
-  end
   def index
     
     @dayCombos = DayCombination.all
