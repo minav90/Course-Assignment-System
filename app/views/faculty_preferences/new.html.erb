@@ -14,7 +14,11 @@
          <div class="col-xs-12 col-sm-6 col-sm-offset-3 btn btn-default dropdown-toggle"> 
 <%= form_for @faculty_preference, url: {action: "create"} do |f| %>
 	
-	<%= f.collection_select(:faculty_course_id, @faculty_courses, :id, :faculty_id, class: "input-sm") %>
+	<% #f.collection_select(:faculty_course_id, @faculty_courses, :id, :faculty_id, class: "input-sm") %>
+	<%= f.hidden_field :faculty_course_id, value: params[:faculty_course_id] %> 
+
+	<%= @faculty.faculty_name %><br>
+	<%= @faculty_course.course1_id%>  <%= @faculty_course.course2_id %> <%= @faculty_course.course3_id %>
 	<br><br>
 
 	Preference #1 <br>

@@ -25,6 +25,8 @@ class FacultyPreferencesController < ApplicationController
     @classroomTiming = ClassroomTiming.where(:semester_id => session[:semester_id]).all
     @day_options = DayCombination.all
     @faculty_courses = FacultyCourse.all
+    @faculty_course = FacultyCourse.find(params[:faculty_course_id])
+    @faculty = Faculty.find(@faculty_course.faculty_id)
   end
 
   def create
@@ -37,9 +39,7 @@ class FacultyPreferencesController < ApplicationController
   end
   
   def show 
-    @faculty_preference = FacultyPreference.find(params[:id])
-    @faculty_course = FacultyCourse.find(@faculty_preference.faculty_course_id)
-    @faculty = Faculty.find(@faculty_course.faculty_id)
+    
   end 
 
   
