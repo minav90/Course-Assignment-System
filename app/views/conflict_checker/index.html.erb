@@ -1,6 +1,6 @@
 <h1 align="center">Conflict Checker</h1>
 <div class="note-image">
-<p id="note">Note : The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-slot and/or Building:</p>
+<p id="note">Note : The following list shows groups of courses and preference combinations as per your inputs for Day-Combo, Time-Range and/or Building:</p>
 <img class="img-responsive" src=<%= asset_path('conflict-at-work.jpg') %> alt="" height="120" width="120">
 </div>
 <div style="background:#40E0D0 !important" class="jumbotron">
@@ -8,7 +8,7 @@
 
 <%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, @day_row_id), {}, { id: 'day_combination_select' , class: "input-sm"} %>
 
-<%= f.label "Choose Time Slot:" %> <%= f.select :timeslots_id , options_for_select(@timeSlots.collect { |timeslot| [timeslot.time_slot, timeslot.id] }, @time_slot_row_id), {}, { id: 'timeslot_select' , class: "input-sm"} %>
+<%= f.label "Choose Time Range:" %> <%= f.select :time_ranges , options_for_select([['Early morning', 'Early morning'], ['Morning', 'Morning'], ['Mid-Day / Lunch', 'Mid-Day / Lunch'], ['Post-Lunch', 'Post-Lunch'], ['Evening', 'Evening']], @time_range_selected), {}, { id: 'time_range_select' , class: "input-sm"} %>
 
 <%= f.label "Choose Building Name:" %> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building[1], building[0]] }, @building_row_id), {}, { id: 'building_select', class: "input-sm"} %>
 
@@ -24,6 +24,8 @@
       <th>Faculty Name</th>
       <th>Course Name</th>
       <th>Course Title</th>
+      <th>Day-Combo</th>
+      <th>Time-Slot</th>
       <th>Building</th>
       <th>Note</th>
       <th>Preference #</th>
@@ -41,10 +43,13 @@
         <td><%= conflict[4] %></td>
         <td><%= conflict[5] %></td>
         <td><%= conflict[6] %></td>
+        <td><%= conflict[7] %></td>
+	<td><%= conflict[8] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
  
 <br>
+
 
