@@ -24,11 +24,11 @@ def index
 			@showPrefSummary[facultycourse.id] = {:faculty =>Faculty.find_by_id(facultycourse.faculty_id),
 				:course => course , :prefids => prefids , :note => @note} 
 		end
-=begin
+
 		@faccourses  = Hash.new
-    @facultycourse.each do |faccourse|
-    	@faccourses[faccourse.id] = {:faculty_name => Faculty.find(faccourse.faculty_id).faculty_name}
-    end
+	    @facultycourse.each do |faccourse|
+    		@faccourses[faccourse.id] = {:faculty_name => Faculty.find(faccourse.faculty_id).faculty_name}
+	    end
    
    	@faculty_courses = FacultyCourse.order(:id)
     	respond_to do |format|
@@ -36,7 +36,7 @@ def index
      	format.csv {send_data text: @faculty_courses.to_csv}
      	format.xls #{send_data text: @faculty_courses.to_csv(col_sep: "\t")}
    	end
-=end
+
 	else
 			flash[:error] = "Please choose semester"
 			redirect_to root_path
