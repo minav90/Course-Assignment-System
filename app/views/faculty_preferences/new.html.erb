@@ -30,7 +30,7 @@
 		Timing
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => true) %><br><br>
 		Edit the note if there are specific reasons for choosing this particular preference as #1. <br><br>
-		<%= text_field :note, :id, class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
+		<%= ff.text_field :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
 	<% end %>
 	<br> <br>
 

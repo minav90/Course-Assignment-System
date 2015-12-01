@@ -50,6 +50,6 @@ class FacultyPreferencesController < ApplicationController
   end
 
   def preference_params
-    [:day_combination_id, :building_id, :time_slot_id]
+    [:day_combination_id, :building_id, :time_slot_id, :note]
   end
 end
