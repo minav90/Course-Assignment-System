@@ -3,7 +3,7 @@ class FacultyCoursesController < ApplicationController
 	if session[:semester_id] != nil && session[:semester_id] != ""
         	@faculties = Faculty.order(faculty_name: :desc)
 		@all_faculty = {}
-		faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3) 
+		faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3).where("semester_id = ?",session[:semester_id]) 
         	faculty_courses.each do |faculty_course|
         		faculty = faculty_course.faculty
 			course1 = faculty_course.course1
@@ -35,12 +35,15 @@ class FacultyCoursesController < ApplicationController
 
     def select_faculty
 	if params[:faculty_id] != ""
-		faculty_course = FacultyCourse.find_by_faculty_id(params[:faculty_id])
-		if faculty_course == nil
+		faculty_courses = FacultyCourse.where("faculty_id = ? and semester_id = ?",params[:faculty_id],session[:semester_id])
+		if faculty_courses.length == 0
 			params[:course1_id] = ""
 			params[:course2_id] = ""
 			params[:course3_id] = ""
-			faculty_course = FacultyCourse.create!(params.permit(:faculty_id,:course1_id,:course2_id,:course3_id))
+			params[:semester_id] = session[:semester_id]
+			faculty_course = FacultyCourse.create!(params.permit(:faculty_id,:course1_id,:course2_id,:course3_id,:semester_id))
+		else
+			faculty_course = faculty_courses[0]
 		end
     		redirect_to faculty_course_path(faculty_course)
 	else
