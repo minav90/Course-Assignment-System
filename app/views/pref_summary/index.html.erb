@@ -43,7 +43,7 @@
 						<%  prefids.each do |prefid| %>
 						<td>
 							<% if prefid.nil? %>
-							<%= "no Preference" %>
+							<%= "No Preference" %>
 							<% else %>
 							<% 
 							@pref = Preference.find_by_id(prefid) 
@@ -56,7 +56,7 @@
 							<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
 							<p><%= "Location : #{@building.building_name}" %></p>
 							<% else %>
-							<%= "no prefernce" %>
+							<%= "No Preference" %>
                             <% end %>
 							<% end %>
 						</td>	
