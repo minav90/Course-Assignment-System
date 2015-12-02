@@ -26,8 +26,10 @@ class FacultyPreferencesController < ApplicationController
 
   def create
     
+
     @faculty_preference = FacultyPreference.find_by_faculty_course_id(params[:faculty_preference][:faculty_course_id])
     #@faculty_preference = FacultyPreference.where(find: 'find_value').first_or_create.update(update: 'update_value')
+    #permitted[:faculty_preference][:preference2_attributes][:note] => params[:faculty_preference][:preference1_attributes][:note]
     if(@faculty_preference.nil?)
       @faculty_preference = FacultyPreference.new(faculty_preference_params)
     else
@@ -46,11 +48,12 @@ class FacultyPreferencesController < ApplicationController
 
   private
   def faculty_preference_params 
+    params[:faculty_preference][:preference1_attributes][:note] = params[:faculty_preference][:preference3_attributes][:note]
+    params[:faculty_preference][:preference1_attributes][:note] = params[:faculty_preference][:preference3_attributes][:note]
     params.require(:faculty_preference).permit(:faculty_course_id, :semester_id, preference1_attributes: preference_params, preference2_attributes: preference_params, preference3_attributes: preference_params)
   end
 
   def preference_params
-    note = params[:faculty_preference][:preference1_attributes][:note]
     [:day_combination_id, :building_id, :time_slot_id, :note]
   end
 end
