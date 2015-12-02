@@ -1,4 +1,5 @@
 class FacultyPreferencesController < ApplicationController
+  layout "faculty_preference"
   def index
     @facultycourse = FacultyCourse.joins("LEFT JOIN faculties ON faculties.id = faculty_id").where(:semester_id => session[:semester_id]).all.order("faculty_name")
     @faccourses  = Hash.new
@@ -41,18 +42,15 @@ class FacultyPreferencesController < ApplicationController
   
   def show 
     
-  end 
-
-  
+  end  
 
   private
   def faculty_preference_params 
-    
     params.require(:faculty_preference).permit(:faculty_course_id, :semester_id, preference1_attributes: preference_params, preference2_attributes: preference_params, preference3_attributes: preference_params)
   end
 
   def preference_params
-    note = params[:faculty_preference][:preference1_attributes][:note]
+    note = params[:faculty_preference][:preference3_attributes][:note]
     [:day_combination_id, :building_id, :time_slot_id, :note]
   end
 end

@@ -51,13 +51,23 @@
 							@timeslot = TimeSlot.find_by_id(@pref.time_slot_id)
 							@building = Building.find_by_id(@pref.building_id)
 							%>
-							<% unless @day_combo.nil? && @timeslot.nil? && @building.nil? %>
+							<% unless @day_combo.nil? %>
 								<p><%= "Day Combination : #{@day_combo.day_combination}" %></p> 
+							<% else %>
+								<%= "No Preference" %><br>
+							<% end %>
+
+							<% unless @timeslot.nil? %>
 								<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
+							<% else %>
+								<%= "No Preference" %><br>
+							<% end %>
+
+							<% unless @building.nil? %>
 								<p><%= "Location : #{@building.building_name}" %></p>
 							<% else %>
-								<%= "No Preference" %>
-                            <% end %>
+								<%= "No Preference" %><br>
+							<% end %>
 							<% end %>
 						</td>	
 					  <% end %>
