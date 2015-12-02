@@ -150,6 +150,17 @@
      height:100px;
 }
 
+#facultynote
+{
+     color: #616E14;
+     border: solid 1px #BFD62F;
+     background-color: #DAE691;
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     border-radius: 6px;
+     padding: 14px 20px;
+}
+
 .note-image
 {
   height:120px;
