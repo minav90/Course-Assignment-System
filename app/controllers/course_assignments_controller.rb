@@ -49,7 +49,7 @@ class CourseAssignmentsController < ApplicationController
 		faculty = course_assignment.faculty
 		course = course_assignment.course
 	end
-	if params["building_select_#{course_id}"] == ""
+	if params["building_select_#{course_id}"] == "" || params["room_select_#{course_id}"] == "" || params["day_combination_select_#{course_id}"] == "" || params["time_slot_select_#{course_id}"] == ""
 		if course_assignment == nil
 			flash[:error] = "Cannot create empty assignment"
 		else

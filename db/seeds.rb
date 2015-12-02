@@ -83,8 +83,8 @@ faculties = [{:faculty_name => 'Jiang Andrew'},
 			]
 
 courses = 	[{:CourseTitle => 'Introduction to Artificial Intelligence', :course_name => 'CSCE 625'},
-			 {:CourseTitle => 'Analysis of Algorithms Section 1', :course_name => 'CSCE 629'},
-			 {:CourseTitle => 'Analysis of Algorithms Section 2', :course_name => 'CSCE 629'},
+			 {:CourseTitle => 'Analysis of Algorithms', :course_name => 'CSCE 629 Section 1'},
+			 {:CourseTitle => 'Analysis of Algorithms', :course_name => 'CSCE 629 Section 2'},
 			 {:CourseTitle => 'Software Engineering', :course_name => 'CSCE 606'},
 			 {:CourseTitle => 'Testing and Diagnosis of Digital Systems', :course_name => 'CSCE/ECEN 680'},
 			 {:CourseTitle => 'Database Systems', :course_name => 'CSCE 608'},
