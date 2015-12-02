@@ -45,9 +45,9 @@
         <%= f.label "Room Number:" %>
         <%= f.text_field :room_name %>
       </p>
-      <p>
+       <p>
         <%= f.label "Room Capacity:" %>
-        <%= f.text_field :room_capacity %>
+        <input type="text" name="class[room_capacity]" id="classroomcapacity"/>&nbsp;<span id="capacityerrmsg"></span>
       </p>
       <%= f.submit "Add New Class",class:"btn btn-primary" %>
       <% end %>
