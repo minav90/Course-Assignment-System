@@ -46,11 +46,12 @@ class FacultyPreferencesController < ApplicationController
 
   private
   def faculty_preference_params 
-    params.require(:faculty_preference).permit(:faculty_course_id, :semester_id, preference1_attributes: preference_params, preference2_attributes: preference_params, preference3_attributes: preference_params)
+    note = params[:faculty_preference][:preference3_attributes][:note]
+    params.require(:faculty_preference).permit(:faculty_course_id, :semester_id, preference1_attributes: [preference_params, :note], preference2_attributes: [preference_params, :note], preference3_attributes: [preference_params, :note])
   end
 
   def preference_params
-    note = params[:faculty_preference][:preference3_attributes][:note]
-    [:day_combination_id, :building_id, :time_slot_id, :note]
+   
+    [:day_combination_id, :building_id, :time_slot_id]
   end
 end
