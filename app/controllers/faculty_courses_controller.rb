@@ -60,7 +60,8 @@ class FacultyCoursesController < ApplicationController
 
     def edit
 	faculty_course = FacultyCourse.find(params[:id])
-	if params[:course1_id] == params[:course2_id] || params[:course1_id] == params[:course3_id] || params[:course2_id] == params[:course3_id]
+	courses = params[:courses]
+	if ((courses[:course1_id] == courses[:course2_id]) && courses[:course1_id] != "") || ((courses[:course1_id] == courses[:course3_id]) && courses[:course1_id] != "") || ((courses[:course2_id] == courses[:course3_id]) && courses[:course2_id] != "")
 		flash[:error] = "Please choose a different course in each box"
 		redirect_to faculty_course_path(faculty_course)
 	else
