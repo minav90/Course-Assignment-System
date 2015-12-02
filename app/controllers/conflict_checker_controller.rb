@@ -53,9 +53,7 @@ include ConflictCheckerHelper
     session[:dayComboId] = params["conflict_checker"]["day_combinations_id"]
     session[:timeRanges] = params["conflict_checker"]["time_ranges"]
     session[:buildingId] = params["conflict_checker"]["buildings_id"]
-    	
-    	
-    # ToDo: Get the semester_id from the session
+
     @semester_id = session[:semester_id]
 
     @relevant_preferences = Array.new # Course Name, Course Title, Faculty name, preference, preference #
@@ -76,51 +74,48 @@ include ConflictCheckerHelper
         	@pref3_id = faculty_preference.preference3_id
         	@pref_3 = Preference.find_by id: @pref3_id
 
-		@course_id = faculty_preference.faculty_course_id	 
-		@courseRow = courseDetails(@course_id)
-		@course_name = @courseRow.course_name
-		@course_title = @courseRow.CourseTitle	 
+		@course_ids = findCoursesForFaculty(faculty_preference.faculty_course_id)
+		@course_ids.each do |courseID|
+		  @courseRow = courseDetails(courseID)
+		  @course_name = @courseRow.course_name
+		  @course_title = @courseRow.CourseTitle	 
 		 
-		@faculty_id = findFacultyforCourse(@course_id)
-		@faculty_name = findFacultyName(@faculty_id)
+		  @faculty_id = findFacultyforCourse(courseID)
+		  @faculty_name = findFacultyName(@faculty_id)
+		   # Check Pref 1
+		   if ( (@pref_1) && (@day_combo_row) && (@time_slot_row) &&
+		 	  (@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot == @time_slot_row.time_slot)) && checkBuildingOnInput(@building, @pref_1, @building_row))
 		 
-		 # Check Pref 1
-		 if ( (@pref_1) && (@day_combo_row) && (@time_slot_row) &&
-		 	(@pref_1.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_1.time_slot_id)).time_slot ==	 @time_slot_row.time_slot)) && 
-		 	checkBuildingOnInput(@building, @pref_1, @building_row))
-		 
-				@relevant_preferences.insert(i, [@course_name, @course_title, @faculty_name, @pref_1, 1])
-				i += 1
+			@relevant_preferences.insert(i, [@course_name, @course_title, @faculty_name, @pref_1, 1])
+			i += 1
 				
-		 end
+		   end
 		 
-		     # Check Pref 2
+		       # Check Pref 2
 		 if ( (@pref_2) && (@day_combo_row) && (@time_slot_row) && 
-		 	(@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)) && 
-		 	checkBuildingOnInput(@building, @pref_2, @building_row))	
+		 	(@pref_2.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_2.time_slot_id)).time_slot == @time_slot_row.time_slot)) && checkBuildingOnInput(@building, @pref_2, @building_row))	
 		 
-				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_2, 2])
-				i += 1
+			@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_2, 2])
+			i += 1
 				
 		 end
 		 
 		     # Check Pref 3
 		 if ( (@pref_3) && (@day_combo_row) && (@time_slot_row) && 
-		 	(@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && 
-		 	checkBuildingOnInput(@building, @pref_3, @building_row))
+		 	(@pref_3.day_combination_id == @day_combo_row.id) && ((findTimeSlotDataFromId((@pref_3.time_slot_id)).time_slot == @time_slot_row.time_slot)) && checkBuildingOnInput(@building, @pref_3, @building_row))
 		 
-				@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_3, 3])
-				i += 1
+			@relevant_preferences.insert(i, Array[@course_name, @course_title, @faculty_name, @pref_3, 3])
+			i += 1
 				
-		 end 
+		 end
+		end
 		 
 	end
      end
 
 	@relevant_preferences.each do |relevant_preference|
 	
-	
-		    # Faculty Name
+		        # Faculty Name
 			@fac_name = relevant_preference[2]
 			# Course Details
 			@cour_name = relevant_preference[0] # .course_name
