@@ -54,7 +54,7 @@ group :development do
   gem 'spring'
 end
 
-group :test, :cucumber do
+group :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'capybara'
