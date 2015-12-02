@@ -20,7 +20,9 @@ def index
 			prefids <<FacultyPreference.where(:faculty_course_id => facultycourse.id).pluck(:preference2_id)[0]
 			prefids <<FacultyPreference.where(:faculty_course_id => facultycourse.id).pluck(:preference3_id)[0]
 			@note = Preference.where(:id => FacultyPreference.where(:faculty_course_id=> facultycourse.id).pluck(:preference1_id)[0]).pluck(:note)[0]
-			
+			if(@note.nil?)
+				@note = "None! I just seem to like it."
+			end
 			@showPrefSummary[facultycourse.id] = {:faculty =>Faculty.find_by_id(facultycourse.faculty_id),
 				:course => course , :prefids => prefids , :note => @note} 
 		end
