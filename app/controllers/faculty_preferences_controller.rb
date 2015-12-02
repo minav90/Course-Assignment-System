@@ -31,6 +31,7 @@ class FacultyPreferencesController < ApplicationController
 
   def create
     @faculty_preference = FacultyPreference.find_by_faculty_course_id(params[:faculty_preference][:faculty_course_id])
+
     @faculty_preference.update_attributes(faculty_preference_params)
     if @faculty_preference.save
       redirect_to @faculty_preference
