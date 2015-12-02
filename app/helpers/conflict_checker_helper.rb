@@ -83,6 +83,22 @@ module ConflictCheckerHelper
 		return "No"
 	end
 	
+	# New method for range
+	def getTimeSlotsForDayComboAndRange(dayComboId, timeRange)
+		puts "dayComboId: #{dayComboId}"
+		puts "timeRange: #{timeRange}"
+		@timeranges = TimeRange.all
+		dayComboId = dayComboId.to_i
+		puts "Before each of getTimeSlotsForDayComboAndRange"
+		@timeranges.each do |tr|
+			puts "Inside each of getTimeSlotsForDayComboAndRange"
+			if (tr.day_combination_id == dayComboId && tr.t_range == timeRange)
+				puts "tr.t_slots: #{tr.t_slots}"
+				return (tr.t_slots).split(',')
+			end
+		end
+	end
+
 	def getBuildingIdfromRoom(roomId)
 	
 		@roomTable = Room.all
@@ -109,3 +125,4 @@ module ConflictCheckerHelper
 	end
 		
 end
+

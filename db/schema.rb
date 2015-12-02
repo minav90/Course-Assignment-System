@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117053751) do
+ActiveRecord::Schema.define(version: 20151130220731) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "building_name"
@@ -129,6 +129,16 @@ ActiveRecord::Schema.define(version: 20151117053751) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "time_ranges", force: :cascade do |t|
+    t.string   "t_range"
+    t.string   "t_slots"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "day_combination_id"
+  end
+
+  add_index "time_ranges", ["day_combination_id"], name: "index_time_ranges_on_day_combination_id"
 
   create_table "time_slots", force: :cascade do |t|
     t.string   "time_slot"

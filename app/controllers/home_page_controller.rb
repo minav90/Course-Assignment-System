@@ -31,8 +31,4 @@ class HomePageController < ApplicationController
      redirect_to root_path;
   end
 
-  def POST
-      render :nothing => true  
-  end
-
 end
