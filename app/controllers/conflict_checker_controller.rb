@@ -44,12 +44,7 @@ include ConflictCheckerHelper
   def create  	
   	
     @day_combo_row = findDayCombinationDataFromId(params["conflict_checker"]["day_combinations_id"]) 
-    #new change! - START
     @relevantTSlots = getTimeSlotsForDayComboAndRange(params["conflict_checker"]["day_combinations_id"], params["conflict_checker"]["time_ranges"])
-    puts  "relevantTS: #{@relevantTSlots}"
-    # @time_slot_row = findTimeSlotDataFromId(@relevantTSlots[1])   
-    #new change! - END; line below commented as well
-    # @time_slot_row = findTimeSlotDataFromId(params["conflict_checker"]["timeslots_id"])
     @building_row = findBuildingDataFromId(params["conflict_checker"]["buildings_id"])
     
     @building = params["conflict_checker"]["buildings_id"]
@@ -66,37 +61,25 @@ include ConflictCheckerHelper
     @relevant_preferences = Array.new # Course Name, Course Title, Faculty name, preference, preference #
     i = j = 0
     
-    #new change: Time-Slot in the comment below
     @conflicts = Array.new # Array to store conflict data Faculty Name, Course Name, Course Title, Time-Slot, Building name, Note, Preference #, Assigned?
     
     @faculty_preferences = FacultyPreference.where("semester_id = ?",@semester_id)
     
-    #new change: 2 new lines below
     @relevantTSlots.each do |relevantTSlot|
     	@time_slot_row = findTimeSlotDataFromId(relevantTSlot)
     	@faculty_preferences.each do |faculty_preference|
 
-<<<<<<< HEAD
-
-         @pref1 = faculty_preference.preference1
-         @pref2_id = faculty_preference.preference2_id
-         @pref_2 = Preference.find_by id: @pref2_id
-         @pref3_id = faculty_preference.preference3_id
-         @pref_3 = Preference.find_by id: @pref3_id
-=======
         	@pref1_id = faculty_preference.preference1_id
         	@pref_1 = Preference.find_by id: @pref1_id
         	@pref2_id = faculty_preference.preference2_id
         	@pref_2 = Preference.find_by id: @pref2_id
         	@pref3_id = faculty_preference.preference3_id
         	@pref_3 = Preference.find_by id: @pref3_id
->>>>>>> cc810a9f5700541ed927810584c3d9d19edd0d17
 
 		@course_id = faculty_preference.faculty_course_id	 
 		@courseRow = courseDetails(@course_id)
 		@course_name = @courseRow.course_name
-		@course_title = @courseRow.CourseTitle
-		 
+		@course_title = @courseRow.CourseTitle	 
 		 
 		@faculty_id = findFacultyforCourse(@course_id)
 		@faculty_name = findFacultyName(@faculty_id)
@@ -131,7 +114,7 @@ include ConflictCheckerHelper
 				
 		 end 
 		 
-	end #new change: another end below
+	end
      end
 
 	@relevant_preferences.each do |relevant_preference|
@@ -142,12 +125,10 @@ include ConflictCheckerHelper
 			# Course Details
 			@cour_name = relevant_preference[0] # .course_name
 			@cour_title = relevant_preference[1] # .CourseTitle
-			#new change: START
 			# Day-Combo
 			@day_combo = (findDayCombinationDataFromId((relevant_preference[3]).day_combination_id)).day_combination
 			# Time-Slot
 			@time_slot = (findTimeSlotDataFromId((relevant_preference[3]).time_slot_id)).time_slot
-			#new change: END
 			# Building
 			@building_name = (findBuildingDataFromId((relevant_preference[3]).building_id)).building_name
 			# Note
@@ -156,7 +137,6 @@ include ConflictCheckerHelper
 			@pref_no = relevant_preference[4]
 			# Variable to check course has been assigned to a slotAlready Assigned
 			@already_asgn = isAssigned((relevant_preference[3]).building_id, (relevant_preference[3]).day_combination_id, (relevant_preference[3]).time_slot_id, @cour_name, @fac_name) 
-		    #new change: 2 new inserts below
 		    @conflicts.insert(j, Array[@fac_name, @cour_name, @cour_title, @day_combo, @time_slot, @building_name, @note, @pref_no, @already_asgn])
 			j += 1
 	end
