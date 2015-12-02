@@ -26,3 +26,16 @@ $ ->
         console.log("AJAX Error: #{textStatus}")
       success: (data, textStatus, jqXHR) ->
         console.log("Dynamic country select OK!")
+
+$ ->
+  $(document).on 'change', '#day_combination_select', (evt) ->
+    $.ajax 'class/update_timeslot',
+      type: 'GET'
+      dataType: 'script'
+      data: {
+        day_combination_id: $("#day_combination_select option:selected").val()
+      }
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log("AJAX Error: #{textStatus}")
+      success: (data, textStatus, jqXHR) ->
+        console.log("Dynamic country select OK!")
