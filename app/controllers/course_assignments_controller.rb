@@ -1,8 +1,11 @@
+# @author Purvesh Karkamkar
+# Handles requests to assign classroom and timings to faculty's courses
 class CourseAssignmentsController < ApplicationController
   def show
 
   end
 
+  # Handles request to get landing page for the feature
   def index
 	if session[:semester_id] != nil && session[:semester_id] != ""
 		@faculties = Faculty.order(faculty_name: :desc)
@@ -37,6 +40,8 @@ class CourseAssignmentsController < ApplicationController
 	end
   end
 
+  # Handles request to create / update course assignment for a faculty
+  # @param hash containing faculty id, course id,building id, room id, day combination id and time slot id
   def update_course_assignment
 	attributes = {}
 	faculty_id = params[:faculty_id]
@@ -84,6 +89,8 @@ class CourseAssignmentsController < ApplicationController
 	end
   end
 
+  # Handles information to be updated based on change in faculty from drop-down box
+  # @param hash containing faculty id
   def update_faculty_details
 	# add semester id to query
 	faculty_courses_arr = FacultyCourse.includes(:course1,:course2,:course3).where("faculty_id = ?",params[:faculty_id])
@@ -104,6 +111,9 @@ class CourseAssignmentsController < ApplicationController
 	end
   end
 
+  # Helper function to setup course assignment drop down for the selected faculty and course
+  # @param faculty_id faculty id
+  # @param course_id course id
   def setup_course_assignment(faculty_id,course_id)
 	@course_assignments.each {|course_assignment|
 		if course_assignment.course_id == course_id
@@ -122,6 +132,9 @@ class CourseAssignmentsController < ApplicationController
 	return
   end
 
+  # Helper function to get course assignment record for the selected course id
+  # @param course_id course id
+  # @return course assignment record 
   def get_course_assignment(course_id)
 	course_assignments = CourseAssignment.where("semester_id = ? and course_id = ?",session[:semester_id],params[:course_id])
 	if course_assignments.length > 0
@@ -131,6 +144,10 @@ class CourseAssignmentsController < ApplicationController
 	end
   end
   
+  # Handles ajax request to update options in room select based on selected building
+  # @param course_id course id
+  # @param building_id building id
+  # @return room options based on selected building
   def update_room
 	@room_options = {}
 	@room_options["data"] = {}
@@ -154,7 +171,11 @@ class CourseAssignmentsController < ApplicationController
 		format.json {render json: @room_options}
 	end
   end
-
+  
+  # Handles ajax request to update options in day combination select based on selected room
+  # @param course_id course id
+  # @param room_id room id
+  # @return day combination options based on selected room
   def update_day_combination
 	@day_combination_options = {}
 	@day_combination_options["data"] = {}
@@ -180,6 +201,10 @@ class CourseAssignmentsController < ApplicationController
 	end
   end
 
+  # Handles ajax request to update options in time slot select based on selected day combination
+  # @param course_id course id
+  # @param day_combination_id day combination id
+  # @return time slot options based on selected day combination
   def update_time_slot
 	@time_slot_options = {}
 	@time_slot_options["data"] = {}
@@ -205,6 +230,9 @@ class CourseAssignmentsController < ApplicationController
 	end	
   end
 
+  # Helper function to build a hash of course id => course description for given courses
+  # @param course_arr assigned courses array for a faculty
+  # @return courses hash
   def build_courses_object(course_arr)
  	courses = {}
 	course_arr.each {|course|

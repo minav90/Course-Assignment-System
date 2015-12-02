@@ -18,10 +18,11 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Howdy",   'https://howdy.tamu.edu/' %></li>
+	    <li><%= link_to "Assign Classroom",        class_index_path %></li>
             <li><%= link_to "Preference Summary",   pref_summary_index_path %></li>
-            <li><%= link_to "Assignment Summary",   faculty_courses_path %></li>
+            <li><%= link_to "Faculty & Courses Summary",   faculty_courses_path %></li>
+	    <li><%= link_to "Course Assignments",   course_assignments_path %></li>
             <li><%= link_to "Conflict Checker",   conflict_checker_index_path %></li>
-            <li><%= link_to "Assign Classroom",        class_index_path %></li> 
           </ul>
         </nav>
       </div>
