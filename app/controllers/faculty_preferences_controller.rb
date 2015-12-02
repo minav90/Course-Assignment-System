@@ -5,12 +5,6 @@ class FacultyPreferencesController < ApplicationController
     @facultycourse.each do |faccourse|
       @faccourses[faccourse.id] = {:faculty_name => Faculty.find(faccourse.faculty_id).faculty_name}
     end
-    @faculty_courses = FacultyCourse.order(:id)
-    respond_to do |format|
-      format.html
-      format.csv {send_data text: @faculty_courses.to_csv}
-      format.xls #{send_data text: @faculty_courses.to_csv(col_sep: "\t")}
-    end
   end
 
   def new

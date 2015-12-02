@@ -1,13 +1,13 @@
 <table border = "1">
 	<tr>
 		<th>Faculty ID</th>
-		<th>Link to send to faculty</th>
+		<th>Links to send to faculty</th>
 	</tr>
 
 	<% @showPrefSummary.each do |key,prefSummary| %>
 	<tr>
 		<% @faculty = prefSummary[:faculty] %>
-		<td> hello </td>
+		<td><%= @faculty.faculty_name %> </td>
 		<td>http://course-assignment-system.herokuapp.com/faculty_preferences/new/?faculty_course_id=<%=key%></td>
 	</tr>
 	<% end %>
