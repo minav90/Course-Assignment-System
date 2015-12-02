@@ -38,6 +38,15 @@ def update_room
 end
 
 #Method functions:
+#1)Used (during AJAX call)to update timeslots based on daycombo selected 
+def update_timeslot
+  @timeslots = TimeSlot.where("day_combination_id = ?", params[:day_combination_id])
+  respond_to do |format|
+    format.js
+  end
+end
+
+#Method functions:
 #1)Used (during AJAX call)to update Capacity of room based on room selected 
 def update_capacity
   @capacity = Room.find_by_id(params[:room_id])

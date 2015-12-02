@@ -20,13 +20,13 @@
          <%= f.label "Room Capacity" %>
          <%= f.text_field :room_capacity , readonly: true , :size => 5%> 
       </p> 
+       <p>
+        <%= f.label "Choose Day combo:" %>
+        <%= f.select :day_combinations_id , options_for_select(@day_combination.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, 1), {}, { id: 'day_combination_select' , class: "input-sm"} %>
+      </p>
       <p>
         <%= f.label "Choose Time Slot:" %>
         <%= f.select :timeslots_id , options_for_select(@timeslot.collect { |timeslot| [timeslot.time_slot, timeslot.id] }, 1), {}, { id: 'timeslot_select' , class: "input-sm"} %>
-      </p>
-      <p>
-        <%= f.label "Choose Day combo:" %>
-        <%= f.select :day_combinations_id , options_for_select(@day_combination.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, 1), {}, { id: 'day_combination_select' , class: "input-sm"} %>
       </p>
       <p>
         <%= f.submit "Submit" ,class: "btn btn-primary"%>
