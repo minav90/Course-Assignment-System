@@ -55,13 +55,19 @@ class FacultyCoursesController < ApplicationController
     def show
 	@faculty_course = FacultyCourse.includes(:faculty).find(params[:id])
 	@faculty = @faculty_course.faculty
-	@courses = Course.all()
+	@courses = Course.all
     end
 
     def edit
-    	faculty_course = FacultyCourse.find(params[:id])
-	faculty_course.update_attributes!(params[:courses].permit(:course1_id,:course2_id,:course3_id))
-	flash[:success] = "Courses information updated successfully"
-	redirect_to faculty_courses_path
+	faculty_course = FacultyCourse.find(params[:id])
+	if params[:course1_id] == params[:course2_id] || params[:course1_id] == params[:course3_id] || params[:course2_id] == params[:course3_id]
+		flash[:error] = "Please choose a different course in each box"
+		redirect_to faculty_course_path(faculty_course)
+	else
+    		faculty_course = FacultyCourse.find(params[:id])
+		faculty_course.update_attributes!(params[:courses].permit(:course1_id,:course2_id,:course3_id))
+		flash[:success] = "Courses information updated successfully"
+		redirect_to faculty_courses_path
+	end
     end
 end
