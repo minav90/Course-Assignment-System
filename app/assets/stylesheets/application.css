@@ -73,6 +73,7 @@
 #preftable th {
   font-weight: bold;
   background-color: wheat;
+  position: absolute;
 }
 #preftable th, #preftable td {
   padding: 4px;

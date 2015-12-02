@@ -71,9 +71,13 @@ end
 #Method functions:
 #1)Used to create new class and add building and room details to static tables
 def new
+ if params[:class][:building_name] == "" || params[:class][:room_name] == "" || params[:class][:room_capacity] == "" 
+     flash[:error] = "Fill All Details Before Submitting"
+ else
  @building = Building.find_or_create_by!(:building_name=>params[:class][:building_name])
  @room = Room.find_or_create_by!(:room_name=>params[:class][:room_name],:building_id=>@building.id,:Capacity => params[:class][:room_capacity])
  flash[:success] = "Successfully Created New Class"
+ end
  redirect_to class_index_path
 end
 
