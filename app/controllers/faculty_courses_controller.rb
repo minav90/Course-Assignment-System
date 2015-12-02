@@ -1,4 +1,7 @@
+# @author Purvesh Karkamkar
+# Handles request to assign courses to faculties
 class FacultyCoursesController < ApplicationController
+    # Handles request to display landing page for the feature
     def index
 	if session[:semester_id] != nil && session[:semester_id] != ""
         	@faculties = Faculty.order(faculty_name: :desc)
@@ -33,6 +36,8 @@ class FacultyCoursesController < ApplicationController
 	end
     end
 
+    # Handles redirecting to page for updating / assigning courses for the selected faculty
+    # param faculty_id faculty id
     def select_faculty
 	if params[:faculty_id] != ""
 		faculty_courses = FacultyCourse.where("faculty_id = ? and semester_id = ?",params[:faculty_id],session[:semester_id])
@@ -52,12 +57,19 @@ class FacultyCoursesController < ApplicationController
 	end
     end
 
+    # Handles request to display page to update / assign courses for selected faculty
+    # @param faculty_id faculty id
     def show
 	@faculty_course = FacultyCourse.includes(:faculty).find(params[:id])
 	@faculty = @faculty_course.faculty
 	@courses = Course.all
     end
 
+    # Handles request to edit the courses assigned for the selected faculty
+    # @param id faculty course record id
+    # @param course1_id course 1 id
+    # @param course2_id course 2 id
+    # @param course3_id course 3 id
     def edit
 	faculty_course = FacultyCourse.find(params[:id])
 	courses = params[:courses]
