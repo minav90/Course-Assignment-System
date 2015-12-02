@@ -54,19 +54,19 @@
 							<% unless @day_combo.nil? %>
 								<p><%= "Day Combination : #{@day_combo.day_combination}" %></p> 
 							<% else %>
-								<%= "No Preference" %><br>
+								<%= "No Day-Combination Preference" %><br>
 							<% end %>
 
 							<% unless @timeslot.nil? %>
 								<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
 							<% else %>
-								<%= "No Preference" %><br>
+								<%= "No Time-Slot Preference" %><br>
 							<% end %>
 
 							<% unless @building.nil? %>
 								<p><%= "Location : #{@building.building_name}" %></p>
 							<% else %>
-								<%= "No Preference" %><br>
+								<%= "No Location Preference" %><br>
 							<% end %>
 							<% end %>
 						</td>	

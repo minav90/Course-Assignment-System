@@ -28,9 +28,7 @@
         Building
 		<%= ff.collection_select(:building_id, @building_options, :id, :building_name, :include_blank => true)%>
 		Timing
-		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => true) %><br><br>
-		Edit the note if there are specific reasons for choosing this particular preference as #1. <br><br>
-		<%= ff.text_field :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => true) %>
 	<% end %>
 	<br> <br>
 
@@ -53,7 +51,9 @@
     	Building
 		<%= ff.collection_select(:building_id, @building_options, :id, :building_name,:include_blank => true) %>
 		Timing 
-		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot, :include_blank => true) %>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot, :include_blank => true) %><br><br>
+		Edit the note if there are specific reasons for choosing a preference. <br><br>
+		<%= ff.text_field :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
 	<% end %>
 	<br><br><br>
 <%= f.submit "Submit",class: "btn btn-block btn-primary btn-lg" %>
