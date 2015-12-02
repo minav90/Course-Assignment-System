@@ -13,12 +13,33 @@ module ConflictCheckerHelper
 		facultycourseTable = FacultyCourse.all
 		courseId = courseId.to_i
 		facultycourseTable.each do |facultycourserow|
-			if facultycourserow.id == courseId
-				return facultycourserow.id # @facultyid = 
+			if ((facultycourserow.course1_id == courseId) || (facultycourserow.course2_id == courseId))
+				return facultycourserow.faculty_id # @facultyid = 
 			end
+
 		end
 	end
 	
+	def findCoursesForFaculty(faculty_course_id)
+		returnArray = Array.new
+		i = 0
+		facultycourseTable = FacultyCourse.all
+		faculty_course_id = faculty_course_id.to_i
+		facultycourseTable.each do |facultycourserow|
+			if (facultycourserow.id == faculty_course_id)
+				if(facultycourserow.course1_id)
+					returnArray.insert(i, facultycourserow.course1_id)
+					i += 1
+				end
+				if(facultycourserow.course2_id)
+					returnArray.insert(i, facultycourserow.course2_id)
+				end
+				return returnArray
+			end
+
+		end
+	end
+
 	def findFacultyName(facultyId)
 		facultyTable = Faculty.all
 		facultyId = facultyId.to_i
@@ -70,9 +91,7 @@ module ConflictCheckerHelper
 			
 			@CaTable.each do |caRow|
 				@room_id = caRow.room_id
-				@building_id = getBuildingIdfromRoom(@room_id)	
-				puts caRow.day_combination_id == dayComboId
-				
+				@building_id = getBuildingIdfromRoom(@room_id)		
 				
 				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (@building_id == nil || @building_id == buildingId) && 
 					courseName == (courseDetails(caRow.course_id)).course_name && facultyName == findFacultyName(caRow.faculty_id)
@@ -85,15 +104,10 @@ module ConflictCheckerHelper
 	
 	# New method for range
 	def getTimeSlotsForDayComboAndRange(dayComboId, timeRange)
-		puts "dayComboId: #{dayComboId}"
-		puts "timeRange: #{timeRange}"
 		@timeranges = TimeRange.all
 		dayComboId = dayComboId.to_i
-		puts "Before each of getTimeSlotsForDayComboAndRange"
 		@timeranges.each do |tr|
-			puts "Inside each of getTimeSlotsForDayComboAndRange"
 			if (tr.day_combination_id == dayComboId && tr.t_range == timeRange)
-				puts "tr.t_slots: #{tr.t_slots}"
 				return (tr.t_slots).split(',')
 			end
 		end

@@ -8,7 +8,7 @@ class FacultyPreferencesController < ApplicationController
   end
 
   def new
-    #@faculty_course = FacultyCourse.find(params[:faculty_course_id])
+    @faculty_course = FacultyCourse.find(params[:faculty_course_id])
 
     @faculty_preference = FacultyPreference.new(faculty_course: @faculty_course) 
     @faculty_preference.build_preference1
@@ -24,14 +24,19 @@ class FacultyPreferencesController < ApplicationController
   end
 
   def create
+    
     @faculty_preference = FacultyPreference.find_by_faculty_course_id(params[:faculty_preference][:faculty_course_id])
-
-    @faculty_preference.update_attributes(faculty_preference_params)
-    if @faculty_preference.save
-      redirect_to @faculty_preference
+    #@faculty_preference = FacultyPreference.where(find: 'find_value').first_or_create.update(update: 'update_value')
+    if(@faculty_preference.nil?)
+      @faculty_preference = FacultyPreference.new(faculty_preference_params)
     else
-      render :new  
+      @faculty_preference.update_attributes(faculty_preference_params)
     end
+      if @faculty_preference.save
+        redirect_to @faculty_preference
+      else
+        render :new
+      end
   end
   
   def show 
