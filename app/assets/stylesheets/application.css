@@ -94,6 +94,7 @@
 .scrollPref {
     overflow-y: auto;
     overflow-x: auto;
+    height :550px;
     position : absolute;
 }
 

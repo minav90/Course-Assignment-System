@@ -69,19 +69,28 @@ include ConflictCheckerHelper
     #new change: Time-Slot in the comment below
     @conflicts = Array.new # Array to store conflict data Faculty Name, Course Name, Course Title, Time-Slot, Building name, Note, Preference #, Assigned?
     
-    @faculty_preferences = FacultyPreference.all.where("semester_id = ?",@semester_id)
+    @faculty_preferences = FacultyPreference.where("semester_id = ?",@semester_id)
     
     #new change: 2 new lines below
     @relevantTSlots.each do |relevantTSlot|
     	@time_slot_row = findTimeSlotDataFromId(relevantTSlot)
     	@faculty_preferences.each do |faculty_preference|
 
+<<<<<<< HEAD
+
+         @pref1 = faculty_preference.preference1
+         @pref2_id = faculty_preference.preference2_id
+         @pref_2 = Preference.find_by id: @pref2_id
+         @pref3_id = faculty_preference.preference3_id
+         @pref_3 = Preference.find_by id: @pref3_id
+=======
         	@pref1_id = faculty_preference.preference1_id
         	@pref_1 = Preference.find_by id: @pref1_id
         	@pref2_id = faculty_preference.preference2_id
         	@pref_2 = Preference.find_by id: @pref2_id
         	@pref3_id = faculty_preference.preference3_id
         	@pref_3 = Preference.find_by id: @pref3_id
+>>>>>>> cc810a9f5700541ed927810584c3d9d19edd0d17
 
 		@course_id = faculty_preference.faculty_course_id	 
 		@courseRow = courseDetails(@course_id)

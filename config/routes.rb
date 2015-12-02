@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "setsession" => 'home_page#setsession'
 
   root 'home_page#home'
+  resources :faculty_preferences
   
 
   # The priority is based upon order of creation: first created -> highest priority.

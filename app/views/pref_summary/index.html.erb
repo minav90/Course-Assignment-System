@@ -6,6 +6,8 @@
 </head>
 <body>
 	<h2 align="center">Preference Summary</h2>
+	<h6 align="center"> <%= link_to "Click here to download links to send to faculties", pref_summary_index_path(format: "xls")%></h6>
+
 	<% if @showPrefSummary.empty? %>
 			   <h2 align="center"> No Preference summary to display </h2>
 	<% else %>
@@ -22,7 +24,7 @@
 			</tr>
 			<tbody>
 			<% id = 0 %>
-			<% @showPrefSummary.each do |key,prefSummary|
+			<% @showPrefSummary.each do |key,prefSummary| 
 				@faculty = prefSummary[:faculty]
 				course = prefSummary[:course]
 				prefids = prefSummary[:prefids]
@@ -41,17 +43,21 @@
 						<%  prefids.each do |prefid| %>
 						<td>
 							<% if prefid.nil? %>
-							<%= "no Preference" %>
+							<%= "No Preference" %>
 							<% else %>
 							<% 
-							@pref = Preference.find_by_id(prefid)
+							@pref = Preference.find_by_id(prefid) 
 							@day_combo = DayCombination.find_by_id(@pref.day_combination_id)
 							@timeslot = TimeSlot.find_by_id(@pref.time_slot_id)
 							@building = Building.find_by_id(@pref.building_id)
 							%>
-							<p><%= "Day Combination : #{@day_combo.day_combination}" %></p>
-							<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
-							<p><%= "Location : #{@building.building_name}" %></p>
+							<% unless @day_combo.nil? && @timeslot.nil? && @building.nil? %>
+								<p><%= "Day Combination : #{@day_combo.day_combination}" %></p> 
+								<p><%= "Time slot : #{@timeslot.time_slot}" %></p>
+								<p><%= "Location : #{@building.building_name}" %></p>
+							<% else %>
+								<%= "No Preference" %>
+                            <% end %>
 							<% end %>
 						</td>	
 					  <% end %>
@@ -62,5 +68,8 @@
 				</table>
 			</div>
 			<% end %>
+
+			
+
 		</body>
 		</html>
