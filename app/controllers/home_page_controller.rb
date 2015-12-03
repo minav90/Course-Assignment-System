@@ -26,8 +26,13 @@ class HomePageController < ApplicationController
   end
 
   def createsemester
-  	 Semester.create(SemesterTitle: params[:class][:SemesterTitle])
+    if params[:class] != nil && params[:class][:SemesterTitle] != ""
+  	 Semester.find_or_create_by!(SemesterTitle: params[:class][:SemesterTitle])
      redirect_to root_path;
+    else
+      flash[:error] = "Enter New Semester"
+      redirect_to addsemester_path;
+    end
   end
 
 end
