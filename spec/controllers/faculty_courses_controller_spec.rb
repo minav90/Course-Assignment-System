@@ -12,7 +12,8 @@ describe FacultyCoursesController do
                 @fake_courses = [double('1'),double('2')]
                 Faculty.should_receive(:order).and_return(@fake_faculty)
 		faculty_courses = [double(:faculty_id => '1',:course1_id => '1',:course2_id => '2',:course3_id => '3',:faculty => double(:id => '',:faculty_name => ''),:course1 => double(:id => '',:course_name => '',:CourseTitle => ''),:course2 => double(:id => '',:course_name => '',:CourseTitle => ''),:course3 => double(:id => '',:course_name => '',:CourseTitle => ''))]
-		FacultyCourse.stub(:includes).and_return(faculty_courses)
+		FacultyCourse.stub(:includes).and_return(FacultyCourse)
+		FacultyCourse.should_receive(:where).with("semester_id = ?","1").and_return(faculty_courses)
 		post :index
 		assigns(:faculties).should == @fake_faculty
                 response.should render_template :index

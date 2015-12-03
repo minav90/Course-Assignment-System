@@ -208,7 +208,7 @@ class CourseAssignmentsController < ApplicationController
   def update_time_slot
 	@time_slot_options = {}
 	@time_slot_options["data"] = {}
-	classroom_timings = ClassroomTiming.includes(:time_slot).where("day_combination_id = ?",params[:day_combination_id])
+	classroom_timings = ClassroomTiming.includes(:time_slot).where("room_id = ? and day_combination_id = ?",params[:room_id],params[:day_combination_id])
 	if classroom_timings.length == 0
                 @time_slot_options["data"][""] = ""
 	else
