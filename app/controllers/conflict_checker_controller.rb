@@ -132,7 +132,12 @@ include ConflictCheckerHelper
 			# Time-Slot
 			@time_slot = (findTimeSlotDataFromId((relevant_preference[3]).time_slot_id)).time_slot
 			# Building
-			@building_name = (findBuildingDataFromId((relevant_preference[3]).building_id)).building_name
+			res = findBuildingDataFromId((relevant_preference[3]).building_id)
+			if res != ""
+				@building_name = (res).building_name
+			else
+				@building_name = ""
+			end
 			# Note
 			@note = relevant_preference[3].note
 			# Preference number

@@ -10,7 +10,7 @@ module ConflictCheckerHelper
 	end
 	
 	def findFacultyforCourse(courseId)
-		facultycourseTable = FacultyCourse.all
+		facultycourseTable = FacultyCourse.where("semester_id = ?",@semester_id)
 		courseId = courseId.to_i
 		facultycourseTable.each do |facultycourserow|
 			if ((facultycourserow.course1_id == courseId) || (facultycourserow.course2_id == courseId))
@@ -23,7 +23,7 @@ module ConflictCheckerHelper
 	def findCoursesForFaculty(faculty_course_id)
 		returnArray = Array.new
 		i = 0
-		facultycourseTable = FacultyCourse.all
+		facultycourseTable = FacultyCourse.where("semester_id = ?",@semester_id)
 		faculty_course_id = faculty_course_id.to_i
 		facultycourseTable.each do |facultycourserow|
 			if (facultycourserow.id == faculty_course_id)
@@ -52,11 +52,16 @@ module ConflictCheckerHelper
 	
 	def findBuildingDataFromId(buildingId)
 		buildingTable = Building.all
-		buildingId = buildingId.to_i
-		buildingTable.each do |buildingrow|
-			if buildingrow.id == buildingId
-				return buildingrow
+		if buildingId != ""
+			buildingId = buildingId.to_i
+			buildingTable.each do |buildingrow|
+				if buildingrow.id == buildingId
+					return buildingrow
+				end
 			end
+			return ""
+		else
+			return ""
 		end
 	end
 	
@@ -92,8 +97,7 @@ module ConflictCheckerHelper
 			@CaTable.each do |caRow|
 				@room_id = caRow.room_id
 				@building_id = getBuildingIdfromRoom(@room_id)		
-				
-				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (@building_id == nil || @building_id == buildingId) && 
+				if caRow.day_combination_id == dayComboId && caRow.time_slot_id == timeslotId && (buildingId == 0 || @building_id == buildingId)  && 
 					courseName == (courseDetails(caRow.course_id)).course_name && facultyName == findFacultyName(caRow.faculty_id)
 					return "Yes"
 				end
