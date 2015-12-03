@@ -35,6 +35,7 @@ Note :
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, {:include_blank => "Day Combination"} , {class: "input-sm" })  %> 
         <%= ff.collection_select(:building_id, @building_options, :id, :building_name,  {:include_blank => "Building"},{class: "input-sm"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "input-sm"}) %>
+		<%= ff.hidden_field :semester_id, value: session[:semester_id] %> 
 	<% end %>
 	<br><br>
 
@@ -44,6 +45,7 @@ Note :
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination,{:include_blank => "Day Combination"},{class: "input-sm"}) %> 
         <%= ff.collection_select(:building_id, @building_options, :id, :building_name, {:include_blank => "Building"},{class: "input-sm"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "input-sm"}) %>
+		<%= ff.hidden_field :semester_id, value: session[:semester_id] %> 
 	<% end %>
 	<br><br>
 
@@ -54,9 +56,12 @@ Note :
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "input-sm"}) %><br><br>
 		<p>Edit the note if there are specific reasons for choosing a preference. </p>
 		<%= ff.text_area :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
+		<%= ff.hidden_field :semester_id, value: session[:semester_id] %> 
 	<% end %>
 	
 	<br><br><br>
+	<%= f.hidden_field :semester_id, value: session[:semester_id] %> 
+
 <%= f.submit "Submit",class: "btn btn-block btn-primary btn-lg",data: { confirm: 'Your Preference will be submitted' }  %>
 
 <br><br>

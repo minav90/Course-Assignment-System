@@ -32,6 +32,8 @@ class FacultyPreferencesController < ApplicationController
     #permitted[:faculty_preference][:preference2_attributes][:note] => params[:faculty_preference][:preference1_attributes][:note]
     if(@faculty_preference.nil?)
       @faculty_preference = FacultyPreference.new(faculty_preference_params)
+      @faculty_preference.semester_id = session[:semester_id]
+
     else
       @faculty_preference.update_attributes(faculty_preference_params)
     end
@@ -54,6 +56,6 @@ class FacultyPreferencesController < ApplicationController
   end
 
   def preference_params
-    [:day_combination_id, :building_id, :time_slot_id, :note]
+    [:day_combination_id, :building_id, :time_slot_id, :note, :semester_id]
   end
 end
