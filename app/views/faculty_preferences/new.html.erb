@@ -18,8 +18,11 @@
 	<h2 align = "center"><%= @faculty.faculty_name %></h2>
 	<br>
 	
-	<p><%= f.label "Preference #1" %></p>
+	
 	<%= f.fields_for :preference1 do |ff| %>
+		<p>Edit the note if there are specific reasons for choosing a preference. </p>
+		<%= ff.text_field :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %><br>
+		<p><%= f.label "Preference #1" %></p>
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, {:include_blank => "Day Combination"} , {class: "input-sm" })  %> 
         <%= ff.collection_select(:building_id, @building_options, :id, :building_name,  {:include_blank => "Building"},{class: "input-sm"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "input-sm"}) %>
@@ -40,8 +43,6 @@
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination,{:include_blank => "Day Combination"},{class: "input-sm"}) %> 
         <%= ff.collection_select(:building_id, @building_options, :id, :building_name, {:include_blank => "Building"},{class: "input-sm"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "input-sm"}) %><br><br>
-		<p>Edit the note if there are specific reasons for choosing a preference. </p>
-		<%= ff.text_field :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
 	<% end %>
 	
 	<br><br><br>
