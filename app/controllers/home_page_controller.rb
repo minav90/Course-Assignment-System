@@ -26,7 +26,7 @@ class HomePageController < ApplicationController
   end
 
   def createsemester
-  	 Semester.create(SemesterTitle: params[:class][:SemesterTitle])
+  	 Semester.create_semester(params[:class][:SemesterTitle])
      redirect_to root_path;
   end
 
