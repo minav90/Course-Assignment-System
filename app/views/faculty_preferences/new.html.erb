@@ -1,8 +1,6 @@
 <html>
-
 <link href="../../assets/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
 
 <head>
   <%= javascript_include_tag "application" %>
@@ -10,69 +8,61 @@
   <%= yield(:head) %>
 </head>
 
- <div class="row">
-         <div class="col-xs-12 col-sm-6 col-sm-offset-3 btn btn-default dropdown-toggle"> 
+ <div class="row ">
+         <div class="col-xs-14 col-sm-6 col-sm-offset-3 jumbotron "> 
 <%= form_for @faculty_preference, url: {action: "create"} do |f| %>
 	
 	<% #f.collection_select(:faculty_course_id, @faculty_courses, :id, :faculty_id, class: "input-sm") %>
 	<%= f.hidden_field :faculty_course_id, value: params[:faculty_course_id] %> 
 
-	<%= @faculty.faculty_name %><br>
+	<h2 align = "center"><%= @faculty.faculty_name %></h2>
+	<br>
 	
-	<br><br>
-
-	Preference #1 <br>
+	<p>Preference #1 </p>
 	<%= f.fields_for :preference1 do |ff| %>
-		Day Combination : 
-        <%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, :include_blank => true)%> 
-        Building
-		<%= ff.collection_select(:building_id, @building_options, :id, :building_name, :include_blank => true)%>
-		Timing
-		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => true) %>
-	<% end %>
-	<br> <br>
-
-
-	Preference #2 <br>
-	<%= f.fields_for :preference2 do |ff| %>
-		Day Combination : 
-        <%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, :include_blank => true) %> 
-        Building
-		<%= ff.collection_select(:building_id, @building_options, :id, :building_name, :include_blank => true) %>
-		Timing
-		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot, :include_blank => true) %>
+		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, :include_blank => "Day Combination") %> 
+        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, :include_blank => "Building")%>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => "Time Slot") %>
 	<% end %>
 	<br><br>
 
-	Preference #3 <br>
+
+	<p>Preference #2 </p>
+	<%= f.fields_for :preference2 do |ff| %>
+		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, :include_blank => "Day Combination") %> 
+        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, :include_blank => "Building")%>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => "Time Slot") %>
+	<% end %>
+	<br><br>
+
+	<p>Preference #3 </p>
 	<%= f.fields_for :preference3 do |ff| %>
-		Day Combination : 
-    	<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, :include_blank => true) %> 
-    	Building
-		<%= ff.collection_select(:building_id, @building_options, :id, :building_name,:include_blank => true) %>
-		Timing 
-		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot, :include_blank => true) %><br><br>
-		Edit the note if there are specific reasons for choosing a preference. <br><br>
+		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, :include_blank => "Day Combination") %> 
+        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, :include_blank => "Building")%>
+		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  :include_blank => "Time Slot") %><br><br>
+		<p>Edit the note if there are specific reasons for choosing a preference. </p>
 		<%= ff.text_field :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>
 	<% end %>
+	
 	<br><br><br>
 <%= f.submit "Submit",class: "btn btn-block btn-primary btn-lg" %>
 
 <br><br>
-<pre class="text-left">
-<p id="facultynote">
+<pre class="text-left" align>
+<id="facultynote">
 Note : 
 1. Please select three different preferences. 
-2. To assist with the scheduling process, please try and choose 
-   three different timings from the ranges : 
+2. To assist with the scheduling process, please try 
+   and choose three different timings from the ranges
    a) 8:00 AM
    b) Morning (9:00 - 12:00)
    c) Afternoon (12:30 - 4:30)
    d) Evening (4:30 - 6:30)
 3. You are more than welcome to teach after 5:30 PM.
    Please mention that in the note.
-4. If you have a very specific preference due to particular 
-   circumstances, please indicate the same in the note.
+4. If you have a very specific preference due to 
+   particular circumstances, please indicate the 
+   same in the note.
 </p>
 </pre>
 <%end%>
