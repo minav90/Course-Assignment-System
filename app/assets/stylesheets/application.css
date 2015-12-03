@@ -159,6 +159,7 @@
      -webkit-border-radius: 6px;
      border-radius: 6px;
      padding: 14px 20px;
+     font-size: 15px
 }
 
 .note-image
@@ -173,5 +174,10 @@
 
 #capacityerrmsg
 {
-color: red;
+  color: red;
+}
+
+#navFacPref
+{
+  color: white;
 }
