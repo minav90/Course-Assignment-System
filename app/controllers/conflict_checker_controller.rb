@@ -3,41 +3,46 @@ include ConflictCheckerHelper
 
   def index
     
-    @dayCombos = DayCombination.all
-    
-    @timeSlots = TimeSlot.all
-    
-    @buildings_table_values = Building.all
-    
-    @buildings = Array.new
-    
-    @buildings.insert(0, "")
-    
-    i = 1
-    @buildings_table_values.each do |b|
-    	@buildings.insert(i, [b.id, b.building_name])
-    	i+=1
-    end 
-    if (!session[:computed] || session[:computed] == nil)
-    
-    	@conflicts = []
-    	session[:computed] = false
-    	session[:conflicts] = @conflicts
-    	@day_row_id = 1
-    	@time_range_selected = 'Early morning'
-    	@building_row_id = 0
-    else
-    	@conflicts = session[:conflicts]
-    	@day_row_id = session[:dayComboId]
-    	@time_range_selected = session[:timeRanges]
-    	@building_row_id = session[:buildingId]
-    	
-    	# Resetting session data
-    	session[:conflicts] = []
-    	session[:dayComboId] = 1
-		session[:timeRanges] = 'Early morning'
-		session[:buildingId] = 0
-    end
+	if ((session[:semester_id] == nil) || (session[:semester_id] == ""))
+		flash[:error] = "Please choose a semester"
+		redirect_to root_path
+	else
+	    @dayCombos = DayCombination.all
+	    
+	    @timeSlots = TimeSlot.all
+	    
+	    @buildings_table_values = Building.all
+	    
+	    @buildings = Array.new
+	    
+	    @buildings.insert(0, "")
+	    
+	    i = 1
+	    @buildings_table_values.each do |b|
+	    	@buildings.insert(i, [b.id, b.building_name])
+	    	i+=1
+	    end 
+	    if (!session[:computed] || session[:computed] == nil)
+	    
+	    	@conflicts = []
+	    	session[:computed] = false
+	    	session[:conflicts] = @conflicts
+	    	@day_row_id = 1
+	    	@time_range_selected = 'Early morning'
+	    	@building_row_id = 0
+	    else
+	    	@conflicts = session[:conflicts]
+	    	@day_row_id = session[:dayComboId]
+	    	@time_range_selected = session[:timeRanges]
+	    	@building_row_id = session[:buildingId]
+	    	
+	    	# Resetting session data
+	    	session[:conflicts] = []
+	    	session[:dayComboId] = 1
+			session[:timeRanges] = 'Early morning'
+			session[:buildingId] = 0
+	    end
+	end
 
   end
   
