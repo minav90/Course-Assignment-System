@@ -6,11 +6,11 @@
 <div style="background:#40E0D0 !important" class="jumbotron">
 <%= form_for :conflict_checker, url: conflict_checker_index_path do |f| %>
 
-<%= f.label "Choose Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, @day_row_id), {}, { id: 'day_combination_select' , class: "input-sm"} %>
+<font color="red">*</font> <%= f.label "Choose a Day combo:" %> <%= f.select :day_combinations_id , options_for_select(@dayCombos.collect { |day_combination| [day_combination.day_combination, day_combination.id] }, @day_row_id), {}, { id: 'day_combination_select' , class: "input-sm"} %>
 
-<%= f.label "Choose Time Range:" %> <%= f.select :time_ranges , options_for_select([['Early morning', 'Early morning'], ['Morning', 'Morning'], ['Mid-Day / Lunch', 'Mid-Day / Lunch'], ['Post-Lunch', 'Post-Lunch'], ['Evening', 'Evening']], @time_range_selected), {}, { id: 'time_range_select' , class: "input-sm"} %>
+<font color="red">*</font> <%= f.label "Choose a Time Range:" %> <%= f.select :time_ranges , options_for_select([['Early morning', 'Early morning'], ['Morning', 'Morning'], ['Mid-Day / Lunch', 'Mid-Day / Lunch'], ['Post-Lunch', 'Post-Lunch'], ['Evening', 'Evening']], @time_range_selected), {}, { id: 'time_range_select' , class: "input-sm"} %>
 
-<%= f.label "Choose Building Name:" %> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building[1], building[0]] }, @building_row_id), {}, { id: 'building_select', class: "input-sm"} %>
+<%= f.label "Choose Building Name:" %> <i><font color="red"> (optional)</font></i> <%= f.select :buildings_id , options_for_select(@buildings.collect { |building| [building[1], building[0]] }, @building_row_id), {}, { id: 'building_select', class: "input-sm"} %>
 
 <%= f.submit "Submit" ,class: "btn btn-primary"%>
 <% end %> 
