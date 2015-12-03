@@ -1,7 +1,6 @@
 class HomePageController < ApplicationController
   def home
   	@semester = Semester.all
-	puts @semester
   end
 
   def addfaculty
