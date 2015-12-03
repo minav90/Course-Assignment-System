@@ -52,11 +52,13 @@ $(".day_combination_select").on 'change', (evt) ->
     for i in [1..$(".day_combination_select").length]
       if $(".day_combination_select")[i-1].id == this.id
         course_id = $(".course")[i-1].value
+        room_id = $(".room_select")[i-1].value
     $.ajax 'course_assignments/update_time_slot',
       type: 'GET'
       dataType: 'json'
       data: {
         course_id: course_id
+        room_id: room_id
         day_combination_id: this.options[this.selectedIndex].value
       }
       success: (data, textStatus, jqXHR) ->
