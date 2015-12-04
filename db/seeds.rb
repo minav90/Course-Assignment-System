@@ -7,19 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 buildings = [{:building_name => 'HRBB'},
-			 {:building_name => 'CHEN'},
-			 {:building_name => 'FERM'},
 			]
 
 rooms = [{:room_name => '124', :building_id => 1, :Capacity => 135},
 		 {:room_name => '126', :building_id => 1, :Capacity => 27},
 		 {:room_name => '113', :building_id => 1, :Capacity => 60},
-		 {:room_name => '303', :building_id => 2},
-		 {:room_name => '201', :building_id => 2},
-		 {:room_name => '102', :building_id => 3},
-		 {:room_name => '106', :building_id => 3},
-		 {:room_name => '104', :building_id => 3},
-		 {:room_name => '108', :building_id => 3},
 		]
 
 		
@@ -29,17 +21,11 @@ daycombinations = [{:day_combination => 'MW'},
 				   {:day_combination => 'MWF'},
 				]
 
-faculties = [{:faculty_name => 'Jiang Andrew'},
-			 {:faculty_name => 'Ioerger Thomas'},
-			 {:faculty_name => 'Chen Jianer'},
-			 {:faculty_name => 'Huang Jeff'},
-			 {:faculty_name => 'Walker Duncan'},
-			 {:faculty_name => 'Huang Ruihong'},
-			 {:faculty_name => 'Hu Xia'},
-			 {:faculty_name => 'Amato Nancy'},
+faculties = [{:faculty_name => 'Amato Nancy'},
 			 {:faculty_name => 'Bettati Riccardo'},
 			 {:faculty_name => 'Chai Jinxiang'},
 			 {:faculty_name => 'Caverlee James'},
+			 {:faculty_name => 'Chen Jianer'},
 			 {:faculty_name => 'Choe Yoonsuck'},
 			 {:faculty_name => 'Da Silva Dilma'},
 			 {:faculty_name => 'Daugherity Walter'},
@@ -49,9 +35,14 @@ faculties = [{:faculty_name => 'Jiang Andrew'},
 			 {:faculty_name => 'Gu Guofei'},
 			 {:faculty_name => 'Gutierrez-Osuna Ricardo'},
 			 {:faculty_name => 'Hammond Tracy Anne'},
+			 {:faculty_name => 'Hu Xia'},
+			 {:faculty_name => 'Huang Ruihong'},
+			 {:faculty_name => 'Huang Jeff'},
 			 {:faculty_name => 'Hurley Joseph'},
+			 {:faculty_name => 'Ioerger Thomas'},
 			 {:faculty_name => 'Jafari Roozbeh'},
 			 {:faculty_name => 'Jarvi Jaakko'},
+			 {:faculty_name => 'Jiang Andrew'},
 			 {:faculty_name => 'Jiménez Daniel'},
 			 {:faculty_name => 'Kerne Andruid'},
 			 {:faculty_name => 'Keyser John'},
@@ -73,27 +64,23 @@ faculties = [{:faculty_name => 'Jiang Andrew'},
 			 {:faculty_name => 'Shipman Frank'},
 			 {:faculty_name => 'Song Dezhen'},
 			 {:faculty_name => 'Stoleru Radu'},
-			 #{:faculty_name => 'Sze Sing-Hoi'},
-			 #{:faculty_name => 'Taylor Valerie'},
-			 #{:faculty_name => 'Tyagi Aakash'},
-			 #{:faculty_name => 'Ward Ronnie'},
-			 #{:faculty_name => 'Welch Jennifer'},
-			 #{:faculty_name => 'Williams Tiffani'},
+			 {:faculty_name => 'Sze Sing-Hoi'},
+			 {:faculty_name => 'Taylor Valerie'},
+			 {:faculty_name => 'Tyagi Aakash'},
+			 {:faculty_name => 'Walker Duncan'},
+			 {:faculty_name => 'Ward Ronnie'},
+			 {:faculty_name => 'Welch Jennifer'},
+			 {:faculty_name => 'Williams Tiffani'},
 			 
 			]
 
-courses = 	[{:CourseTitle => 'Introduction to Artificial Intelligence', :course_name => 'CSCE 625'},
-			 {:CourseTitle => 'Analysis of Algorithms', :course_name => 'CSCE 629 Section 1'},
-			 {:CourseTitle => 'Analysis of Algorithms', :course_name => 'CSCE 629 Section 2'},
-			 {:CourseTitle => 'Software Engineering', :course_name => 'CSCE 606'},
-			 {:CourseTitle => 'Testing and Diagnosis of Digital Systems', :course_name => 'CSCE/ECEN 680'},
-			 {:CourseTitle => 'Database Systems', :course_name => 'CSCE 608'},
-			 {:CourseTitle => 'Machine Learning', :course_name => 'CSCE 633'},
+courses = 	[		 
 			 {:CourseTitle => 'Programming with C and Java', :course_name => 'CSCE 601'},
 			 {:CourseTitle => 'Object-Oriented Programming, Development and Software Engineering', :course_name => 'CSCE 602'},
 			 {:CourseTitle => 'Database Systems and Applications', :course_name => 'CSCE 603'},
 			 {:CourseTitle => 'Programming Languages', :course_name => 'CSCE 604'},
 			 {:CourseTitle => 'Compiler Design', :course_name => 'CSCE 605'},
+			 {:CourseTitle => 'Software Engineering', :course_name => 'CSCE 606'},
 			 {:CourseTitle => 'Database Systems', :course_name => 'CSCE 608'},
 			 {:CourseTitle => 'Hypertext/Hypermedia Systems', :course_name => 'CSCE 610'},
 			 {:CourseTitle => 'Operating Systems and Applications', :course_name => 'CSCE 611'},
@@ -106,11 +93,14 @@ courses = 	[{:CourseTitle => 'Introduction to Artificial Intelligence', :course_
 			 {:CourseTitle => 'Language, Library, and Program Design Using C++', :course_name => 'CSCE 621'},
 			 {:CourseTitle => 'Generic Programming', :course_name => 'CSCE 622'},
 			 {:CourseTitle => 'Sketch Recognition', :course_name => 'CSCE 624'},
+			 {:CourseTitle => 'Introduction to Artificial Intelligence', :course_name => 'CSCE 625'},
 			 {:CourseTitle => 'Parallel Algorithm Design and Analysis', :course_name => 'CSCE 626'},
 			 {:CourseTitle => 'Theory of Computability', :course_name => 'CSCE 627'},
 			 {:CourseTitle => 'Computational Biology', :course_name => 'CSCE 628'},
+			 {:CourseTitle => 'Analysis of Algorithms', :course_name => 'CSCE 629'},
 			 {:CourseTitle => 'Speech Processing', :course_name => 'CSCE 630'},
 			 {:CourseTitle => 'Intelligent Agents', :course_name => 'CSCE 631'},
+			 {:CourseTitle => 'Machine Learning', :course_name => 'CSCE 633'},
 			 {:CourseTitle => 'Intelligent User Interfaces', :course_name => 'CSCE 634'},
 			 {:CourseTitle => 'AI Robotics', :course_name => 'CSCE 635'},
 			 {:CourseTitle => 'Neural Networks', :course_name => 'CSCE 636'},
@@ -142,15 +132,15 @@ courses = 	[{:CourseTitle => 'Introduction to Artificial Intelligence', :course_
 			 {:CourseTitle => 'Seminar in Human-Centered Computing and Information', :course_name => 'CSCE 667'},
 			 {:CourseTitle => 'Distributed Algorithms and Systems', :course_name => 'CSCE 668'},
 			 {:CourseTitle => 'Computational Optimization', :course_name => 'CSCE 669'},
-			 #{:CourseTitle => 'Information Storage and Retrieval', :course_name => 'CSCE 670'},
-			 #{:CourseTitle => 'Computer-Human Interaction', :course_name => 'CSCE 671'},
-			 #{:CourseTitle => 'Computer Supported Collaborative Work', :course_name => 'CSCE 672'},
-			 #{:CourseTitle => 'Digital Libraries', :course_name => 'CSCE 675'},
-			 #{:CourseTitle => 'Testing and Diagnosis of Digital Systems', :course_name => 'CSCE 680'},
-			 #{:CourseTitle => 'Seminar', :course_name => 'CSCE 681'},
-			 #{:CourseTitle => 'Professional Internship', :course_name => 'CSCE 684'},
-			 #{:CourseTitle => 'Directed Studies', :course_name => 'CSCE 685'},
-			 #{:CourseTitle => 'Special Topics in..', :course_name => 'CSCE 689'},
+			 {:CourseTitle => 'Information Storage and Retrieval', :course_name => 'CSCE 670'},
+			 {:CourseTitle => 'Computer-Human Interaction', :course_name => 'CSCE 671'},
+			 {:CourseTitle => 'Computer Supported Collaborative Work', :course_name => 'CSCE 672'},
+			 {:CourseTitle => 'Digital Libraries', :course_name => 'CSCE 675'},
+			 {:CourseTitle => 'Testing and Diagnosis of Digital Systems', :course_name => 'CSCE 680'},
+			 {:CourseTitle => 'Seminar', :course_name => 'CSCE 681'},
+			 {:CourseTitle => 'Professional Internship', :course_name => 'CSCE 684'},
+			 {:CourseTitle => 'Directed Studies', :course_name => 'CSCE 685'},
+			 {:CourseTitle => 'Special Topics in..', :course_name => 'CSCE 689'},
 			]
 
 timeranges = 	[{:t_range => 'Early morning', :t_slots => '', :day_combination_id => '1'},
@@ -227,9 +217,6 @@ buildings.each do |building|
   Building.create!(building)
 end
 
-facultycourses.each do |fc|
-  FacultyCourse.create!(fc)
-end
 
 daycombinations.each do |dc|
   DayCombination.create!(dc)
@@ -255,17 +242,17 @@ rooms.each do |room|
   Room.create!(room)
 end
 
-semesters.each do |s|
-  Semester.create_semester(s[:SemesterTitle])
-end
+#semesters.each do |s|
+#  Semester.create_semester(s[:SemesterTitle])
+#end
 
-preferences.each do |pf|
-  Preference.create!(pf)
-end
+#preferences.each do |pf|
+#  Preference.create!(pf)
+#end
 
-facultypreferences.each do |fpf|
-  FacultyPreference.create!(fpf)
-end
+#facultypreferences.each do |fpf|
+#  FacultyPreference.create!(fpf)
+#end
 #Preference.destroy(3)
 
 #FacultyPreference.all.each do |fp|
