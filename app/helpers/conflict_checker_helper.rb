@@ -1,4 +1,5 @@
 # @author: Abhishek Vinod Kumar Joshi
+# @author: Aqib Niaz Bhat
 # Helper class for the Conflict Checker page
 module ConflictCheckerHelper
 	
@@ -20,7 +21,7 @@ module ConflictCheckerHelper
 		facultycourseTable = FacultyCourse.where("semester_id = ?",@semester_id)
 		courseId = courseId.to_i
 		facultycourseTable.each do |facultycourserow|
-			if ((facultycourserow.course1_id == courseId) || (facultycourserow.course2_id == courseId))
+			if ((facultycourserow.course1_id == courseId) || (facultycourserow.course2_id == courseId) || (facultycourserow.course3_id == courseId))
 				return facultycourserow.faculty_id
 			end
 
@@ -42,6 +43,10 @@ module ConflictCheckerHelper
 				end
 				if(facultycourserow.course2_id)
 					returnArray.insert(i, facultycourserow.course2_id)
+					i += 1
+				end
+				if(facultycourserow.course3_id)
+					returnArray.insert(i, facultycourserow.course3_id)
 				end
 				return returnArray
 			end
