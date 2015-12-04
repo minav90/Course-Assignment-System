@@ -7,6 +7,9 @@ describe ConflictCheckerController do
 		@buildings = [double(:id => '1',:building_name => 'test')]
 	end
 	describe 'getting conflict data' do
+		before :each do
+			session[:semester_id] = '1'
+		end
 		it 'should call the appropriate model methods to get conflict data' do
 			DayCombination.should_receive(:all).and_return(@day_combinations)
 			TimeSlot.should_receive(:all).and_return(@time_slots)

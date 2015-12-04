@@ -33,8 +33,13 @@ RSpec.describe HomePageController, type: :controller do
 
   describe 'creating new semester' do
 	it 'should call model method to create new semester' do
-		Semester.should_receive(:create).with({:SemesterTitle => '1'})
-		post :createsemester, {:class => {:SemesterTitle => '1'}}
+		Semester.should_receive(:find_by)
+		Semester.should_receive(:create_semester).with('test1')
+		post :createsemester, {:class => {:SemesterTitle => 'test1'}}
+	end
+	it 'should check for valid input before creating new semester' do
+		post :createsemester, {:class => {:SemesterTitle => ''}}
+		response.should redirect_to addsemester_path
 	end
   end
 

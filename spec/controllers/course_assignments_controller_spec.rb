@@ -79,9 +79,9 @@ describe CourseAssignmentsController do
 		ClassroomTiming.stub(:includes).and_return(ClassroomTiming)
 		classroom_timings = [double(:time_slot_id => '1',:time_slot => double(:id => '',:time_slot => '')),double(:time_slot_id => '2',:time_slot => double(:id => '',:time_slot => ''))]
 		course_assignments = [double(:time_slot_id => '1',:course_id => '1'),double(:time_slot_id => '2',:course_id => '2'),double(:time_slot_id => '3',:course_id => '3')]
-		ClassroomTiming.should_receive(:where).with("day_combination_id = ?","1").and_return(classroom_timings)
+		ClassroomTiming.should_receive(:where).with("room_id = ? and day_combination_id = ?","1","1").and_return(classroom_timings)
 		CourseAssignment.should_receive(:where).with("semester_id = ? and course_id = ?","1",'1').and_return(course_assignments)
-		post :update_time_slot, {:day_combination_id => '1', :course_id => '1', :format => :json}
+		post :update_time_slot, {:room_id => '1',:day_combination_id => '1', :course_id => '1', :format => :json}
 	end
     end
     

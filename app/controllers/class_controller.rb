@@ -11,12 +11,12 @@ class ClassController < ApplicationController
     if session[:semester_id] != nil && session[:semester_id] != ""
       @building = Building.all
       @timeslot = TimeSlot.all
-      @classroomTiming = ClassroomTiming.where(:semester_id => session[:semester_id]).all
+      @classroomTiming = ClassroomTiming.where("semester_id = ?",session[:semester_id])
       @day_combination = DayCombination.all
       @room = Room.where("building_id = ?",Building.first.id)
       @showClassroomDetails = Hash.new
       @classroomTiming.each do |classes| 
-       @tempRoom = Room.find_by_id(classes.room_id)
+       @tempRoom = Room.find(classes.room_id)
        @showClassroomDetails[classes.id] = {:room => @tempRoom ,
          :timeslot => TimeSlot.find_by_id(classes.time_slot_id),
          :building => Building.find_by_id(@tempRoom.building_id),

@@ -25,16 +25,16 @@ describe FacultyCoursesController do
 		@faculty_course.stub(:faculty_id).and_return("1")
 	end 
 	it 'should call the model method to get the selected faculty-course object' do
-		FacultyCourse.should_receive(:find_by_faculty_id).and_return(@faculty_course)
+		FacultyCourse.should_receive(:where).and_return([@faculty_course])
 		post :select_faculty, {:faculty_id => "1 "}
  	end
 	it 'should redirect to the show template for rendering' do
-		FacultyCourse.stub(:find_by_faculty_id).and_return(@faculty_course)
+		FacultyCourse.stub(:where).and_return([@faculty_course])
 		post :select_faculty, {:faculty_id => "1"}
 		response.should redirect_to(faculty_course_path(@faculty_course))
 	end
 	it 'should call model method for creating faculty-course object if selected faculty not found' do
-		FacultyCourse.stub(:find_by_faculty_id).and_return(nil)
+		FacultyCourse.stub(:where).and_return([])
 		FacultyCourse.should_receive(:create!).and_return(@faculty_course)
 		post :select_faculty, {:faculty_id => "1"}		
 	end
