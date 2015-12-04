@@ -25,6 +25,10 @@ describe ClassController,  :type => :controller do
     	post :new, {:class => {:building_name => "HRBB",:room_name => :to_s ,:building_id => m.id, :Capacity => :to_s}}
     	response.should redirect_to(class_index_path)
     end
+    it 'should redirect to home page if semester is not set' do
+	post :index
+	response.should redirect_to root_path
+    end
     it 'should show a ClassroomTiming' do
     	session[:semester_id] = '1'
     	m = double(Room, :room_name => "124",:building_id => "1",:Capacity => "88")
