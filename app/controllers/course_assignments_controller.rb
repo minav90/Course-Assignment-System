@@ -8,7 +8,7 @@ class CourseAssignmentsController < ApplicationController
   # Handles request to get landing page for the feature
   def index
 	if session[:semester_id] != nil && session[:semester_id] != ""
-		@faculties = Faculty.order(faculty_name: :desc)
+		@faculties = Faculty.order(faculty_name: :asc)
 		@assignments = []
 		@faculties.each {|faculty|
 	    		course_assignments = CourseAssignment.includes(:course,:room,:day_combination,:time_slot).where("semester_id = ? and faculty_id = ?",session[:semester_id],faculty.id)

@@ -4,7 +4,7 @@ class FacultyCoursesController < ApplicationController
     # Handles request to display landing page for the feature
     def index
 	if session[:semester_id] != nil && session[:semester_id] != ""
-        	@faculties = Faculty.order(faculty_name: :desc)
+        	@faculties = Faculty.order(faculty_name: :asc)
 		@all_faculty = {}
 		faculty_courses = FacultyCourse.includes(:faculty,:course1,:course2,:course3).where("semester_id = ?",session[:semester_id]) 
         	faculty_courses.each do |faculty_course|
