@@ -48,6 +48,19 @@ class FacultyPreferencesController < ApplicationController
     
   end  
 
+  def update_time_slots
+    # updates artists and songs based on genre selected
+    #day_combination_1 = DayCombination.find(params[:faculty_preference][:preference1_attributes][:day_combination_id])
+    #day_combination_2 = DayCombination.find(params[:faculty_preference][:preference2_attributes][:day_combination_id])
+    #day_combination_3 = DayCombination.find(params[:faculty_preference][:preference3_attributes][:day_combination_id])
+    # map to name and id for use in our options_for_select
+    
+    #For first preference
+    @time_slot_options = TimeSlot.where("day_combination_id = ?",params[:faculty_preference][:preference1_attributes][:day_combination_id] )
+    #@time_slot_options = day_combination_1.time_slot_options.map{|a| [a.time_slot, a.id]}.insert(0, "Select an Artist")
+   
+  end
+
   private
   def faculty_preference_params 
     params[:faculty_preference][:preference1_attributes][:note] = params[:faculty_preference][:preference3_attributes][:note]
