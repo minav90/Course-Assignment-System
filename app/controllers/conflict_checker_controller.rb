@@ -1,4 +1,5 @@
-# @author: Aqib Niaz Bhat Abhishek Vinod Kumar Joshi
+# @author: Aqib Niaz Bhat
+# @author: Abhishek Vinod Kumar Joshi
 # Controller class for the Conflict Checker page
 class ConflictCheckerController < ApplicationController
 # Inlcuding the Helper class for Conflict Checker
