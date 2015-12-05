@@ -30,11 +30,13 @@ Feature: add a page to assign courses to faculty members
    | 2          | 3          | 4          |            | 1 	   |
    | 1 	      | 1	   | 2	        |	     | 1 	   |
 
- Scenario: selecting faculty
-   Given I am on the home page
+   And I am on the home page
    When I choose semester "Fall 2015" and follow "Assign Faculty & Courses"
    Then I am on the Course and Faculty page
-   When I choose faculty "faculty_1" from "faculty_id"
+
+
+ Scenario: selecting faculty
+   When I choose faculty "1" from "faculty_id"
    Then I should see "Assign Courses"
    And I should see "faculty_1" 
  

@@ -16,6 +16,12 @@ Given /the following faculty_member-preference mappings exist:/ do |faculty_pref
     end
 end
 
+Given /the following time-ranges exist:/ do |time_range_table|
+    time_range_table.hashes.each do |time_range|
+	TimeRange.create!(time_range)
+    end
+end
+
 Then(/^I should see "(.*?)" and "(.*?)"$/) do |arg1, arg2|
 	page.should have_content(arg1)
 end

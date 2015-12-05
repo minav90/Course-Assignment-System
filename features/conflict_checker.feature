@@ -1,3 +1,4 @@
+@javascript
 Feature: add a page to check conflicts among faculty preferences
 
  As admin of the Course Assignment System
@@ -5,6 +6,10 @@ Feature: add a page to check conflicts among faculty preferences
  I want to view if faculty preferences have conflicts
 
  Background: faculties, courses, classrooms and preferences have been added to the database
+
+ Given the following semesters exist:
+   | SemesterTitle |
+   | Fall 2015 |
 
  Given the following faculties exist:
  | faculty_name |
@@ -25,6 +30,10 @@ Feature: add a page to check conflicts among faculty preferences
  | building_name |
  | HRBB |
  | CHEN |
+
+ And the following time-ranges exist:
+ | t_range | t_slots | day_combination_id |
+ | Morning | 1       | 1                  |
 
  And the following time-slots exist:
  | time_slot |
@@ -47,19 +56,19 @@ Feature: add a page to check conflicts among faculty preferences
  | 1	             | 1	      |     	       |	        |
  | 2	             |		      |	               | 1	        |
 
- And I am on the Conflict Checker page
+ And I am on the home page
+ When I choose semester "Fall 2015" and follow "Conflict Checker"
+ Then I am on the Conflict Checker page
 
  Scenario: selecting Day-Combo and Time-Slot
    When I select "TR" from "day_combination_select"
-   And I select "9:35 am to 10:50 am" from "timeslot_select"
+   And I select "Morning" from "time_range_select"
    And I press "Submit"
    Then I should be on the Conflict Checker page
-   And I should see "A" and "B"
 
  Scenario: selecting Day-Combo, Time-Slot and Building
    When I select "TR" from "day_combination_select"
-   And I select "9:35 am to 10:50 am" from "timeslot_select"
+   And I select "Morning" from "time_range_select"
    And I select "HRBB" from "building_select"
    And I press "Submit"
    Then I should be on the Conflict Checker page
-   And I should see "A" and "B"
