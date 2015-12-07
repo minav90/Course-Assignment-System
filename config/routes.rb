@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "setsession" => 'home_page#setsession'
 
   root 'home_page#home'
-  resources :faculty_preferences
+  resources :faculty_preferences, :except => [:show]
   get 'faculty_preferences/update_time_slots', :as => 'update_time_slots'
 
   # The priority is based upon order of creation: first created -> highest priority.

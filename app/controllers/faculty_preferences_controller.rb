@@ -56,9 +56,16 @@ class FacultyPreferencesController < ApplicationController
     # map to name and id for use in our options_for_select
     
     #For first preference
-    @time_slot_options = TimeSlot.where("day_combination_id = ?",params[:faculty_preference][:preference1_attributes][:day_combination_id] )
-    #@time_slot_options = day_combination_1.time_slot_options.map{|a| [a.time_slot, a.id]}.insert(0, "Select an Artist")
-   
+    time_slots = TimeSlot.where("day_combination_id = ?",params[:day_combination_id] )
+    @time_slot_options = {}
+    @time_slot_options["data"] = {}
+    time_slots.each {|time_slot|
+	puts(time_slot.time_slot)
+	@time_slot_options["data"][time_slot.id.to_s] = time_slot.time_slot
+    }
+    respond_to do |format|
+                format.json {render json: @time_slot_options}
+        end
   end
 
   private
