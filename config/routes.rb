@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'home_page#home'
   resources :faculty_preferences, :except => [:show]
   get 'faculty_preferences/update_time_slots', :as => 'update_time_slots'
+  get 'faculty_preferences/:id/display_summary' => 'faculty_preferences#display_summary', :as => 'display_summary'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

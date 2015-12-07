@@ -33,7 +33,7 @@ Note :
 	<p><%= f.label "Preference #1" %></p>
 	<%= f.fields_for :preference1 do |ff| %>
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination, {:include_blank => "Day Combination"} , {class: "day_combinations_select", :id => 'day_combinations_1' })  %> 
-        <%= ff.collection_select(:building_id, @building_options, :id, :building_name,  {:include_blank => "Building"},{class: "input-sm"})%>
+        <%= ff.collection_select(:building_id, @building_options, :id, :building_name,  {:include_blank => "Building"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "time_slots_select", :id => 'time_slots_1'}) %>
 		<%= ff.hidden_field :semester_id, value: session[:semester_id] %> 
 	<% end %>
@@ -43,7 +43,7 @@ Note :
 	<p><%= f.label "Preference #2" %></p>
 	<%= f.fields_for :preference2 do |ff| %>
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination,{:include_blank => "Day Combination"},{class: "day_combinations_select", :id => 'day_combinations_2'}) %> 
-        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, {:include_blank => "Building"},{class: "input-sm"})%>
+        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, {:include_blank => "Building"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot,  {:include_blank => "Time Slot"},{class: "time_slots_select", :id => 'time_slots_2'}) %>
 		<%= ff.hidden_field :semester_id, value: session[:semester_id] %> 
 	<% end %>
@@ -52,7 +52,7 @@ Note :
 	<p><%= f.label "Preference #3" %></p>
 	<%= f.fields_for :preference3 do |ff| %>
 		<%= ff.collection_select(:day_combination_id, @day_options, :id, :day_combination,{:include_blank => "Day Combination"},{:id => 'day_combinations_3', class: "day_combinations_select"}) %> 
-        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, {:include_blank => "Building"},{class: "input-sm"})%>
+        <%= ff.collection_select(:building_id, @building_options, :id, :building_name, {:include_blank => "Building"})%>
 		<%= ff.collection_select(:time_slot_id, @time_slot_options, :id, :time_slot, {:include_blank => "Time Slot"},{:id => 'time_slots_3',class: "time_slots_select"}) %><br><br>
 		<p>Edit the note if there are specific reasons for choosing a preference. </p>
 		<%= ff.text_area :note,  class: "form-control input-lg", id: "inputlg", :value => 'None! I just seem to like it.' %>

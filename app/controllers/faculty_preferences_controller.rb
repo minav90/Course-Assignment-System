@@ -38,13 +38,13 @@ class FacultyPreferencesController < ApplicationController
       @faculty_preference.update_attributes(faculty_preference_params)
     end
       if @faculty_preference.save
-        redirect_to @faculty_preference
+        redirect_to display_summary_path(@faculty_preference)
       else
         render :new
       end
   end
   
-  def show 
+  def display_summary 
     
   end  
 

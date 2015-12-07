@@ -16,4 +16,5 @@ $ ->
         i = 0
         for time_slot_id,time_slot of data.data
             $(time_slot_select_id).append($("<option/>",{value: time_slot_id,text: time_slot}))
-          i++        
+          i++
+  $(".day_combinations_select").trigger('change')
