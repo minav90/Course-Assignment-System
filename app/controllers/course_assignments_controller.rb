@@ -93,7 +93,7 @@ class CourseAssignmentsController < ApplicationController
   # @param hash containing faculty id
   def update_faculty_details
 	# add semester id to query
-	faculty_courses_arr = FacultyCourse.includes(:course1,:course2,:course3).where("faculty_id = ?",params[:faculty_id])
+	faculty_courses_arr = FacultyCourse.includes(:course1,:course2,:course3).where("semester_id = ? and faculty_id = ?",session[:semester_id],params[:faculty_id])
 	if faculty_courses_arr.length == 0
 		@course_assignments = []	
 	else
@@ -179,7 +179,7 @@ class CourseAssignmentsController < ApplicationController
   def update_day_combination
 	@day_combination_options = {}
 	@day_combination_options["data"] = {}
-	classroom_timings = ClassroomTiming.includes(:day_combination).where("room_id = ?",params[:room_id])
+	classroom_timings = ClassroomTiming.includes(:day_combination).where("semester_id = ? and room_id = ?",session[:semester_id],params[:room_id])
 	if classroom_timings.length == 0
 		@day_combination_options["data"][""] = ""
 	else
@@ -208,7 +208,7 @@ class CourseAssignmentsController < ApplicationController
   def update_time_slot
 	@time_slot_options = {}
 	@time_slot_options["data"] = {}
-	classroom_timings = ClassroomTiming.includes(:time_slot).where("room_id = ? and day_combination_id = ?",params[:room_id],params[:day_combination_id])
+	classroom_timings = ClassroomTiming.includes(:time_slot).where("semester_id = ? and room_id = ? and day_combination_id = ?",session[:semester_id],params[:room_id],params[:day_combination_id])
 	if classroom_timings.length == 0
                 @time_slot_options["data"][""] = ""
 	else
